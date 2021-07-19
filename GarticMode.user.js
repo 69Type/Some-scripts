@@ -1,18 +1,5 @@
-// ==UserScript==
-// @name         MAIN VERSION
-// @description  Мой самый первый юзерскрипт
-// @author       Doctor Death D. Dracula
-// @license      MIT
-// @version      auto-version
-// @include      https://garticphone.com/*
-// @grant        none
-// @supportURL   t.me/DoctorDeathDDracula
-// ==/UserScript==
 
-
-document.isTrusted=!0;
-
-var VERSION = "2.8.8.";
+var VERSION = "2.8.8.0";
 
 
 var UNDO = "jsx-4206980828 tool undo";
