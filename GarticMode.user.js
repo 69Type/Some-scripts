@@ -1263,7 +1263,7 @@ function VIPList(q){
         q.parentNode.parentNode.style.backgroundColor=text1.substring(index, text1.length);
         q.innerText=text1.substring(0, index);
     }
-    else if (document.URL.indexOf("book") != -1 && q.innerText.toLowerCase() != "doctordeathddracula" && !q.parentNode.classList.contains("waiting")){
+    else if (document.URL.indexOf("book") != -1 && q.innerText.toLowerCase() != "doctordeathddracula" && !q.parentNode.parentNode.classList.contains("waiting")){
         q.parentNode.parentNode.onmouseenter=()=>{if (q.banned != true){ q.parentNode.parentNode.style.boxShadow="0px 0px 10px red"} };
         q.parentNode.parentNode.onmouseleave=()=>{if (q.banned != true){ q.parentNode.parentNode.style.boxShadow=""} };
         q.parentNode.parentNode.style.cursor="pointer";
@@ -4013,7 +4013,7 @@ function main(){
             Q("zoomC")[0].parentNode.removeChild(Q("zoomC")[0]);
         }
 
-        v = Q("nick");
+        v = Q("jsx-1594390208 nick");
         for (let i=0; i<v.length; i++){VIPList(v[i]);}
         addListenerToBlock(Q("jsx-3158565948 scrollElements")[0]);
         setTimeout(styleUpdate, 10);
