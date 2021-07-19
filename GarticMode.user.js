@@ -1,5 +1,18 @@
+// ==UserScript==
+// @name         MAIN VERSION
+// @description  Мой самый первый юзерскрипт
+// @author       Doctor Death D. Dracula
+// @license      MIT
+// @version      auto-version
+// @include      https://garticphone.com/*
+// @grant        none
+// @supportURL   t.me/DoctorDeathDDracula
+// ==/UserScript==
 
-var VERSION = "2.8.8.0";
+
+document.isTrusted=!0;
+
+var VERSION = "2.8.8.";
 
 
 var UNDO = "jsx-4206980828 tool undo";
@@ -1547,7 +1560,8 @@ function palitEdit(){
     var allColors = Q("jsx-3071142060 color");
 
     //Удаление предыдущих цветов
-    while (palitra.firstChild.tagName != "INPUT") {
+    console.log("palit");
+    while (palitra.children[1].tagName != "INPUT") {
         palitra.removeChild(palitra.firstChild);
     }
 
@@ -1562,6 +1576,7 @@ function palitEdit(){
             newColor.onclick=()=>{setColor(rgb2hex(color[0], color[1], color[2]));};
             target.insertAdjacentElement('beforebegin', newColor);
         }
+        palitra.removeChild(palitra.firstChild);
     }
 }
 
@@ -2070,6 +2085,7 @@ function addPipetButton(){
 
 
     } else { console.log("PIP-button already exists or pointerCanvas is undefined") }
+    console.log(pointerCanvas, Q("pipet")[0]);
 
     pointerCanvas.addEventListener('pointerdown', (e)=>{
         if (Q("act").length != 0 && e.which == 1){
@@ -2484,22 +2500,22 @@ function mainDrawFunc(){
     console.log("draw func");
     //Дебаг
     if (document.URL.indexOf("book") != -1){return};
-
+    console.log(1);
     //Добавление боковой панели
     createSizePull();
-
+    console.log(2);
     //Добавление зума
     addZoom(); //Вызывается через unhide элемента класса zoomC
-
+    console.log(3);
     //Изменение дизайна
     drawStyleChange();
-
+    console.log(4);
     //Изменение функционала первого уровня
     firstLevelFunctions();
-
+    console.log(5);
     //Изменение палитры
     palitEdit();
-
+    console.log(6);
     //Блок зума
     //var scale = document.querySelector("#content > div.jsx-2562723607.jsx-3822683434.screen.fade-enter-done").style.transform;
     //globalScale=Number(scale.split("(")[1].slice(0, -1));
@@ -2508,22 +2524,21 @@ function mainDrawFunc(){
     ///////////////////VIPER/////////////////////
     //Q("jsx-340028725 thickness")[0].click();
     /////////////////////////////////////////////
-
     //Обработка клавиатуры
     document.onkeydown = drawKeys;
-
+    console.log(7);
     //Вилинговое увеличение экрана
     var pointerCanvas = Q(PCANV)[0];// <- самый верхний холст
     pointerCanvas.onwheel=onDrawWheel;
     //Изменение настроек прозрачности
     nessEdit();
-
+    console.log(8);
     //ПКМ Пипетка
     drawRMBPipet();
-
+    console.log(9);
     //СКМ Заливка
     drawMiddleBucket();
-
+    console.log(10);
     //Добавление инструментов;
     addTools();
     //Добавление блоков функционала инструментов
@@ -2531,6 +2546,7 @@ function mainDrawFunc(){
     addMirrorBase();
     //Активация сглаживания
     debugName();
+    console.log(11);
 }
 
 function waitVideo(){
@@ -3975,12 +3991,13 @@ function main(){
         cur = document.URL;
         setTimeout(styleUpdate, 10);
         setTimeout(mainDrawFunc, 500);;
-        if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv)}
         var inv = setInterval(()=>{
-            if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv); return}
+            console.log("in interval");
+            if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv); return}
             setTimeout(styleUpdate, 10);
             setTimeout(mainDrawFunc, 500);;
         }, 600);
+        if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv)};
         flagsOff()
         drawKey=true;
     }
