@@ -59,9 +59,9 @@ font1.classList.add("font1");
 font1.type='text/css';
 var rule = document.createTextNode(
     "@font-face {font-family: 'Majestic';" +
-    "src: url(https://cdn.discordapp.com/attachments/833410401366573066/845238689352908800/Majestic_Regular.ttf);"+
+    "src: url(https://cdn.discordapp.com/attachments/866074580853719061/866121147383545856/EternalUiRegular-1Gap2.ttf);"+
     +"}"
-                                  );
+);
 font1.appendChild(rule);
 document.getElementsByTagName("head")[0].appendChild(font1);
 
@@ -314,19 +314,19 @@ document.getElementsByTagName("head")[0].appendChild(styleInputRange27);
 var cssAnimation3 = document.createElement('style');
 cssAnimation.type = 'text/css';
 var rules000 = document.createTextNode('@keyframes rainbow2 {'+
-                                    '100%, 0% { background-color: rgb(255, 0, 0);}'+
-                                    '8% { background-color: rgb(255, 127, 0);}'+
-                                    '16% { background-color: rgb(255, 255, 0);}'+
-                                    '25% { background-color: rgb(127, 255, 0);}'+
-                                    '33% { background-color: rgb(0, 255, 0);}'+
-                                    '41% { background-color: rgb(0, 255, 127);}'+
-                                    '50% { background-color: rgb(0, 255, 255);}'+
-                                    '58% { background-color: rgb(0, 127, 255);}'+
-                                    '66% { background-color: rgb(0, 0, 255);}'+
-                                    '75% { background-color: rgb(127, 0, 255);}'+
-                                    '83% { background-color: rgb(255, 0, 255);}'+
-                                    '91% { background-color: rgb(255, 0, 127);}'
-                                    +'}');
+                                       '100%, 0% { background-color: rgb(255, 0, 0);}'+
+                                       '8% { background-color: rgb(255, 127, 0);}'+
+                                       '16% { background-color: rgb(255, 255, 0);}'+
+                                       '25% { background-color: rgb(127, 255, 0);}'+
+                                       '33% { background-color: rgb(0, 255, 0);}'+
+                                       '41% { background-color: rgb(0, 255, 127);}'+
+                                       '50% { background-color: rgb(0, 255, 255);}'+
+                                       '58% { background-color: rgb(0, 127, 255);}'+
+                                       '66% { background-color: rgb(0, 0, 255);}'+
+                                       '75% { background-color: rgb(127, 0, 255);}'+
+                                       '83% { background-color: rgb(255, 0, 255);}'+
+                                       '91% { background-color: rgb(255, 0, 127);}'
+                                       +'}');
 cssAnimation.appendChild(rules000);
 document.getElementsByTagName("head")[0].appendChild(cssAnimation3);
 
@@ -665,30 +665,30 @@ function drawNsort(arr){
     var key = false;
     var realLengthOfArray = arr.length;
     for (let i=0; i<realLengthOfArray; i++){
-           var lastIndex;
-           minS = 1E38;
-            for (let k=0; k<arr.length; k++){
-                let x0 = lastPoint[0];
-                let y0 = lastPoint[1];
-                let x1 = arr[k][0];
-                let y1 = arr[k][1];
-                let curS = ((x0-x1)**2+(y0-y1)**2)**0.5;
-                if (curS < minS){
-                    minS = curS;
-                    lastIndex = k;
-                }
+        var lastIndex;
+        minS = 1E38;
+        for (let k=0; k<arr.length; k++){
+            let x0 = lastPoint[0];
+            let y0 = lastPoint[1];
+            let x1 = arr[k][0];
+            let y1 = arr[k][1];
+            let curS = ((x0-x1)**2+(y0-y1)**2)**0.5;
+            if (curS < minS){
+                minS = curS;
+                lastIndex = k;
             }
-           lastPoint = arr[lastIndex];
-           arr.splice(lastIndex, 1);
+        }
+        lastPoint = arr[lastIndex];
+        arr.splice(lastIndex, 1);
 
-            if (key){
-                mouseDown(lastPoint[0], lastPoint[1]);
-            }
+        if (key){
+            mouseDown(lastPoint[0], lastPoint[1]);
+        }
 
-            if (minS>2){
-                mouseUp();
-                key = true;
-            } else {mouseMove(lastPoint[0], lastPoint[1]); key=false;}
+        if (minS>2){
+            mouseUp();
+            key = true;
+        } else {mouseMove(lastPoint[0], lastPoint[1]); key=false;}
         if (i==realLengthOfArray-1){
             mouseUp();
             curThicc.click();
@@ -857,27 +857,27 @@ function rgb2hex(r, g, b) {
 }
 
 function setColor(color) {
-  const input = document.querySelector('input[type=color]');
-  const value = input.value;
-  input.value = color;
-  input._valueTracker.setValue(value);
-  input.dispatchEvent(new Event('input', { bubbles: true }));
+    const input = document.querySelector('input[type=color]');
+    const value = input.value;
+    input.value = color;
+    input._valueTracker.setValue(value);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 
 function setValue(input, value) {
-  input.value = value;
-  input._valueTracker.setValue();
-  input.dispatchEvent(new Event('input', { bubbles: true }));
+    input.value = value;
+    input._valueTracker.setValue();
+    input.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 
 function setNess(n) {
-  const input = document.querySelector("#content > div > div > div.jsx-1562482592.center > div.jsx-1562482592.bottom > div > div.jsx-340028725.bxopacity > input.jsx-340028725");
-  const value = input.value;
-  input.value = n/100;
-  input._valueTracker.setValue(value);
-  input.dispatchEvent(new Event('input', { bubbles: true }));
+    const input = document.querySelector("#content > div > div > div.jsx-1562482592.center > div.jsx-1562482592.bottom > div > div.jsx-340028725.bxopacity > input.jsx-340028725");
+    const value = input.value;
+    input.value = n/100;
+    input._valueTracker.setValue(value);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 
@@ -1092,7 +1092,7 @@ function censorListener(){
 }
 
 function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
+    return Math.floor(Math.random() * Math.floor(max));
 }
 
 function AddButton(){
@@ -1260,28 +1260,28 @@ function VIPList(q){
         q.title="Игрок";
         var text1 = q.innerText
         var index = text1.lastIndexOf("#");
-        q.parentNode.style.backgroundColor=text1.substring(index, text1.length);
+        q.parentNode.parentNode.style.backgroundColor=text1.substring(index, text1.length);
         q.innerText=text1.substring(0, index);
     }
     else if (document.URL.indexOf("book") != -1 && q.innerText.toLowerCase() != "doctordeathddracula" && !q.parentNode.classList.contains("waiting")){
-        q.parentNode.onmouseenter=()=>{if (q.banned != true){ q.parentNode.style.boxShadow="0px 0px 10px red"} };
-        q.parentNode.onmouseleave=()=>{if (q.banned != true){ q.parentNode.style.boxShadow=""} };
-        q.parentNode.style.cursor="pointer";
-        q.parentNode.onclick=()=>{
+        q.parentNode.parentNode.onmouseenter=()=>{if (q.banned != true){ q.parentNode.parentNode.style.boxShadow="0px 0px 10px red"} };
+        q.parentNode.parentNode.onmouseleave=()=>{if (q.banned != true){ q.parentNode.parentNode.style.boxShadow=""} };
+        q.parentNode.parentNode.style.cursor="pointer";
+        q.parentNode.parentNode.onclick=()=>{
             var ne = Q("scrollElements")[1]
             if (!ne){return}
             ne=ne.children;
             if (q.banned){
                 let popa = blackArr.indexOf(q.innerText.toLowerCase())
                 q.banned=false;
-                q.parentNode.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+                q.parentNode.parentNode.style.backgroundColor = "";
                 blackArr.splice(popa, 1);
                 for (let i=0; i<ne.length; i++){cencFunc(ne[i].firstChild);}
             } else {
                 q.banned=true;
                 blackArr.push(q.innerText.toLowerCase());
                 for (let i=0; i<ne.length; i++){cencFunc(ne[i].firstChild);}
-                q.parentNode.style.backgroundColor = "red";
+                q.parentNode.parentNode.style.backgroundColor = "red";
             };
         };
     }
@@ -1355,12 +1355,12 @@ function clearActiveelements(){
 }
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////DRAW FUNCS/////////////////////////////////////////////////////////
@@ -1374,37 +1374,37 @@ var currentC;
 function addZoom(){
     function zoomUpdate(e){
         try{
-        var topC = Q(PCANV)[0];
-        var zoomC = Q("zoomC")[0];
-        var rect = topC.getBoundingClientRect();
-        var dx = e.clientX - rect.x;
-        var dy = e.clientY - rect.y;
-        var coefX = 1516 / rect.width;
-        var coefY = 848 / rect.height;
+            var topC = Q(PCANV)[0];
+            var zoomC = Q("zoomC")[0];
+            var rect = topC.getBoundingClientRect();
+            var dx = e.clientX - rect.x;
+            var dy = e.clientY - rect.y;
+            var coefX = 1516 / rect.width;
+            var coefY = 848 / rect.height;
 
-        zoomC.style.left = e.clientX + 'px';
-        zoomC.style.top = e.clientY - zoomOffsetY + 'px';
-        var ctx = zoomC.getContext("2d");
-        ctx.fillRect(0, 0, zoomC.width, zoomC.height);
-        ctx.drawImage(memmoryC, dx * coefX - 70+3, dy * coefY - 70+3, 200, 200, 0, 0, 300, 300);
-        ctx.drawImage(currentC, dx * coefX - 70+3, dy * coefY - 70+3, 200, 200, 0, 0, 300, 300);
+            zoomC.style.left = e.clientX + 'px';
+            zoomC.style.top = e.clientY - zoomOffsetY + 'px';
+            var ctx = zoomC.getContext("2d");
+            ctx.fillRect(0, 0, zoomC.width, zoomC.height);
+            ctx.drawImage(memmoryC, dx * coefX - 70+3, dy * coefY - 70+3, 200, 200, 0, 0, 300, 300);
+            ctx.drawImage(currentC, dx * coefX - 70+3, dy * coefY - 70+3, 200, 200, 0, 0, 300, 300);
 
-        const centerX = zoomC.width / 2;
-        const centerY = zoomC.height / 2;
+            const centerX = zoomC.width / 2;
+            const centerY = zoomC.height / 2;
 
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 2, 0, 2 * Math.PI, false);
-        //ctx.fillStyle = 'red';
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = '#000000';
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 2, 0, 2 * Math.PI, false);
+            //ctx.fillStyle = 'red';
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#000000';
+            ctx.stroke();
 
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 1, 0, 2 * Math.PI, false);
-        //ctx.fillStyle = 'red';
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, 1, 0, 2 * Math.PI, false);
+            //ctx.fillStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = '#FFFFFF';
+            ctx.stroke();
         } catch {};
     }
 
@@ -1835,112 +1835,112 @@ var firstTimeAddWindowSmooth = true;
 var mapArray = [];
 function addSmoothingTool(){
     mapArray = [];
-        if (!Q("jsx-4206980828 tool smooth").length){
-            var toolBar = Q(TBAR)[0].firstChild;
+    if (!Q("jsx-4206980828 tool smooth").length){
+        var toolBar = Q(TBAR)[0].firstChild;
 
-            var smoothBorder = document.createElement("div");
-            smoothBorder.width = 300;
-            smoothBorder.height = 100;
-            smoothBorder.style.position = "relative";
-            smoothBorder.style.top = "200px;";
-            smoothBorder.style.display = "flex";
-            smoothBorder.style.width = "auto";
-            smoothBorder.style.height = "auto";
-            smoothBorder.style.right="0px"; //->210px
-            toolBar.appendChild(smoothBorder);
+        var smoothBorder = document.createElement("div");
+        smoothBorder.width = 300;
+        smoothBorder.height = 100;
+        smoothBorder.style.position = "relative";
+        smoothBorder.style.top = "200px;";
+        smoothBorder.style.display = "flex";
+        smoothBorder.style.width = "auto";
+        smoothBorder.style.height = "auto";
+        smoothBorder.style.right="0px"; //->210px
+        toolBar.appendChild(smoothBorder);
 
-            var degRangeBorder = document.createElement("div");
-            degRangeBorder.classList.add(TOOL);
-            degRangeBorder.classList.add("deg-range-border");
-            degRangeBorder.style.width="230px";
-            degRangeBorder.style.height="auto";
-            degRangeBorder.style.border="2px solid black";
-            degRangeBorder.style.borderRadius="5px";
-            degRangeBorder.style.margin="0px 5px 0px 0px";
-            degRangeBorder.style.backgroundColor = "rgba(94, 25, 51, 0.5)";
-            degRangeBorder.style.zIndex = "10";
-            degRangeBorder.style.position = "absolute";
-            degRangeBorder.style.right="53px";
-            degRangeBorder.style.display="none";
+        var degRangeBorder = document.createElement("div");
+        degRangeBorder.classList.add(TOOL);
+        degRangeBorder.classList.add("deg-range-border");
+        degRangeBorder.style.width="230px";
+        degRangeBorder.style.height="auto";
+        degRangeBorder.style.border="2px solid black";
+        degRangeBorder.style.borderRadius="5px";
+        degRangeBorder.style.margin="0px 5px 0px 0px";
+        degRangeBorder.style.backgroundColor = "rgba(94, 25, 51, 0.5)";
+        degRangeBorder.style.zIndex = "10";
+        degRangeBorder.style.position = "absolute";
+        degRangeBorder.style.right="53px";
+        degRangeBorder.style.display="none";
 
 
-            degRangeBorder.onmouseleave=()=>{
-                setTimeout(()=>{if ([
-                    smoothButton,
-                    sCounter,
-                    degRange1,
-                    degRangeBorder,
-                ].indexOf(curElementOverCursor) != -1){
-                } else {
-                    degRangeBorder.style.display="none";
-                }
-                               }, 1000)
+        degRangeBorder.onmouseleave=()=>{
+            setTimeout(()=>{if ([
+                smoothButton,
+                sCounter,
+                degRange1,
+                degRangeBorder,
+            ].indexOf(curElementOverCursor) != -1){
+            } else {
+                degRangeBorder.style.display="none";
             }
+                           }, 1000)
+        }
 
-            var degRange1 = document.createElement('input');
-            degRange1.classList.add("here-degrange");
-            degRange1.type = "range";
-            degRange1.min = 1;
-            degRange1.max = 10;
-            degRange1.step = 1;
-            degRange1.value=String(sLevel);
-            degRange1.style.margin="23px 5px";
-            degRange1.style.width="190px";
-            degRange1.style.height="4px";
-            degRange1.style.borderRadius="10px";
-            degRange1.oninput=()=>{
-                sCounter.innerText = degRange1.value
-                sLevel = Number(degRange1.value);
-                localStorage.setItem("sLevel", sLevel);
-            };
-
-            var sCounter = document.createElement("div");
-            sCounter.innerText = String(sLevel);
-            sCounter.style.fontFamily="Black";
-            sCounter.style.color="rgb(67, 222, 153)";
-            sCounter.style.width="30px";
-            sCounter.style.border="thick";
-            sCounter.style.textAlign="center";
-            sCounter.style.fontSize="17px";
-            sCounter.style.backgroundColor="rgba(100, 100, 100, 0)";
-            sCounter.style.position="absolute";
-            sCounter.style.right="5px";
-            sCounter.style.margin="15px 0px 0px 0px";
-
-            degRangeBorder.appendChild(sCounter);
-            degRangeBorder.appendChild(degRange1);
-            smoothBorder.appendChild(degRangeBorder);
-
-            var smoothButton = document.createElement("div");
-            smoothButton.classList.add(TOOL);
-            smoothButton.classList.add("tool");
-            smoothButton.classList.add("smooth");
-            smoothButton.style.backgroundColor="#ff000030";
-            smoothButton.style.margin="0px";
-
+        var degRange1 = document.createElement('input');
+        degRange1.classList.add("here-degrange");
+        degRange1.type = "range";
+        degRange1.min = 1;
+        degRange1.max = 10;
+        degRange1.step = 1;
+        degRange1.value=String(sLevel);
+        degRange1.style.margin="23px 5px";
+        degRange1.style.width="190px";
+        degRange1.style.height="4px";
+        degRange1.style.borderRadius="10px";
+        degRange1.oninput=()=>{
+            sCounter.innerText = degRange1.value
             sLevel = Number(degRange1.value);
+            localStorage.setItem("sLevel", sLevel);
+        };
 
-            smoothButton.onmouseenter=()=>{
-                degRangeBorder.style.display="";
-                Q("color-gradient")[0].style.display="none";
+        var sCounter = document.createElement("div");
+        sCounter.innerText = String(sLevel);
+        sCounter.style.fontFamily="Black";
+        sCounter.style.color="rgb(67, 222, 153)";
+        sCounter.style.width="30px";
+        sCounter.style.border="thick";
+        sCounter.style.textAlign="center";
+        sCounter.style.fontSize="17px";
+        sCounter.style.backgroundColor="rgba(100, 100, 100, 0)";
+        sCounter.style.position="absolute";
+        sCounter.style.right="5px";
+        sCounter.style.margin="15px 0px 0px 0px";
+
+        degRangeBorder.appendChild(sCounter);
+        degRangeBorder.appendChild(degRange1);
+        smoothBorder.appendChild(degRangeBorder);
+
+        var smoothButton = document.createElement("div");
+        smoothButton.classList.add(TOOL);
+        smoothButton.classList.add("tool");
+        smoothButton.classList.add("smooth");
+        smoothButton.style.backgroundColor="#ff000030";
+        smoothButton.style.margin="0px";
+
+        sLevel = Number(degRange1.value);
+
+        smoothButton.onmouseenter=()=>{
+            degRangeBorder.style.display="";
+            Q("color-gradient")[0].style.display="none";
+        }
+
+        smoothButton.onmouseleave=()=>{
+            setTimeout(()=>{if ([
+                smoothButton,
+                sCounter,
+                degRange1,
+                degRangeBorder,
+            ].indexOf(curElementOverCursor) != -1){
+            } else {
+                degRangeBorder.style.display="none";
             }
+                           }, 1000)
+        }
 
-            smoothButton.onmouseleave=()=>{
-                setTimeout(()=>{if ([
-                    smoothButton,
-                    sCounter,
-                    degRange1,
-                    degRangeBorder,
-                ].indexOf(curElementOverCursor) != -1){
-                } else {
-                    degRangeBorder.style.display="none";
-                }
-                               }, 1000)
-            }
+        smoothBorder.appendChild(smoothButton);
 
-            smoothBorder.appendChild(smoothButton);
-
-            if (firstTimeAddWindowSmooth){
+        if (firstTimeAddWindowSmooth){
             window.addEventListener('pointerup', (e)=>{
                 if (onWorkingKey){
                     onWorkingKey=false;
@@ -1961,39 +1961,39 @@ function addSmoothingTool(){
                 if (onWorkingKey){
                     mapArray.push([e.clientX, e.clientY]);
                 }})
-            }
-            firstTimeAddWindowSmooth = false;
         }
-
-        degRange1 = Q("here-degrange")[0];
-
-        var pointerCanvas = Q(PCANV)[0];
-        pointerCanvas.addEventListener('pointerdown', (e)=>{
-            var pipetTool = Q("jsx-4206980828 tool pipet act sel")[0];
-            var bucketTool = Q("jsx-4206980828 tool fil sel")[0];
-            if (Number(degRange1.value)!=1 && !bucketTool && e.which != 2 && !onWorking && e.which != 3 && !pipetTool){
-                onWorkingKey = true;
-                startPoint = [e.clientX, e.clientY];
-            }
-        })
-
-        pointerCanvas.addEventListener('pointerup', (e)=>{
-            if (onWorkingKey){
-                onWorkingKey=false;
-                endPoint = [e.clientX, e.clientY];
-                clientMouseDown(startPoint[0], startPoint[1]);
-                clientMouseMove(startPoint[0], startPoint[1]);
-                for (let i=0; i<mapArray.length; i+=sLevel) {
-                    let point = mapArray[i];
-                    clientMouseMove(point[0], point[1]);
-                }
-                clientMouseMove(endPoint[0], endPoint[1]);
-                clientMouseUp(endPoint[0], endPoint[1]);
-                mapArray=[];
-            }
-        })
-
+        firstTimeAddWindowSmooth = false;
     }
+
+    degRange1 = Q("here-degrange")[0];
+
+    var pointerCanvas = Q(PCANV)[0];
+    pointerCanvas.addEventListener('pointerdown', (e)=>{
+        var pipetTool = Q("jsx-4206980828 tool pipet act sel")[0];
+        var bucketTool = Q("jsx-4206980828 tool fil sel")[0];
+        if (Number(degRange1.value)!=1 && !bucketTool && e.which != 2 && !onWorking && e.which != 3 && !pipetTool){
+            onWorkingKey = true;
+            startPoint = [e.clientX, e.clientY];
+        }
+    })
+
+    pointerCanvas.addEventListener('pointerup', (e)=>{
+        if (onWorkingKey){
+            onWorkingKey=false;
+            endPoint = [e.clientX, e.clientY];
+            clientMouseDown(startPoint[0], startPoint[1]);
+            clientMouseMove(startPoint[0], startPoint[1]);
+            for (let i=0; i<mapArray.length; i+=sLevel) {
+                let point = mapArray[i];
+                clientMouseMove(point[0], point[1]);
+            }
+            clientMouseMove(endPoint[0], endPoint[1]);
+            clientMouseUp(endPoint[0], endPoint[1]);
+            mapArray=[];
+        }
+    })
+
+}
 
 //Функционал пипеточного элемента
 function addTitle(){
@@ -2216,19 +2216,19 @@ function randomColorButton(){
         gradientButton.onmouseenter=()=>{
             if(Q("jsx-1553483530 pencil").length){return;}
             degRangeBorder.style.display="";
-//             Q("deg-range-border")[0].style.display="none";
-//             var N = new Set(Q(DCANV)[0].getContext("2d").getImageData(0, 0, 1516, 848).data)
-//             if (N.size != 1){
-//                 defaultButton.style.cursor="no-drop";
-//                 defaultButton.title="Нельзя использовать если что-то уже нарисовано";
-//                 defaultButton.style.opacity=0.5;
-//                 uKey=true;
-//             } else {
-                defaultButton.style.cursor="";
-                defaultButton.title="";
-                defaultButton.style.opacity=1;
-                uKey=false;
-//            }
+            //             Q("deg-range-border")[0].style.display="none";
+            //             var N = new Set(Q(DCANV)[0].getContext("2d").getImageData(0, 0, 1516, 848).data)
+            //             if (N.size != 1){
+            //                 defaultButton.style.cursor="no-drop";
+            //                 defaultButton.title="Нельзя использовать если что-то уже нарисовано";
+            //                 defaultButton.style.opacity=0.5;
+            //                 uKey=true;
+            //             } else {
+            defaultButton.style.cursor="";
+            defaultButton.title="";
+            defaultButton.style.opacity=1;
+            uKey=false;
+            //            }
         }
 
         gradientButton.onmouseleave=()=>{
@@ -2440,7 +2440,7 @@ function addMirrorBase(){
 ////////////////////////////////
 
 //Функционал кнопки очистки
-    var clearButton;
+var clearButton;
 function addClearButton(){
     var toolBar = Q(TBAR)[0].firstChild;
     if (!Q("clear").length){
@@ -2591,8 +2591,8 @@ function getCookieDict(){
 
 function debagDrawinfContainerOnExit(){
     try{
-    Q("jsx-1562482592 drawingContainer")[0].parentNode.removeChild(Q("jsx-1562482592 drawingContainer")[0]);
-    Q("class100")[0].parentNode.removeChild(Q("class100")[0]);
+        Q("jsx-1562482592 drawingContainer")[0].parentNode.removeChild(Q("jsx-1562482592 drawingContainer")[0]);
+        Q("class100")[0].parentNode.removeChild(Q("class100")[0]);
     } catch{};
 }
 
@@ -3664,12 +3664,12 @@ function createColorPull(){
         linkInput2.style.fontFamily='Black';
         linkInput2.style.padding="0px 10px";
         linkInput2.oninput=()=>{
-                localStorage.setItem("sl2", linkInput2.value);
-                if (linkInput2.value != ""){
-                    Q("jsx-2562723607")[1].style.backgroundImage=`url(${linkInput2.value})`;
-                } else {
-                    Q("jsx-2562723607")[1].style.backgroundImage=`none`;
-                }
+            localStorage.setItem("sl2", linkInput2.value);
+            if (linkInput2.value != ""){
+                Q("jsx-2562723607")[1].style.backgroundImage=`url(${linkInput2.value})`;
+            } else {
+                Q("jsx-2562723607")[1].style.backgroundImage=`none`;
+            }
         };
         linkInput2.disabled=true;
         Q("jsx-2562723607")[1].style.backgroundSize="cover";
@@ -3813,25 +3813,25 @@ function createColorPull(){
                 linkInput2.disabled=false;
                 leftPannel.style.left="0px";
             })
-            };
+        };
 
         d.appendChild(defaultButton);
         styleUpdate();
     }
 }
 
-    function styleUpdate(){
-        console.log("double")
-        Q("jsx-2562723607")[1].style.backgroundBlendMode="color-dodge";
-        Q("jsx-2562723607")[1].style.backgroundSize="cover";
-        Q("jsx-2562723607")[1].style.backgroundPosition="center";
-        Q("jsx-2562723607")[1].style.backgroundRepeat="no-repeat";
-        Q("jsx-2562723607")[1].style.backgroundColor=localStorage.getItem("sc4") + localStorage.getItem("sc4o");
-        document.querySelector("#content").style.backgroundColor=localStorage.getItem("sc3") + localStorage.getItem("sc3o");
-        if(localStorage.getItem("sl1") != ""){document.querySelector("#__next").style.backgroundImage=`url(${localStorage.getItem("sl1")})`;}
-        Q("jsx-2562723607")[1].style.backgroundImage=`url(${localStorage.getItem("sl2")})`;
-        document.querySelector("body").style.backgroundImage=`linear-gradient(${localStorage.getItem("gd")}deg, ${localStorage.getItem("gc1")} ${localStorage.getItem("pc1")}%, ${localStorage.getItem("gc2")} ${localStorage.getItem("pc2")}%)`;
-    }
+function styleUpdate(){
+    console.log("double")
+    Q("jsx-2562723607")[1].style.backgroundBlendMode="color-dodge";
+    Q("jsx-2562723607")[1].style.backgroundSize="cover";
+    Q("jsx-2562723607")[1].style.backgroundPosition="center";
+    Q("jsx-2562723607")[1].style.backgroundRepeat="no-repeat";
+    Q("jsx-2562723607")[1].style.backgroundColor=localStorage.getItem("sc4") + localStorage.getItem("sc4o");
+    document.querySelector("#content").style.backgroundColor=localStorage.getItem("sc3") + localStorage.getItem("sc3o");
+    if(localStorage.getItem("sl1") != ""){document.querySelector("#__next").style.backgroundImage=`url(${localStorage.getItem("sl1")})`;}
+    Q("jsx-2562723607")[1].style.backgroundImage=`url(${localStorage.getItem("sl2")})`;
+    document.querySelector("body").style.backgroundImage=`linear-gradient(${localStorage.getItem("gd")}deg, ${localStorage.getItem("gc1")} ${localStorage.getItem("pc1")}%, ${localStorage.getItem("gc2")} ${localStorage.getItem("pc2")}%)`;
+}
 
 
 if (document.isTrusted){
@@ -3929,11 +3929,11 @@ function memoryFunc(){
 
 
 function offBgMenu(){
-        var panel = Q("rightpanel");
-        if (panel.length != 0){
-            panel[0].parentNode.removeChild(panel[0]);
-        }
+    var panel = Q("rightpanel");
+    if (panel.length != 0){
+        panel[0].parentNode.removeChild(panel[0]);
     }
+}
 
 
 function main(){
@@ -3958,9 +3958,9 @@ function main(){
         //Блок главного меню при входе по ссылке
         //alert("menuLinkKey");
         //window.onload=()=>{
-            //deletBanner();
-            //createColorPull();
-            //styleUpdate();
+        //deletBanner();
+        //createColorPull();
+        //styleUpdate();
         //}
         //setTimeout(blackListFunc, 10);
         setTimeout(deletBanner, 10);
@@ -3991,12 +3991,12 @@ function main(){
         if (!w){
             Q("timeline")[0].addEventListener("DOMNodeInserted", (e)=>{
                 setTimeout(()=>{
-                if (!e.target.classList || !e){return}
-                if (e.target.classList.contains("scroll")){
-                    var w = Q("scrollElements")[1].children;
-                    censorListener();
-                    for(var k=0; k<w.length; k++){cencFunc(w[k].firstChild)}
-                }
+                    if (!e.target.classList || !e){return}
+                    if (e.target.classList.contains("scroll")){
+                        var w = Q("scrollElements")[1].children;
+                        censorListener();
+                        for(var k=0; k<w.length; k++){cencFunc(w[k].firstChild)}
+                    }
                 }, 20);
             });
         } else {
