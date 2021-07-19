@@ -1303,13 +1303,13 @@ function addListenerToBlock(block, func){
 }
 
 function extendTextInput() {
-    var textInput = Q("jsx-856742297")[0];
+    var textInput = Q("jsx-46098086")[0];
     if (textInput){
         textInput.maxLength=70;
         textInput.style.webkitTextSecurity="none";
     }
-    else{
-        textInput = Q("jsx-374639877")[0];
+    textInput = Q("jsx-46098086 ")[0];
+    if(textInput){
         textInput.maxLength=70;
         textInput.style.webkitTextSecurity="none";
     }
@@ -3935,7 +3935,7 @@ function offBgMenu(){
     }
 }
 
-
+var cur = "";
 function main(){
     if (document.URL.indexOf("book") == -1){delete blackArr};
     if ((document.URL.indexOf("https://garticphone.com/") != -1 && document.URL.length == 26) && !menuKey){
@@ -3971,10 +3971,15 @@ function main(){
         flagsOff();
         menuLinkKey=true;
     }
-    else if (document.URL.indexOf("draw") != -1 && !drawKey){
-        setTimeout(styleUpdate, 10);
-        setTimeout(mainDrawFunc, 500);
-        flagsOff();
+    else if (document.URL.indexOf("draw") != -1 && (!drawKey || cur != document.URL)){
+        cur = document.URL;
+        var inv = setInterval(()=>{
+            cur = document.URL;
+            setTimeout(styleUpdate, 10);
+            setTimeout(mainDrawFunc, 500);;
+            if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv)}
+        }, 600);
+        flagsOff()
         drawKey=true;
     }
     else if (document.URL.indexOf("lobby") != -1 && !lobbyKey){
