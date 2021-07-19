@@ -3973,11 +3973,13 @@ function main(){
     }
     else if (document.URL.indexOf("draw") != -1 && (!drawKey || cur != document.URL)){
         cur = document.URL;
+        setTimeout(styleUpdate, 10);
+        setTimeout(mainDrawFunc, 500);;
+        if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv)}
         var inv = setInterval(()=>{
-            cur = document.URL;
+            if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv); return}
             setTimeout(styleUpdate, 10);
             setTimeout(mainDrawFunc, 500);;
-            if (document.getElementsByClassName("mirror-canvas").length != 0){clearInterval(inv)}
         }, 600);
         flagsOff()
         drawKey=true;
