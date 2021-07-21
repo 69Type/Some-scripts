@@ -1875,7 +1875,7 @@
         "border": "",
         "backgroundColor": "",
         "child": {
-          "backgroundImage": "https://static-cdn.jtvnw.net/jtv_user_pictures/b3619563-3b62-4204-9874-2a5457892c82-profile_image-300x300.png",
+          "backgroundImage": "url(https://static-cdn.jtvnw.net/jtv_user_pictures/b3619563-3b62-4204-9874-2a5457892c82-profile_image-300x300.png)",
           "backgroundSize": "",
           "backgroundPosition": "",
           "borderRadius": "35px",
