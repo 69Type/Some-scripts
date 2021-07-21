@@ -71,7 +71,7 @@
       "onmouseleave": "function func4(q, d){ clearInterval(q.parentNode.parentNode.i); q.parentNode.parentNode.i = setInterval(function(){ if(q.parentNode.parentNode.a.volume <= 0.01){ q.parentNode.parentNode.a.pause(); clearInterval(q.parentNode.parentNode.i); } try{ q.parentNode.parentNode.a.volume-=0.002; } catch {q.parentNode.parentNode.a.volume = 0; q.parentNode.parentNode.a.pause(); clearInterval(q.parentNode.parentNode.i)} },10); }",
       "info": "",
       "function": "",
-      "code": "NA==",
+      "code": "MzY=",
       "nickname": {
           "color": "#000",
           "fontFamily": "fantasy",
