@@ -1,4 +1,13 @@
-
+// ==UserScript==
+// @name         Draw
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://garticphone.com/*
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
 
 _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 	[16], {
@@ -892,6 +901,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 							children: [ce.map((function(t) {
 								return Object(o.jsx)("div", {
 									onClick: e.disabled ? null : function() {
+                                        document.getElementsByClassName("thikness-input")[0].value=t;
 										return e.onChangeThickness(t)
 									},
 									className: "jsx-340028725 " + (oe()("thickness", {
