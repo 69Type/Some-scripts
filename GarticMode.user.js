@@ -881,9 +881,9 @@ function setNess(n) {
 }
 
 
-window.addEventListener("pointerup", (e)=>{
+window.addEventListener("mouseup", (e)=>{
     var item = Q("contextmenu")[0];
-    if (item && !e.target.classList.contains("ctxmbutton")){item.parentNode.removeChild(item)};
+    if (typeof(item) != "undefined" && !e.target.classList.contains("ctxmbutton")){item.parentNode.removeChild(item)};
 });
 
 window.onwheel = ()=>{
@@ -1032,6 +1032,8 @@ function cencFunc(u){
         var nick = u.children[1].firstChild.innerText;
         if (canv.tagName!="CANVAS"){canv = u.children[1].children[1].firstChild.firstChild;}
         canv.oncontextmenu=(e)=>{
+            var item = Q("contextmenu")[0];
+            if (item){item.parentNode.removeChild(item)};
             var contextmenu = document.createElement("div");
             contextmenu.classList.add("contextmenu");
             contextmenu.style.height="auto";
@@ -1044,11 +1046,11 @@ function cencFunc(u){
             contextmenu.style.top=e.clientY+"px";
             contextmenu.style.display="grid";
             contextmenu.style.padding="3px";
-            contextmenu.style.transform=Q("jsx-2562723607 jsx-3822683434 screen fade-enter-done")[0].style.transform;
+            contextmenu.style.transform=Q("jsx-2562723607 jsx-3712514527 screen fade-enter-done")[0].style.transform;
 
             var copy = document.createElement("a");
             copy.classList.add("ctxmbutton");
-            copy.innerText = "КОПИРОВАТЬ";
+            copy.innerText = "Copy";
             copy.style.fontFamily = "Black";
             //copy.style.color = "white";
             copy.style.height="auto";
@@ -1060,7 +1062,7 @@ function cencFunc(u){
             contextmenu.appendChild(copy);
             var save = document.createElement("a");
             save.classList.add("ctxmbutton");
-            save.innerText="CОХРАНИТЬ";
+            save.innerText="Download";
             save.style.fontFamily = "Black";
             //save.style.color = "white";
             save.style.height="auto";
@@ -1157,7 +1159,6 @@ function VIPList(q){
     var n = q.innerText.toLowerCase();
     var d = dict[n];
     if (d){
-        console.log(d, q);
         //защита
         if (d.code){
             if (!(d.code == window.btoa(window.window.getComputedStyle(q.parentNode.parentNode.firstChild.firstChild).backgroundImage.substring(43).split('.')[0]))){return}
@@ -1547,7 +1548,6 @@ function palitEdit(){
     var allColors = Q("jsx-3071142060 color");
 
     //Удаление предыдущих цветов
-    console.log("palit");
     while (palitra.children[1].tagName != "INPUT") {
         palitra.removeChild(palitra.firstChild);
     }
@@ -2072,7 +2072,6 @@ function addPipetButton(){
 
 
     } else { console.log("PIP-button already exists or pointerCanvas is undefined") }
-    console.log(pointerCanvas, Q("pipet")[0]);
 
     pointerCanvas.addEventListener('pointerdown', (e)=>{
         if (Q("act").length != 0 && e.which == 1){
@@ -2484,25 +2483,18 @@ var loopaKey = false;
 
 
 function mainDrawFunc(){
-    console.log("draw func");
     //Дебаг
     if (document.URL.indexOf("book") != -1){return};
-    console.log(1);
     //Добавление боковой панели
     createSizePull();
-    console.log(2);
     //Добавление зума
     addZoom(); //Вызывается через unhide элемента класса zoomC
-    console.log(3);
     //Изменение дизайна
     drawStyleChange();
-    console.log(4);
     //Изменение функционала первого уровня
     firstLevelFunctions();
-    console.log(5);
     //Изменение палитры
     palitEdit();
-    console.log(6);
     //Блок зума
     //var scale = document.querySelector("#content > div.jsx-2562723607.jsx-3822683434.screen.fade-enter-done").style.transform;
     //globalScale=Number(scale.split("(")[1].slice(0, -1));
@@ -2513,19 +2505,15 @@ function mainDrawFunc(){
     /////////////////////////////////////////////
     //Обработка клавиатуры
     document.onkeydown = drawKeys;
-    console.log(7);
     //Вилинговое увеличение экрана
     var pointerCanvas = Q(PCANV)[0];// <- самый верхний холст
     pointerCanvas.onwheel=onDrawWheel;
     //Изменение настроек прозрачности
     nessEdit();
-    console.log(8);
     //ПКМ Пипетка
     drawRMBPipet();
-    console.log(9);
     //СКМ Заливка
     drawMiddleBucket();
-    console.log(10);
     //Добавление инструментов;
     addTools();
     //Добавление блоков функционала инструментов
@@ -2533,7 +2521,6 @@ function mainDrawFunc(){
     addMirrorBase();
     //Активация сглаживания
     debugName();
-    console.log(11);
 }
 
 function waitVideo(){
@@ -3824,7 +3811,6 @@ function createColorPull(){
 }
 
 function styleUpdate(){
-    console.log("double")
     Q("jsx-2562723607")[1].style.backgroundBlendMode="color-dodge";
     Q("jsx-2562723607")[1].style.backgroundSize="cover";
     Q("jsx-2562723607")[1].style.backgroundPosition="center";
@@ -3979,7 +3965,6 @@ function main(){
         setTimeout(styleUpdate, 10);
         setTimeout(mainDrawFunc, 500);;
         var inv = setInterval(()=>{
-            console.log("in interval");
             if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv); return}
             setTimeout(styleUpdate, 10);
             setTimeout(mainDrawFunc, 500);;
