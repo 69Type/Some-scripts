@@ -21,16 +21,16 @@ function Q(s){
     return document.getElementsByClassName(s);
 }
 
-// var s1 = document.createElement("script");
-// s1.async = !0;
-// var xhr2 = new XMLHttpRequest();
-// xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
-// xhr2.onload = function(){
-//     document.isTrusted=!0;
-//     s1.text=xhr2.response;
-// }
-// xhr2.send();
-// document.querySelector("body").appendChild(s1);
+var s1 = document.createElement("script");
+s1.async = !0;
+var xhr2 = new XMLHttpRequest();
+xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
+xhr2.onload = function(){
+    document.isTrusted=!0;
+    s1.text=xhr2.response;
+}
+xhr2.send();
+document.querySelector("body").appendChild(s1);
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
