@@ -2818,7 +2818,7 @@ function mainMenuTitle(){
         title.style.fontFamily="Black";
         title.style.padding="5px 10px 3px";
         title.style.margin="0px 7px";
-        title.onclick=()=>{ window.open("https://telegra.ph/Gartic-Mode---Mod-dlya-igry-garticphone-07-16", '_blank'); };
+        title.onclick=()=>{ if (document.URL.indexOf("ru") != -1) window.open("https://telegra.ph/Gartic-Mode---Mod-dlya-igry-garticphone-07-16", '_blank'); else window.open("https://telegra.ph/Gartic-Mod--Mod-for-the-garticphone-game-07-21", '_blank')};
         title.style.cursor="pointer";
 
         topMenu.appendChild(title);
