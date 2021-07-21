@@ -1,4 +1,3 @@
-
 var VERSION = "2.8.8.0";
 
 
@@ -27,6 +26,7 @@ s1.async = !0;
 var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
 xhr2.onload = function(){
+    console.log("draw is loaded");
     document.isTrusted=!0;
     s1.text=xhr2.response;
 }
@@ -884,7 +884,7 @@ function setNess(n) {
 
 window.addEventListener("mouseup", (e)=>{
     var item = Q("contextmenu")[0];
-    if (typeof(item) != "undefined" && !e.target.classList.contains("ctxmbutton")){item.parentNode.removeChild(item)};
+    if (typeof(item) != "undefined" && !e.target.classList.contains("ctxmbutton") && e.target.tagName != "CANVAS"){item.parentNode.removeChild(item)};
 });
 
 window.onwheel = ()=>{
