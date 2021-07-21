@@ -10,6 +10,7 @@ var TBAR = "jsx-4206980828";
 var UPPER = "jsx-979771310 header";
 var CORE = "jsx-979771310 core";
 var DCANV = "jsx-1116305971";
+var CCANV = "";
 var PCANV = "jsx-150592943";
 var MINP = "jsx-46098086";
 var SLL = "jsx-1927447174 scrollElements";
@@ -1416,7 +1417,7 @@ function addZoom(){
         zoomC.hidden = true;
 
         document.querySelector("#__next").addEventListener("pointermove", (e)=>{
-            if (Q("jsx-4206980828 tool loopa act1 sel")[0]){
+            if (Q("jsx-4206980828 tool loopa sel")[0]){
                 zoomUpdate(e);
             }
         });
@@ -1427,8 +1428,8 @@ function addZoom(){
             }, 10);
         });
 
-        memmoryC = Q("jsx-3193114933 ")[0];
-        currentC = Q("jsx-3193114933 ")[1];
+        memmoryC = Q(DCANV)[0];
+        currentC = Q(DCANV)[1];
 
         document.querySelector("#__next").appendChild(zoomC);
     }
@@ -1650,7 +1651,7 @@ function drawRMBPipet(){
     var pointerCanvas = Q(PCANV)[0];
     if (pointerCanvas){
         //ПКМ ПИПЕТКА
-        var canada = Q("jsx-3193114933 ")[0];
+        var canada = Q(DCANV)[0];
         var mexico = pointerCanvas;
         mexico.addEventListener('pointerdown', (e)=>{
 
