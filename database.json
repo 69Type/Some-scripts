@@ -1940,9 +1940,9 @@
           "backgroundSize": "",
           "backgroundPosition": "",
           "borderRadius": "0px 0px 35px 35px",
-          "margin": "100%",
+          "margin": "0px",
           "width": "100%",
-          "height": "",
+          "height": "100%",
           "minHeight": "auto",
           "animation": ""
         }
