@@ -1889,5 +1889,63 @@
           "animation": ""
         }
       }
+    },
+    
+    
+     "man": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "EA Member Streamer",
+      "thirdElem": false,
+      "iElem": true,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "#fff",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "x-large",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/867569107950764063/867799413656518696/macho.gif)",
+        "backgroundSize": "100%",
+        "backgroundPosition": "",
+        "backgroundRepeat": "no-repeat",
+        "border": "2px solid #fff",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "2px solid #fff",
+        "backgroundColor": "blue",
+        "child": {
+          "backgroundImage": "url(https://media.discordapp.net/attachments/867569107950764063/867797525017002013/pointing-closeup.png)",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "borderRadius": "0px 0px 35px 35px",
+          "margin": "100%",
+          "width": "100%",
+          "height": "",
+          "minHeight": "auto",
+          "animation": ""
+        }
+      }
     }
 }
