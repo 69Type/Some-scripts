@@ -1947,5 +1947,64 @@
           "animation": ""
         }
       }
+    },
+    
+    
+    
+"lemondropzz": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "EA member Twitch mod",
+      "thirdElem": false,
+      "iElem": false,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/868222167001727036/imgonline-com-ua-Resize-Y0OturnzxKnPwwZ.png)",
+        "backgroundSize": "",
+        "backgroundPosition": "",
+        "backgroundRepeat": "no-repeat",
+        "border": "none",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "2px solid #fff",
+        "backgroundColor": "",
+        "child": {
+          "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/868221504654016562/imgonline-com-ua-Resize-6ZjcO9WhZ0.jpg)",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "borderRadius": "",
+          "margin": "0px",
+          "width": "100%",
+          "height": "100%",
+          "minHeight": "auto",
+          "animation": ""
+        }
+      }
     }
 }
