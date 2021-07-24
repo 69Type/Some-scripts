@@ -1,4 +1,13 @@
-var VERSION = "2.8.8.0";
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// !                                                                                                                            ! //
+// ! Note                                                                                                                       ! //
+// ! This is my first JS script. When I started I didn't know anything about this language at all.                              ! //
+// ! So if someone comes here who understands something about this, then do not be surprised by such a terrible code :)         ! //
+// !                                                                                                                            ! //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var VERSION = "2.8.8.";
 
 
 var UNDO = "jsx-4206980828 tool undo";
@@ -17,9 +26,6 @@ var NICK = "jsx-4216852870 jsx-1594390208 nick";
 
 
 
-function Q(s){
-    return document.getElementsByClassName(s);
-}
 
 var s1 = document.createElement("script");
 s1.async = !0;
@@ -656,7 +662,7 @@ function sortBorderArray(arr){
 
 
 function drawNsort(arr){
-    canvas300 = Q("jsx-3193114933 ")[0];
+    canvas300 = Q(DCANV)[0];
     pos = canvas300.getBoundingClientRect();
     var lastPoint=arr[0];
     mouseDown(lastPoint[0], lastPoint[1]);
@@ -700,7 +706,7 @@ function drawNsort(arr){
 
 
 function drawArray(arr){
-    var canvas = Q("jsx-3193114933 ")[0];
+    var canvas = Q(DCANV)[0];
     var pos = canvas.getBoundingClientRect();
     var left = pos.x;
     var top = pos.y;
@@ -1048,6 +1054,7 @@ function cencFunc(u){
             contextmenu.style.display="grid";
             contextmenu.style.padding="3px";
             contextmenu.style.transform=Q("jsx-2562723607 jsx-3712514527 screen fade-enter-done")[0].style.transform;
+            contextmenu.oncontextmenu=()=>{return !1};
 
             var copy = document.createElement("a");
             copy.classList.add("ctxmbutton");
@@ -1524,7 +1531,7 @@ function firstLevelFunctions(){
     downloadButton.onclick=function(){
         var link = document.createElement('a');
         link.download = 'filename.png';
-        link.href = Q("jsx-3193114933 ")[0].toDataURL();
+        link.href = Q(DCANV)[0].toDataURL();
         link.click();
     };
     upper.appendChild(downloadButton);
@@ -1576,7 +1583,7 @@ function drawKeys (evt){
         if (evt.key === "Escape" || evt.key === "Esc" || evt.keyCode === 27) {
             if (Q("act").length != 0 || Q("act1").length != 0){
                 clearActiveelements();
-            } else { moveCanvases()}
+            } else { /*moveCanvases()*/}
         }
 
         if (evt.key === "L" || evt.key === "l" || evt.keyCode === 76 || evt.code === "KeyL") {
