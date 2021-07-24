@@ -24,7 +24,9 @@ var MINP = "jsx-46098086";
 var SLL = "jsx-1927447174 scrollElements";
 var NICK = "jsx-4216852870 jsx-1594390208 nick";
 
-
+function Q(s){
+    return document.getElementsByClassName(s);
+}
 
 
 var s1 = document.createElement("script");
