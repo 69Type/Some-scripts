@@ -1726,6 +1726,10 @@
         }
       }
     },
+    
+    
+    
+    
 "moyglaz": {
       "innerText": "",
       "music": "",
@@ -1743,7 +1747,7 @@
       "code": "",
       "class": "",
       "nickname": {
-          "color": "#F00",
+          "color": "#000",
           "fontFamily": "",
           "fontWeight": "",
           "fontStyle": "",
