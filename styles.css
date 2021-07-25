@@ -1,0 +1,8 @@
+
+top-menu {
+  width: auto;
+  height: fit-content;
+  display: inline-flex;
+  blockSize: max-content;
+  transformOrigin: top;
+}
