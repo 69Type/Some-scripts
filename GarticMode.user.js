@@ -1486,6 +1486,8 @@ function drawStyleChange(){
 var curElementOverCursor;
 //Функция изменения функционала первого уровня
 function firstLevelFunctions(){
+    if (!Q(PCANV)[0]){return true}
+     Q("jsx-4289504161 small")[0].addEventListener("click", ()=>{setTimeout(mainDrawFunc, 100)});
     //Дизактивация текстбокса толщины
     //setTimeout(()=>{
     var t = document.getElementsByClassName("thikness-input")[0];
@@ -1519,6 +1521,7 @@ function firstLevelFunctions(){
     var upper = Q(UPPER)[0];
     var downloadButton = document.createElement("button");
     downloadButton.style.position="absolute";
+    downloadButton.classList.add("download");
     downloadButton.style.right="714px";
     downloadButton.style.top="0px";
     downloadButton.style.width="48px";
@@ -1549,6 +1552,7 @@ function firstLevelFunctions(){
         if (e.deltaY>0){undoButton.click();} else {redoButton.click();}
     }
 
+    //Q("jsx-4289504161 small")[0].removeEventListener("click", ()=>{setTimeout(()=>{mainDrawFunc}, 20)});
 }
 
 //Изменение палитры
@@ -2493,6 +2497,7 @@ var loopaKey = false;
 
 
 function mainDrawFunc(){
+    console.log("draw");
     //Дебаг
     if (document.URL.indexOf("book") != -1){return};
     //Добавление боковой панели
@@ -2502,7 +2507,7 @@ function mainDrawFunc(){
     //Изменение дизайна
     drawStyleChange();
     //Изменение функционала первого уровня
-    firstLevelFunctions();
+    if (firstLevelFunctions()){return};
     //Изменение палитры
     palitEdit();
     //Блок зума
@@ -3973,9 +3978,9 @@ function main(){
     else if (document.URL.indexOf("draw") != -1 && (!drawKey || cur != document.URL)){
         cur = document.URL;
         setTimeout(styleUpdate, 10);
-        setTimeout(mainDrawFunc, 500);;
+        setTimeout(mainDrawFunc, 500);
         var inv = setInterval(()=>{
-            if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv); return}
+            if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0 && Q("download")[0]){clearInterval(inv); return}
             setTimeout(styleUpdate, 10);
             setTimeout(mainDrawFunc, 500);;
         }, 600);
