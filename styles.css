@@ -88,6 +88,10 @@
   cursor: pointer;
 }
 
+.hide-on-menu.low-opacity {
+  opacity: 0.5;
+}
+
 .hide-on-menu.low-opacity.hover {
   opacity: 1;
 }
