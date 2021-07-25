@@ -2062,7 +2062,7 @@
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/868923969733001246/ISPOLIN-removebg-preview.png)",
           "backgroundSize": "",
-          "backgroundPosition": "",
+          "backgroundPosition": "center",
           "backgroundRepeart": "no-repeart",
           "borderRadius": "0px 0px 35px 35px",
           "margin": "0px",
