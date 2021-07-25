@@ -77,23 +77,3 @@
   margin: 0px 7px 0px 0px;
 }
 
-.hide-on-menu {
-  color: #FFF;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 15px;
-  width: auto;
-  border-radius: 0px 0px 5px 5px;
-  font-family: Black;
-  padding: 5px 10px 3px;
-  cursor: pointer;
-}
-
-.hide-on-menu.low-opacity {
-  opacity: 0.5;
-}
-
-.hide-on-menu.low-opacity:hover {
-  opacity: 1;
-}
-
-
