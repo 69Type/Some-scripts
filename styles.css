@@ -33,3 +33,17 @@
   margin: 0px 7px;
   cursor: pointer;
 }
+
+.discord-title {
+  background-color: #9163FF;
+  border-radius: 0px 0px 5px 5px;
+  color: #FFF;
+  right: 0px;
+  font-size: 100%;
+  height: 15px;
+  width: auto;
+  font-family: Black;
+  padding: 5px 10px 3px;
+  cursor: pointer;
+  margin: 0px 7px 0px 0px;
+}
