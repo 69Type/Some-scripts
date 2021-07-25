@@ -87,3 +87,9 @@
   padding: 5px 10px 3px;
   cursor: pointer;
 }
+
+.hide-on-menu.low-opacity.hover {
+  opacity: 0.5;
+}
+
+
