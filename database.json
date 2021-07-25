@@ -1756,7 +1756,7 @@
       "block": {
         "transition": "none",
         "backgroundColor": "#FFF",
-        "backgroundImage": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/868778797175037952/868917873660264478/1.gif)",
         "backgroundSize": "",
         "backgroundPosition": "",
         "backgroundRepeat": "no-repeat",
@@ -1769,7 +1769,7 @@
         "border": "2px solid #000",
         "backgroundColor": "",
         "child": {
-          "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/865702347561107456/53237d71-0b33-4b8f-86a9-4ae16cca1f09-profile_image-300x300.png)",
+          "backgroundImage": "url(https://media.discordapp.net/attachments/868778797175037952/868918870944137236/photo_2021-07-25_21-11-42.gif)",
           "backgroundSize": "",
           "backgroundPosition": "",
           "borderRadius": "35px",
@@ -1834,7 +1834,7 @@
     
     
     
-    "daveus": {
+"daveus": {
       "innerText": "",
       "music": "",
       "musicOnJoin": "",
@@ -1892,7 +1892,7 @@
     },
     
     
-     "egeorge": {
+"egeorge": {
       "innerText": "",
       "music": "",
       "musicOnJoin": "",
