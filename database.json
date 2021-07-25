@@ -1758,7 +1758,7 @@
         "transition": "none",
         "backgroundColor": "#FFF",
         "backgroundImage": "url(https://media.discordapp.net/attachments/868778797175037952/868917873660264478/1.gif)",
-        "backgroundSize": "",
+        "backgroundSize": "100%",
         "backgroundPosition": "",
         "backgroundRepeat": "no-repeat",
         "border": "3px solid #000",
