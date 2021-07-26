@@ -914,7 +914,7 @@
       "onmouseenter": "function func3(q, d){if (!q.parentNode.parentNode.a){ q.parentNode.parentNode.a = new Audio(); q.parentNode.parentNode.a.src=d.music; q.parentNode.parentNode.a.currentTime=6; } if(q.parentNode.parentNode.a.ended){q.parentNode.parentNode.a.currentTime=6}; q.parentNode.parentNode.a.volume=0.2; q.parentNode.parentNode.a.play();}",
       "onmouseleave": "",
       "info": "",
-      "function": "function f(q, d){q.parentNode.parentNode.classList.add(d.class); q.parentNode.parentNode.firstChild.firstChild.style.backgroundImage='url(https://media.discordapp.net/attachments/827569141782282272/860941286915440660/imgonline-com-ua-Resize-kjz2bHpjcPR0id.jpg)'; q.style.zIndex=1; q.parentNode.style.position=relative}",
+      "function": "function f(q, d){q.parentNode.parentNode.classList.add(d.class); q.parentNode.parentNode.firstChild.firstChild.style.backgroundImage='url(https://media.discordapp.net/attachments/827569141782282272/860941286915440660/imgonline-com-ua-Resize-kjz2bHpjcPR0id.jpg)'; q.style.zIndex=1; q.parentNode.style.position='relative'}",
       "code": "",
       "class": "seba",
       "nickname": {
