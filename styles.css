@@ -102,6 +102,10 @@
   border-radius: 5px 5px 0px 0px;
 }
 
+.setting-tab.selected {
+  background-color: #000;
+}
+
 .setting-tab.selected:before {
   content: "";
   display: none;
