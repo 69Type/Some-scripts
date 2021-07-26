@@ -104,4 +104,5 @@
 
 .setting-tab.selected:before {
   content: "";
+  display: none;
 }
