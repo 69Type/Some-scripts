@@ -161,3 +161,21 @@
   padding: 20px;
   letter-spacing: 2px;
 }
+
+
+.close-settings {
+  font-family: ico;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+}
