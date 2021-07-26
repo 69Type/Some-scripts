@@ -103,5 +103,5 @@
 }
 
 .setting-tab.selected:before {
-  
+  content: "";
 }
