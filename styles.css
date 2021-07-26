@@ -104,7 +104,7 @@
 
 .setting-tab.selected {
   color: #5cffb6;
-  background-color: #000;
+  background-color: #261c5c80;
 }
 
 .setting-tab.selected:before {
@@ -130,7 +130,7 @@
   width: 800px;
   height: 700px;
   border-radius: 12px;
-  background-color: rgb(255, 255, 255);
+  background-color: #FFF;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -148,8 +148,6 @@
   opacity: 0;
   transition: all 0.4s ease 0s;
 }
-
-
 
 .inner-settings-title {
   font-family: Black;
