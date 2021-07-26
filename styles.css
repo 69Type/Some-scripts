@@ -97,9 +97,9 @@
   inset: 0px 4px 4px;
   content: "";
   position: absolute;
-  background-color: rgba(38, 28, 92, 0.4);
+  background-color: #00000033;
   z-index: -1;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
 }
 
 
