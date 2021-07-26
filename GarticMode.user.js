@@ -35,7 +35,6 @@ var xhr2 = new XMLHttpRequest();
 xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
 xhr2.onload = function(){
     console.log("draw is loaded");
-    document.isTrusted=!0;
     s1.text=xhr2.response;
 }
 xhr2.send();
@@ -63,16 +62,16 @@ cssAnimation.appendChild(rules);
 document.getElementsByTagName("head")[0].appendChild(cssAnimation);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var font1 = document.createElement('style');
-font1.classList.add("font1");
-font1.type='text/css';
-var rule = document.createTextNode(
-    "@font-face {font-family: 'Majestic';" +
-    "src: url(https://cdn.discordapp.com/attachments/866074580853719061/866121147383545856/EternalUiRegular-1Gap2.ttf);"+
-    +"}"
-);
-font1.appendChild(rule);
-document.getElementsByTagName("head")[0].appendChild(font1);
+// var font1 = document.createElement('style');
+// font1.classList.add("font1");
+// font1.type='text/css';
+// var rule = document.createTextNode(
+//     "@font-face {font-family: 'Majestic';" +
+//     "src: url(https://cdn.discordapp.com/attachments/866074580853719061/866121147383545856/EternalUiRegular-1Gap2.ttf);"+
+//     +"}"
+// );
+// font1.appendChild(rule);
+// document.getElementsByTagName("head")[0].appendChild(font1);
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 var cssPlaceHolder = document.createElement('style');
@@ -423,7 +422,7 @@ document.getElementsByTagName("head")[0].appendChild(cssAnimation4);
 
 var styleInputRange296 = document.createElement('style');
 styleInputRange296.type = 'text/css';
-var rules296 = document.createTextNode(".seba::before {  content: ''; animation: 5s linear 0s infinite normal none running plane; position: absolute; left: -70px; top: -5px; width: 500px; height: 80px; background-image: url('https://media.discordapp.net/attachments/827569141782282272/860901923078012928/seba-removebg-preview_2.png'); background-size: 80%; transform: rotate(1deg); background-repeat: no-repeat; background-position: center center; z-index: 0;}");
+var rules296 = document.createTextNode(".seba::before {  content: ''; animation: 5s linear 0s infinite normal none running plane; position: absolute; left: -90px; top: -5px; width: 500px; height: 80px; background-image: url('https://media.discordapp.net/attachments/827569141782282272/860901923078012928/seba-removebg-preview_2.png'); background-size: 80%; transform: rotate(1deg); background-repeat: no-repeat; background-position: center center; z-index: 0;}");
 styleInputRange296.appendChild(rules296);
 document.getElementsByTagName("head")[0].appendChild(styleInputRange296);
 
@@ -2834,7 +2833,6 @@ function mainMenuTitle(){
         title.style.margin="0px 7px";
         title.onclick=()=>{ if (document.URL.indexOf("ru") != -1) window.open("https://telegra.ph/Gartic-Mode---Mod-dlya-igry-garticphone-07-16", '_blank'); else window.open("https://telegra.ph/Gartic-Mod--Mod-for-the-garticphone-game-07-21", '_blank')};
         title.style.cursor="pointer";
-
         topMenu.appendChild(title);
 
         var discordTitle = document.createElement("div");
@@ -2852,7 +2850,6 @@ function mainMenuTitle(){
         discordTitle.onclick=()=>{ window.open("https://bit.ly/3uZqiG7", '_blank'); };
         discordTitle.style.cursor="pointer";
         discordTitle.style.margin="0px 7px 0px 0px";
-
         topMenu.appendChild(discordTitle);
 
         var donateTitle = document.createElement("div");
@@ -2871,7 +2868,6 @@ function mainMenuTitle(){
         donateTitle.style.cursor="pointer";
         donateTitle.style.transformOrigin="top";
         donateTitle.style.margin="0px 7px 0px 0px";
-
         topMenu.appendChild(donateTitle);
 
         var hideButton = document.createElement("div");
@@ -3861,13 +3857,6 @@ window.onkeydown=(e)=>{
     if ((e.code == "Delete" || e.key == "Delete" || e.keyCode == 46) && e.ctrlKey){
         var p = prompt("Введите команду:", "100") ;
         if (p == "0"){
-            document.cookie="badguy=0";
-            setValue(input, "");
-            alert("ВЫ БОЛЬШЕ НЕ КЛОУН");
-        } else if (p == "1"){
-            document.cookie="badguy=1;";
-            setValue(input, "vinegative");
-            alert("ПОЗДРАВЛЯЮ, ВЫ КЛОУН!");
         } else if (p == "123"){
             setValue(input, "DoctorDeathDDracula ");
         } else if (p == "100"){
