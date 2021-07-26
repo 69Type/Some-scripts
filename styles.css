@@ -111,3 +111,17 @@
   content: "";
   display: none;
 }
+
+
+.settings-tabs {
+  display: flex;
+  flex-direction: row;
+  height: 30px; 
+}
+
+.inner-settings-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+}
+
