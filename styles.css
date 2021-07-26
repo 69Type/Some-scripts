@@ -179,3 +179,21 @@
   cursor: pointer;
   color: rgb(172, 167, 198);
 }
+
+.hide-it-eye {
+  font-family: ico;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgb(172, 167, 198);
+}
