@@ -77,3 +77,18 @@
   margin: 0px 7px 0px 0px;
 }
 
+.setting-tab {
+  font-family: Black;
+    color: rgb(92, 255, 182);
+    border-radius: 5px 5px 0px 0px;
+    flex: 1 1 0%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    padding: 0px 8px;
+}
