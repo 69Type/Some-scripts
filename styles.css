@@ -19,7 +19,7 @@
   display: flex;
 }
 
-.settings-title:first-child:hover {
+.settings-title:hover :first-child {
   animation-name: rotation;
   animation-duration: 4s;
   animation-iteration-count: infinite;
