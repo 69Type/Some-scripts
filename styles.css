@@ -255,6 +255,7 @@
   color: #301A6B;
   border-radius: 7px;
   border: none;
+  cursor: pointer;
 }
 
 .my-button:hover {
