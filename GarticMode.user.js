@@ -7,22 +7,22 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var VERSION = "2.8.8.0";
+const VERSION = "2.8.8.0";
 
 
-var UNDO = "jsx-4206980828 tool undo";
-var REDO = "jsx-4206980828 tool redo";
-var TOOL = "jsx-4206980828";
-var UDC = "jsx-979771310 core";
-var TBAR = "jsx-4206980828";
-var UPPER = "jsx-979771310 header";
-var CORE = "jsx-979771310 core";
-var DCANV = "jsx-1116305971";
-var CCANV = "";
-var PCANV = "jsx-150592943";
-var MINP = "jsx-46098086";
-var SLL = "jsx-1927447174 scrollElements";
-var NICK = "jsx-4216852870 jsx-1594390208 nick";
+const UNDO = "jsx-4206980828 tool undo";
+const REDO = "jsx-4206980828 tool redo";
+const TOOL = "jsx-4206980828";
+const UDC = "jsx-979771310 core";
+const TBAR = "jsx-4206980828";
+const UPPER = "jsx-979771310 header";
+const CORE = "jsx-979771310 core";
+const DCANV = "jsx-1116305971";
+const CCANV = "";
+const PCANV = "jsx-150592943";
+const MINP = "jsx-46098086";
+const SLL = "jsx-1927447174 scrollElements";
+const NICK = "jsx-4216852870 jsx-1594390208 nick";
 
 function Q(s){
     return document.getElementsByClassName(s);
