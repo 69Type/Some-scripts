@@ -261,3 +261,8 @@
 .my-button:hover {
   background-color: #cab6e8;
 }
+
+.my-button:active {
+  margin: 0 0 3px;
+  box-shadow: 0px 3px 0px 0px #301a6b;
+}
