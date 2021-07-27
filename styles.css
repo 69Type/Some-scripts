@@ -249,6 +249,11 @@
   background-color: #FFF;
   margin: 0 0 6px;
   box-shadow: 0px 6px 0px 0px #301a6b;
+  text-transform: uppercase;
+  font-family: Black;
+  font-size: 21px;
+  color: #301A6B;
+  border-radius: 7px;
 }
 
 
