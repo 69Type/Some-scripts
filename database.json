@@ -2177,7 +2177,7 @@
         "cursor": "pointer"
       },
       "avatar": {
-        "border": "",
+        "border": "2px solid #FFF",
         "backgroundColor": "",
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/869063984085614692/869557546896207972/Sandro12.png)",
