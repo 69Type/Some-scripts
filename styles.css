@@ -167,7 +167,7 @@
   -webkit-box-align: center;
   justify-content: center;
   -webkit-box-pack: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #000000cc;
   inset: 0px;
   display: flex;
   position: absolute;
@@ -201,7 +201,7 @@
   -webkit-box-pack: center;
   justify-content: center;
   cursor: pointer;
-  color: rgb(172, 167, 198);
+  color: #aca7c6;
 }
 
 .hide-it-eye {
@@ -219,7 +219,7 @@
   -webkit-box-pack: center;
   justify-content: center;
   cursor: pointer;
-  color: rgb(172, 167, 198);
+  color: #aca7c6;
 }
 
 
