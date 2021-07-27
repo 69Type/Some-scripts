@@ -19,6 +19,13 @@
   display: flex;
 }
 
+.settings-title:hover:first-child {
+  animation-name: rotation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
 .inner-setting-title {
   color: #FFF;
   font-family: Black;
@@ -28,13 +35,6 @@
 .inner-shesterenka {
   color: #FFF;
   font-family: Black;
-}
-
-.simple-rotate {
-    animation-name: rotation;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 @keyframes rotation {
