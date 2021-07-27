@@ -2132,5 +2132,65 @@
           "animation": ""
         }
       }
+    },
+
+
+
+"nnoken": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "Художник",
+      "thirdElem": false,
+      "iElem": true,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "#FFF",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/869063984085614692/869140097910583327/alucard.gif)",
+        "backgroundSize": "100%",
+        "backgroundPosition": "",
+        "backgroundRepeat": "no-repeat",
+        "border": "",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "",
+        "backgroundColor": "",
+        "child": {
+          "backgroundImage": "url(https://media.discordapp.net/attachments/869063984085614692/869557546896207972/Sandro12.png)",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "backgroundRepeart": "no-repeart",
+          "borderRadius": "35px",
+          "margin": "0px",
+          "width": "100%",
+          "height": "100%",
+          "minHeight": "auto",
+          "animation": ""
+        }
+      }
     }
 }
