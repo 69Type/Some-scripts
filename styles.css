@@ -298,7 +298,7 @@ input[type='range']::-webkit-slider-runnable-track {
   height: 10px;
   -webkit-appearance: none;
   color: #13bba4;
-  margin-top: -5px;
+  margin-top: -6px;
 }
     
 input[type='range']::-webkit-slider-thumb {
