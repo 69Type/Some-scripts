@@ -285,5 +285,9 @@ input[type="range" i] {
 }
 
 input[type="range"].my-range {
-
+  background: none;
+  appearance: none;
+  width: 170px;
 }
+
+
