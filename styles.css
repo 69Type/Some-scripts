@@ -287,7 +287,7 @@ input[type="range" i] {
 input[type="range"].my-range {
     background: none;
     appearance: none;
-    width: 170px;
+    width: auto;
     height: 5px;
     background-color: #cecece;
     border-radius: 10px;
