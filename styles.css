@@ -167,6 +167,7 @@
 }
 
 .background-menu {
+  z-index: 2;
   align-items: center;
   -webkit-box-align: center;
   justify-content: center;
