@@ -371,7 +371,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .grad-section {
-  color rgb(48, 26, 107);
+  color: rgb(48, 26, 107);
   font-family: Black;
   text-align: center;
   text-transform: uppercase;
