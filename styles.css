@@ -361,7 +361,7 @@ input[type="range"]::-ms-fill-upper {
   flex-direction: column;
 }
 
-.grad-section {
+.style-section {
   font-family: Black;
   text-align: center;
   text-transform: uppercase;
