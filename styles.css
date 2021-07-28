@@ -271,3 +271,20 @@
   position: relative;
   box-shadow: 0px 3px 0px 0px #301a6b;
 }
+
+
+
+input[type="range" i] {
+    appearance: auto;
+    color: rgb(157, 150, 142);
+    cursor: default;
+    padding: initial;
+    border: initial;
+    margin: 2px;
+}
+
+input[type="range"].my-range {
+    background: none;
+    appearance: none;
+    width: 170px;
+}
