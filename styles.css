@@ -298,12 +298,12 @@ input[type='range']::-webkit-slider-runnable-track {
   height: 10px;
   -webkit-appearance: none;
   color: #13bba4;
-  margin-top: -1px;
+  margin-top: -5px;
 }
     
 input[type='range']::-webkit-slider-thumb {
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   -webkit-appearance: none;
   cursor: pointer;
   background: #301a6b;
