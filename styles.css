@@ -411,3 +411,16 @@ input[type="range"]::-ms-fill-upper {
 .low-opacity {
   opacity: 0.5;
 }
+
+.my-text-input {
+  color: white;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  width: 166px;
+  height: 30px;
+  margin: 5px;
+  font-family: Black;
+  padding: 0px 10px;
+}
