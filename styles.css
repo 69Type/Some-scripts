@@ -353,11 +353,11 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .first-bg {
+  overflow-y: clip;
   padding: 10px;
+  height: 440px;
   border: 4px solid rgb(199, 199, 199);
   border-radius: 10px;
-  flex: 1 1 0%;
-  display: flex;
   flex-direction: column;
 }
 
