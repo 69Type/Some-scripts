@@ -287,7 +287,7 @@ input[type="range" i] {
 input[type="range"].my-range {
     background: none;
     appearance: none;
-    width: 100%;
+    width: auto;
     height: 5px;
     background-color: #cecece;
     border-radius: 10px;
@@ -327,7 +327,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .style-setting-frame {
-  width: 100%;
+  width: auto;
   height: 100%;
   display: flex;
   flex: 1 1 0%;
@@ -375,6 +375,7 @@ input[type="range"]::-ms-fill-upper {
 .box1 {
   display: flex;
   flex-direction: row;
+  width: auto;
 }
 
 .my-check-box {
@@ -418,9 +419,8 @@ input[type="range"]::-ms-fill-upper {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   border: 2px solid rgba(255, 255, 255, 0.8);
-  width: 166px;
+  width: auto;
   height: 30px;
-  margin: 5px;
+  margin: 10px 0px 0px 0px;
   font-family: Black;
-  padding: 0px 10px;
 }
