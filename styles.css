@@ -390,7 +390,7 @@ input[type="range"]::-ms-fill-upper {
   cursor: pointer;
 }
 
-.grad-title {
+.m-title {
   color: rgb(48, 26, 107);
   font-family: Black;
   text-align: center;
