@@ -412,7 +412,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .low-opacity {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 .my-text-input {
