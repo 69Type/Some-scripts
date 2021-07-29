@@ -433,7 +433,7 @@ input[type="range"]::-ms-fill-upper {
   position: relative;
 }
 
-.scroll-bottom:before {
+.scroll-bottom:after {
   content: "";
   background-color: rgba(0,0,0, .3);
   bottom: -440px;
@@ -444,3 +444,6 @@ input[type="range"]::-ms-fill-upper {
   left: -10px;
 }
 
+.scroll-middle::after {
+  
+}
