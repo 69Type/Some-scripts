@@ -414,7 +414,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .my-text-input {
-  color: #FFF;
+  color: #0094ff;
   font-size: 20px;
   background-color: #ffffff4d;
   border-radius: 5px;
@@ -423,4 +423,5 @@ input[type="range"]::-ms-fill-upper {
   height: 30px;
   margin: 10px 0px 0px 0px;
   font-family: Black;
+  text-decoration: underline;
 }
