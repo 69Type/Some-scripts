@@ -426,3 +426,11 @@ input[type="range"]::-ms-fill-upper {
   font-family: Black;
   text-decoration: underline;
 }
+
+.scroll-elem {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
