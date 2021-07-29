@@ -436,12 +436,12 @@ input[type="range"]::-ms-fill-upper {
 .scroll-bottom:after {
   content: "";
   background-color: rgba(0,0,0, .3);
-  bottom: -440px;
-  width: 120%;
-  height: 10px;
-  display: grid;
-  position: relative;
-  left: -10px;
+  width: 315px;
+  height: 20px;
+  left: 38px;
+  position: absolute;
+  bottom: 98px;
+  border-radius: 0px 0px 6px 6px;
 }
 
 .scroll-middle::after {
