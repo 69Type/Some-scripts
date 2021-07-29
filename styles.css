@@ -433,3 +433,10 @@ input[type="range"]::-ms-fill-upper {
   position: relative;
 }
 
+.scroll-bottom:before {
+  content: "";
+  background-color: "rgba(0,0,0, .3)";
+  height: 10px;
+  bottom: 10px;
+}
+
