@@ -435,8 +435,12 @@ input[type="range"]::-ms-fill-upper {
 
 .scroll-bottom:before {
   content: "";
-  background-color: "rgba(0,0,0, .3)";
+  background-color: rgba(0,0,0, .3);
+  bottom: -440px;
+  width: 120%;
   height: 10px;
-  bottom: 10px;
+  display: grid;
+  position: relative;
+  left: -10px;
 }
 
