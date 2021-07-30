@@ -479,6 +479,6 @@ input[type="range"]::-ms-fill-upper {
     height: 0px;   
   }   
   to {
-    width: 20px;
+    height: 20px;
    }
 }
