@@ -447,6 +447,12 @@ input[type="range"]::-ms-fill-upper {
 .scroll-top::before {
   content: "";
   background-image: linear-gradient(180deg, #828080, transparent);
+  width: 315px;
+  height: 20px;
+  position: absolute;
+  left: 38px;
+  top: 162px;
+  border-radius: 6px 6px 0px 0px;
 }
 
 
