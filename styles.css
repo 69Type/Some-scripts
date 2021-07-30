@@ -416,7 +416,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .disabled {
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
 
 .my-text-input {
