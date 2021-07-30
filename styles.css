@@ -474,4 +474,11 @@ input[type="range"]::-ms-fill-upper {
   background-color: #4020c2;
 }
 
-@keyframes slideout1 {0% {width: 0px} 100% {width: 20px}}
+@keyframes slideout1 {
+  from {     
+    height: 0px;   
+  }   
+  to {
+    width: 20px;
+   }
+}
