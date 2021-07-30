@@ -415,6 +415,10 @@ input[type="range"]::-ms-fill-upper {
   opacity: 0.2;
 }
 
+.disabled {
+  cursor: not-allowed;
+}
+
 .my-text-input {
   color: #0094ff;
   font-size: 20px;
