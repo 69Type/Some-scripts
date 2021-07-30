@@ -440,7 +440,7 @@ input[type="range"]::-ms-fill-upper {
   height: 20px;
   left: 38px;
   position: absolute;
-  bottom: 98px;
+  bottom: 144px;
   border-radius: 0px 0px 6px 6px;
   animation: slideout1 0.3s;
 }
@@ -452,7 +452,7 @@ input[type="range"]::-ms-fill-upper {
   height: 0px;
   left: 38px;
   position: absolute;
-  bottom: 98px;
+  bottom: 144px;
   border-radius: 0px 0px 6px 6px;
   animation: slidein1 0.3s;
 }
