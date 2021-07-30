@@ -496,6 +496,10 @@ input[type="range"]::-ms-fill-upper {
   margin: 20px auto auto;
 }
 
+.random-button.low-opacity:hover {
+  background-color: rgb(86, 53, 220);
+}
+
 .random-button:hover {
   background-color: #4020c2;
 }
