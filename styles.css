@@ -496,6 +496,10 @@ input[type="range"]::-ms-fill-upper {
   margin: 20px auto auto;
 }
 
+.random-button:hover {
+  background-color: #4020c2;
+}
+
 .default-button {
   background-color: rgb(86, 53, 220);
   color: rgb(255, 255, 255);
@@ -510,12 +514,12 @@ input[type="range"]::-ms-fill-upper {
   margin: 10px auto auto;
 }
 
-.default-button.disabled{
-  opacity: .3;
+.default-button:hover {
+  background-color: #4020c2;
 }
 
-.random-button:hover {
-  background-color: #4020c2;
+.default-button.disabled{
+  opacity: .3;
 }
 
 @keyframes slideout1 {
