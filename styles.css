@@ -562,3 +562,11 @@ input[type="range"]::-ms-fill-upper {
   cursor: pointer;
   opacity: 0;
 }
+
+.help-box {
+  width: auto;
+  height: 4px;
+  background-color: rgb(48, 26, 107);
+  border-radius: 10px;
+  margin: 0px 0px 15px 0px;
+}
