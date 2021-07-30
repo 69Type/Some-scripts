@@ -434,8 +434,8 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .scroll-bottom:after {
+  background-image: linear-gradient(360deg, #828080, transparent);
   content: "";
-  background-color: rgba(0,0,0, .3);
   width: 315px;
   height: 20px;
   left: 38px;
@@ -444,6 +444,7 @@ input[type="range"]::-ms-fill-upper {
   border-radius: 0px 0px 6px 6px;
 }
 
-.scroll-middle::after {
-  
+.scroll-top::before {
+  content: "";
+  background-image: linear-gradient(180deg, #828080, transparent);
 }
