@@ -442,7 +442,7 @@ input[type="range"]::-ms-fill-upper {
   position: absolute;
   bottom: 98px;
   border-radius: 0px 0px 6px 6px;
-  animation: slideout1 0.5s;
+  animation: slideout1 0.3s;
 }
 
 .scroll-top::before {
@@ -454,7 +454,7 @@ input[type="range"]::-ms-fill-upper {
   left: 38px;
   top: 162px;
   border-radius: 6px 6px 0px 0px;
-  animation: slideout1 0.5s;
+  animation: slideout1 0.3s;
 }
 
 
