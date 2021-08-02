@@ -496,7 +496,7 @@ input[type="range"]::-ms-fill-upper {
   border-radius: 5px;
   cursor: pointer;
   padding: 10px;
-  width: auto;
+  width: 100%;
   margin: 20px auto auto;
 }
 
