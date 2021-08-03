@@ -2251,5 +2251,64 @@
           "animation": ""
         }
       }
+    },
+
+
+    "boobs": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "Художник",
+      "thirdElem": false,
+      "iElem": true,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "",
+        "backgroundSize": "",
+        "backgroundPosition": "",
+        "backgroundRepeat": "no-repeat",
+        "border": "",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "",
+        "backgroundColor": "",
+        "child": {
+          "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872155990773104660/imgonline-com-ua-Resize-l3CRBkJWTzG3.jpg)",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "backgroundRepeart": "no-repeart",
+          "borderRadius": "",
+          "margin": "0px",
+          "width": "100%",
+          "height": "100%",
+          "minHeight": "auto",
+          "animation": ""
+        }
+      }
     }
 }
