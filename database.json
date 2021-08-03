@@ -2285,8 +2285,8 @@
       "block": {
         "transition": "none",
         "backgroundColor": "",
-        "backgroundImage": "",
-        "backgroundSize": "",
+        "backgroundImage": "url(https://steamuserimages-a.akamaihd.net/ugc/261595156251654654/B21FDFEC2AD879C1A0A89C93FD5029A3ABA4A8F6/)",
+        "backgroundSize": "100%",
         "backgroundPosition": "",
         "backgroundRepeat": "no-repeat",
         "border": "",
