@@ -2193,4 +2193,63 @@
         }
       }
     }
+
+
+  "ANIMALBRUTE": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "Стример",
+      "thirdElem": false,
+      "iElem": true,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/871721235560681482/871874543944339456/4988-flame_1.gif)",
+        "backgroundSize": "100%",
+        "backgroundPosition": "",
+        "backgroundRepeat": "no-repeat",
+        "border": "none",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "",
+        "backgroundColor": "",
+        "child": {
+          "backgroundImage": "",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "backgroundRepeart": "no-repeart",
+          "borderRadius": "",
+          "margin": "",
+          "width": "",
+          "height": "",
+          "minHeight": "",
+          "animation": ""
+        }
+      }
+    }
 }
