@@ -2212,7 +2212,7 @@
       "code": "",
       "class": "",
       "nickname": {
-          "color": "",
+          "color": "#424242",
           "fontFamily": "",
           "fontWeight": "",
           "fontStyle": "",
@@ -2236,18 +2236,18 @@
         "cursor": "pointer"
       },
       "avatar": {
-        "border": "",
-        "backgroundColor": "",
+        "border": "none",
+        "backgroundColor": "#000",
         "child": {
-          "backgroundImage": "",
+          "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872134311564951642/imgonline-com-ua-Resize-toXn7IUTaJ0HZ2xx.jpg)",
           "backgroundSize": "",
-          "backgroundPosition": "",
+          "backgroundPosition": "center",
           "backgroundRepeart": "no-repeart",
-          "borderRadius": "",
-          "margin": "",
-          "width": "",
-          "height": "",
-          "minHeight": "",
+          "borderRadius": "35px",
+          "margin": "0px",
+          "width": "100%",
+          "height": "100%",
+          "minHeight": "auto",
           "animation": ""
         }
       }
