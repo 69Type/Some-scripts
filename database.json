@@ -2296,7 +2296,7 @@
       },
       "avatar": {
         "border": "",
-        "backgroundColor": "",
+        "backgroundColor": "#FFF",
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872155990773104660/imgonline-com-ua-Resize-l3CRBkJWTzG3.jpg)",
           "backgroundSize": "",
