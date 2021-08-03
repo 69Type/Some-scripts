@@ -2236,7 +2236,7 @@
         "cursor": "pointer"
       },
       "avatar": {
-        "border": "none",
+        "border": "3px solid black",
         "backgroundColor": "#000",
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872134311564951642/imgonline-com-ua-Resize-toXn7IUTaJ0HZ2xx.jpg)",
