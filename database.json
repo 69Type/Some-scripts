@@ -2267,7 +2267,7 @@
       "onmouseenter": "",
       "onmouseleave": "",
       "info": "",
-      "function": "",
+      "function": "function f(q, d){q.parentNode.parentNode.firstChild.style.width='50px'; q.parentNode.parentNode.firstChild.style.height='50px'}",
       "code": "",
       "class": "",
       "nickname": {
@@ -2295,12 +2295,12 @@
         "cursor": "pointer"
       },
       "avatar": {
-        "border": "",
-        "backgroundColor": "#FFF",
+        "border": "none",
+        "backgroundColor": "#000",
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872155990773104660/imgonline-com-ua-Resize-l3CRBkJWTzG3.jpg)",
           "backgroundSize": "",
-          "backgroundPosition": "",
+          "backgroundPosition": "0px -35px",
           "backgroundRepeart": "no-repeart",
           "borderRadius": "35px",
           "margin": "0px",
