@@ -2287,7 +2287,7 @@
         "backgroundColor": "",
         "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872161077931180032/1473077294_Anime--Shingeki-no-Kyojin-Mikasa-Ackerman-1206134.gif)",
         "backgroundSize": "100%",
-        "backgroundPosition": "",
+        "backgroundPosition": "0px -35px",
         "backgroundRepeat": "no-repeat",
         "border": "",
         "boxShadow": "",
@@ -2300,7 +2300,7 @@
         "child": {
           "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872155990773104660/imgonline-com-ua-Resize-l3CRBkJWTzG3.jpg)",
           "backgroundSize": "",
-          "backgroundPosition": "0px -35px",
+          "backgroundPosition": "",
           "backgroundRepeart": "no-repeart",
           "borderRadius": "35px",
           "margin": "0px",
