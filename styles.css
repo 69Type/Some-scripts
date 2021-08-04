@@ -575,4 +575,5 @@ input[type="range"]::-ms-fill-upper {
   background-color: rgb(48, 26, 107);
   border-radius: 10px;
   margin: 0px 0px 15px 0px;
+  min-height: 4px;
 }
