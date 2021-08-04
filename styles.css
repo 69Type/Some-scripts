@@ -582,4 +582,6 @@ input[type="range"]::-ms-fill-upper {
   color: rgb(255, 208, 35);
   font-size: 21px;
   margin: auto;
+  position: relative;
+  left: -10px;
 }
