@@ -378,6 +378,7 @@ input[type="range"]::-ms-fill-upper {
   display: flex;
   flex-direction: row;
   width: auto;
+  flex: 1;
 }
 
 .my-check-box {
