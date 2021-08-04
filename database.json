@@ -2310,5 +2310,65 @@
           "animation": ""
         }
       }
+    },
+    
+    
+    
+   "raffaele": {
+      "innerText": "",
+      "music": "",
+      "musicOnJoin": "",
+      "title": "artist",
+      "thirdElem": false,
+      "iElem": false,
+      "href": "",
+      "onclick": "",
+      "oncontextmenu": "",
+      "onmouseenter": "",
+      "onmouseleave": "",
+      "info": "",
+      "function": "",
+      "code": "",
+      "class": "",
+      "nickname": {
+          "color": "",
+          "fontFamily": "",
+          "fontWeight": "",
+          "fontStyle": "",
+          "fontSize": "",
+          "letterSpacing": "",
+          "overflow": "",
+          "animation": "",
+          "textShadow": "",
+          "webkitTextStroke": ""
+      },
+      "block": {
+        "transition": "none",
+        "backgroundColor": "",
+        "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872550711978786826/unknown.png)",
+        "backgroundSize": "110%",
+        "backgroundPosition": "center",
+        "backgroundRepeat": "no-repeat",
+        "border": "",
+        "boxShadow": "",
+        "animation": "",
+        "cursor": "pointer"
+      },
+      "avatar": {
+        "border": "",
+        "backgroundColor": "#000",
+        "child": {
+          "backgroundImage": "url(https://media.discordapp.net/attachments/827569141782282272/872553438393798727/imgonline-com-ua-Resize-Bc24Dedm23SkpiPe.jpg)",
+          "backgroundSize": "",
+          "backgroundPosition": "",
+          "backgroundRepeart": "no-repeart",
+          "borderRadius": "",
+          "margin": "0px",
+          "width": "100%",
+          "height": "100%",
+          "minHeight": "auto",
+          "animation": ""
+        }
+      }
     }
 }
