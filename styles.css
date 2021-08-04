@@ -577,3 +577,9 @@ input[type="range"]::-ms-fill-upper {
   margin: 0px 0px 15px 0px;
   min-height: 4px;
 }
+
+.c-star{
+  color: rgb(255, 208, 35);
+  font-size: 21px;
+  margin: auto;
+}
