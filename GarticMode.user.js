@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.0";
+const VERSION = "2.8.8.1";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -29,16 +29,16 @@ function Q(s){
 }
 
 
-var s1 = document.createElement("script");
-s1.async = !0;
-var xhr2 = new XMLHttpRequest();
-xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
-xhr2.onload = function(){
-    console.log("draw is loaded");
-    s1.text=xhr2.response;
-}
-xhr2.send();
-document.querySelector("body").appendChild(s1);
+// var s1 = document.createElement("script");
+// s1.async = !0;
+// var xhr2 = new XMLHttpRequest();
+// xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
+// xhr2.onload = function(){
+//     console.log("draw is loaded");
+//     s1.text=xhr2.response;
+// }
+// xhr2.send();
+// document.querySelector("body").appendChild(s1);
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -993,7 +993,7 @@ function cencFunc(u){
         cencFunc(e.path[3]);
     }); return;}
     if (u.classList.contains("answer")){
-        if(blackArr.indexOf(u.firstChild.firstChild.innerText.toLowerCase()) != -1){
+        if(blackArr.indexOf(u.firstChild.firstChild.innerText.toLowerCase()) != -1 || u.k == true){
             u.k=!0;
             u.firstChild.children[1].style.backgroundColor="#000";
             u.firstChild.children[1].firstChild.style.opacity="0";
@@ -1015,7 +1015,7 @@ function cencFunc(u){
             }
         }
     } else if (u.classList.contains("drawing")){
-        if(blackArr.indexOf(u.children[1].firstChild.innerText.toLowerCase()) != -1){
+        if(blackArr.indexOf(u.children[1].firstChild.innerText.toLowerCase()) != -1 || u.k == true){
             u.k=!0;
             u.children[1].children[1].style.backgroundColor="#000";
             u.children[1].children[1].firstChild.style.opacity="0";
