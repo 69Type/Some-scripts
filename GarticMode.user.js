@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.1";
+const VERSION = "2.8.8.2";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -15,7 +15,7 @@ const REDO = "jsx-4206980828 tool redo";
 const TOOL = "jsx-4206980828";
 const UDC = "jsx-979771310 core";
 const TBAR = "jsx-4206980828";
-const UPPER = "jsx-979771310 header";
+const UPPER = "header";
 const CORE = "jsx-979771310 core";
 const DCANV = "jsx-1116305971";
 const CCANV = "";
@@ -29,16 +29,16 @@ function Q(s){
 }
 
 
-// var s1 = document.createElement("script");
-// s1.async = !0;
-// var xhr2 = new XMLHttpRequest();
-// xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
-// xhr2.onload = function(){
-//     console.log("draw is loaded");
-//     s1.text=xhr2.response;
-// }
-// xhr2.send();
-// document.querySelector("body").appendChild(s1);
+var s1 = document.createElement("script");
+s1.async = !0;
+var xhr2 = new XMLHttpRequest();
+xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
+xhr2.onload = function(){
+    console.log("draw is loaded");
+    s1.text=xhr2.response;
+}
+xhr2.send();
+document.querySelector("body").appendChild(s1);
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1468,7 +1468,7 @@ function drawStyleChange(){
     toolBar.style.height="auto";
     //Надхолсьтье
     var canvasLayer = Q(CORE)[0];
-    canvasLayer.style.borderRadius="0px 0px 0px 0px";
+    canvasLayer ? canvasLayer.style.borderRadius="0px 0px 0px 0px": 0;
 
     var newDiv = document.createElement("div");
     newDiv.classList.add("newdiv");
