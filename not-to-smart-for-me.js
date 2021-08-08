@@ -1,7 +1,6 @@
 
 var int = setInterval(function(){
-    console.log("no");
-    if (window.KEY) { clearInterval(int) }
+    if (window.KEY) { clearInterval(int); alert("YES!") }
 (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 	[6], {
 		"3niX": function(e, t, i) {
