@@ -1,3 +1,4 @@
+console.log("LOADED");
 (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 	[6], {
 		"3niX": function(e, t, i) {
