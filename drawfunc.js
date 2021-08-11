@@ -64,7 +64,6 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 					})]
 				})
 			}), (function(e) {
-                console.log("всетаки тайм тут есть чи не?");
 				return {
 					reduced: [l.yb, l.Bb].includes(e.data.configs.speed),
 					speed: e.data.configs.speed,
