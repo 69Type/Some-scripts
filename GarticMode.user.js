@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -7,7 +8,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.FIX";
+const VERSION = "2.8.8.";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -29,16 +30,16 @@ function Q(s){
 }
 
 
-// var s1 = document.createElement("script");
-// s1.async = !0;
-// var xhr2 = new XMLHttpRequest();
-// xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
-// xhr2.onload = function(){
-//     console.log("draw is loaded");
-//     s1.text=xhr2.response;
-// }
-// xhr2.send();
-// document.querySelector("body").appendChild(s1);
+var s1 = document.createElement("script");
+s1.async = !0;
+var xhr2 = new XMLHttpRequest();
+xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
+xhr2.onload = function(){
+    console.log("draw is loaded");
+    s1.text=xhr2.response;
+}
+xhr2.send();
+document.querySelector("body").appendChild(s1);
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
