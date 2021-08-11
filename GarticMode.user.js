@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -2539,7 +2538,7 @@ function mainDrawFunc(){
 }
 
 function waitVideo(){
-    document.querySelector("#content > div.jsx-2562723607.jsx-3822683434.screen.fade-enter-done > div > div.jsx-1671937317.center > p").innerText="ЖДЕМ ОКОНЧАНИЯ ИГРЫ, А ПОКА ЧТО МОЖЕТЕ НАСЛАДИТЬСЯ ПРИЯТНОЙ МУЗЫКОЙ";
+    document.querySelector("#content > div.jsx-2562723607.jsx-3712514527.screen.fade-enter-done > div > div.jsx-1671937317.center > p").innerText="ЖДЕМ ОКОНЧАНИЯ ИГРЫ, А ПОКА ЧТО МОЖЕТЕ НАСЛАДИТЬСЯ ПРИЯТНОЙ МУЗЫКОЙ";
 
     var del = document.querySelector("#content > div.jsx-2562723607.jsx-3822683434.screen.fade-enter-done > div > div.jsx-1671937317.center > div");
 
@@ -2557,7 +2556,7 @@ function waitVideo(){
     video.frameborder="0";
     video.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
 
-    document.querySelector("#content > div.jsx-2562723607.jsx-3822683434.screen.fade-enter-done > div > div.jsx-1671937317.center > h3").insertAdjacentElement('beforeBegin', video);
+    document.querySelector("#content > div.jsx-2562723607.jsx-3712514527.screen.fade-enter-done > div > div.jsx-1671937317.center > h3").insertAdjacentElement('beforeBegin', video);
 
     video.style.border="20px";
     video.style.borderRadius="10px";
