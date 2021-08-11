@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.7";
+const VERSION = "2.8.8.9";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -1958,17 +1958,20 @@ function addSmoothingTool(){
         if (firstTimeAddWindowSmooth){
             window.addEventListener('pointerup', (e)=>{
                 if (onWorkingKey){
-                    onWorkingKey=false;
-                    endPoint = [e.clientX, e.clientY];
-                    clientMouseDown(startPoint[0], startPoint[1]);
-                    clientMouseMove(startPoint[0], startPoint[1]);
-                    for (let i=0; i<mapArray.length; i+=sLevel) {
-                        let point = mapArray[i];
-                        clientMouseMove(point[0], point[1]);
-                    }
-                    clientMouseMove(endPoint[0], endPoint[1]);
-                    clientMouseUp(endPoint[0], endPoint[1]);
-                    mapArray=[];
+                    setTimeout(()=>{
+                        Q(UNDO)[0].click();
+                        onWorkingKey=false;
+                        endPoint = [e.clientX, e.clientY];
+                        clientMouseDown(startPoint[0], startPoint[1]);
+                        clientMouseMove(startPoint[0], startPoint[1]);
+                        for (let i=0; i<mapArray.length; i+=sLevel) {
+                            let point = mapArray[i];
+                            clientMouseMove(point[0], point[1]);
+                        }
+                        clientMouseMove(endPoint[0], endPoint[1]);
+                        clientMouseUp(endPoint[0], endPoint[1]);
+                        mapArray=[];
+                    }, 20);
                 }
             })
 
@@ -1992,21 +1995,23 @@ function addSmoothingTool(){
         }
     })
 
-    pointerCanvas.addEventListener('pointerup', (e)=>{
-        if (onWorkingKey){
-            onWorkingKey=false;
-            endPoint = [e.clientX, e.clientY];
-            clientMouseDown(startPoint[0], startPoint[1]);
-            clientMouseMove(startPoint[0], startPoint[1]);
-            for (let i=0; i<mapArray.length; i+=sLevel) {
-                let point = mapArray[i];
-                clientMouseMove(point[0], point[1]);
-            }
-            clientMouseMove(endPoint[0], endPoint[1]);
-            clientMouseUp(endPoint[0], endPoint[1]);
-            mapArray=[];
-        }
-    })
+//     pointerCanvas.addEventListener('pointerup', (e)=>{
+//         setTimeout( function(){
+//         if (onWorkingKey){
+//             Q(UNDO).click();
+//             onWorkingKey=false;
+//             endPoint = [e.clientX, e.clientY];
+//             clientMouseDown(startPoint[0], startPoint[1]);
+//             clientMouseMove(startPoint[0], startPoint[1]);
+//             for (let i=0; i<mapArray.length; i+=sLevel) {
+//                 let point = mapArray[i];
+//                 clientMouseMove(point[0], point[1]);
+//             }
+//             clientMouseMove(endPoint[0], endPoint[1]);
+//             clientMouseUp(endPoint[0], endPoint[1]);
+//             mapArray=[];
+//         }}, 20 );
+//     })
 
 }
 
