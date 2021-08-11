@@ -38,7 +38,7 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 							}), .8 * i - s)), o = requestAnimationFrame((function t(s) {
 								var c = (s - e.elapsedTime) / i,
 									l = c >= 1;
-                            if ( c > 0.99 && magicKey && document.URL.indexOf("draw") != -1) { magicKey = false; window.drawWhatermark () } else if ( c < 0.9 ) { magicKey = true }
+                            if ( c > 0.99 && magicKey && document.URL.indexOf("draw") != -1 && typeof(window.drawWhatermark ()) == "function") { magicKey = false; window.drawWhatermark () } else if ( c < 0.9 ) { magicKey = true }
 								if ((c - a > .001 || l) && (a = c, r.clearRect(0, 0, 120, 120), r.beginPath(), r.arc(n, n, 56, 0, 2 * Math.PI), r.stroke(), !l)) {
 									r.fillStyle = c <= .8 && !e.reduced ? x : "#F7B500", r.beginPath(), r.moveTo(n, n), r.arc(n, n, 44, 1.5 * Math.PI, 1.5 * Math.PI + 2 * Math.PI * c, !0), r.lineTo(n, n), r.fill()
 								}
