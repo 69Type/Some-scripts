@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         New DRAW???
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*/*
+// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+// @grant        none
+// ==/UserScript==
+
+
 
 _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 	[16], {
@@ -453,6 +465,10 @@ _N_E = (window.webpackJsonp_N_E = window.webpackJsonp_N_E || []).push([
 					d = function(e) {
 						for (var t = e[0], r = e[1], n = t + e[2], o = r + e[3], i = t; i < n; i++)
 							for (var s = r; s < o; s++) b[i][s] = !0;
+                        e[0]-=2;
+                        e[1]-=2;
+                        e[2]+=4;
+                        e[3]+=4;
 						return e
 					};
 				t = Math.round(t), r = Math.round(r);
