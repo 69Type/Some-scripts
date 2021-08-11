@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.5";
+const VERSION = "2.8.8.7";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -1307,7 +1307,7 @@ function testForIncorporation(word, arr){
 
 function addListenerToBlock(block, func){
     block.addEventListener("DOMNodeInserted", (e)=>{
-        if (!e.target.children){return}
+        if (!e.target.children[1]){return}
         VIPList(e.target.children[1].firstChild);
     })
 }
