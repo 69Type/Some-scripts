@@ -2451,8 +2451,8 @@
       "code": "",
       "class": "",
       "nickname": {
-          "color": "",
-          "fontFamily": "",
+          "color": "#fff",
+          "fontFamily": "fantasy",
           "fontWeight": "",
           "fontStyle": "",
           "fontSize": "",
