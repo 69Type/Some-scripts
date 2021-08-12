@@ -327,7 +327,8 @@ input[type="range"]::-ms-fill-upper {
   flex-direction: row;
   overflow: hidden;
   display: flex;
-  height: 394px;
+  height: 400px;
+  width: 265px;
 }
 
 .style-section {
