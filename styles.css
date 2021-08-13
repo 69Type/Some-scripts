@@ -457,7 +457,6 @@ input[type="range"]::-ms-fill-upper {
 
 .default-button.disabled{
   opacity: .3;
-  cursor: no-drop;
 }
 
 .default-button.disabled:hover{
