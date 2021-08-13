@@ -500,6 +500,6 @@ input[type="range"]::-ms-fill-upper {
   width: 4px;
   height: 40px;
   border-radius: 5px;
-  background-color: rgb(119, 119, 119);
+  background-color: #FFF;
   position: relative;
 }
