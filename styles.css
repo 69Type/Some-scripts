@@ -385,7 +385,7 @@ input[type="range"]::-ms-fill-upper {
 }
 
 .disabled {
-  cursor: not-allowed !important;
+  cursor: alias !important;
 }
 
 .my-text-input {
