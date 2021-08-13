@@ -303,7 +303,6 @@ input[type="range"]::-ms-fill-upper {
 
 .background-setting {
   padding: 10px;
-  border: 4px solid rgb(199, 199, 199);
   border-radius: 10px;
   flex: 1 1 0%;
   margin: 0px 10px 0px 0px;
@@ -322,7 +321,7 @@ input[type="range"]::-ms-fill-upper {
 
 .background-settings-box {
   padding: 10px 0px 10px 10px;
-  border: 4px solid rgb(199, 199, 199);
+  border: 4px solid #fff;
   border-radius: 10px;
   flex-direction: row;
   overflow: hidden;
