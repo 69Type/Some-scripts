@@ -489,10 +489,18 @@ input[type="range"]::-ms-fill-upper {
   min-height: 4px;
 }
 
-.c-star{
+.c-star {
   color: rgb(255, 208, 35);
   font-size: 21px;
   margin: auto;
   position: relative;
   left: -10px;
+}
+
+.scroll-track {
+  width: 4px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: rgb(119, 119, 119);
+  position: relative;
 }
