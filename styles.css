@@ -24,6 +24,11 @@
   z-index: 10;
 }
 
+.top-menu.topmenusbtn:hover {
+  transform: scale(1.01);
+  z-index: 10;
+}
+
 .settings-title {
   background-color: #00000080;
   display: flex;
