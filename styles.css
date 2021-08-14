@@ -19,13 +19,13 @@
   font-family: Black;
 }
 
-.topmenusbtn.top-menu:hover {
-  transform: scale(1.01);
+.topmenusbtn:hover {
+  transform: scale(1.05);
   z-index: 10;
 }
 
 .topmenusbtn:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   z-index: 10;
 }
 
