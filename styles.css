@@ -331,7 +331,7 @@ input[type="range"]::-ms-fill-upper {
   flex-direction: row;
   overflow: hidden;
   display: flex;
-  height: 400px;
+  height: 412pxpx;
   width: 265px;
 }
 
