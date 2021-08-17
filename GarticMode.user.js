@@ -7,16 +7,16 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.8.9";
+const VERSION = "2.8.9.0";
 
 
 const UNDO = "jsx-4206980828 tool undo";
 const REDO = "jsx-4206980828 tool redo";
 const TOOL = "jsx-4206980828";
-const UDC = "jsx-979771310 core";
+const UDC = "core";
 const TBAR = "jsx-4206980828";
 const UPPER = "header";
-const CORE = "jsx-979771310 core";
+const CORE = "core";
 const DCANV = "jsx-1116305971";
 const CCANV = "";
 const PCANV = "jsx-150592943";
@@ -29,16 +29,83 @@ function Q(s){
 }
 
 
-var s1 = document.createElement("script");
-s1.async = !0;
-var xhr2 = new XMLHttpRequest();
-xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
-xhr2.onload = function(){
-    console.log("draw is loaded");
-    s1.text=xhr2.response;
+// var s1 = document.createElement("script");
+// s1.async = !0;
+// var xhr2 = new XMLHttpRequest();
+// xhr2.open('GET', 'https://raw.githubusercontent.com/69Type/Some-scripts/main/drawfunc.js');
+// xhr2.onload = function(){
+//     console.log("draw is loaded");
+//     s1.text=xhr2.response;
+// }
+// xhr2.send();
+// document.querySelector("body").appendChild(s1);
+
+( function changeManifest () {
+    let replaceIntId = setInterval ( function () {
+        if ( window.__BUILD_MANIFEST && window.__BUILD_MANIFEST['/draw'] && window.__BUILD_MANIFEST['/draw'][1] ) {
+            getScriptText ( window.__BUILD_MANIFEST['/draw'][1] );
+            window.__BUILD_MANIFEST['/draw'][1] = '';
+            clearInterval ( replaceIntId );
+        }
+    }, 0 );
+} ) ();
+
+function getScriptText ( inputPath ) {
+    var scriptPath = 'https://garticphone.com/_next/' + inputPath;
+    console.log ( scriptPath );
+    var scriptText = '';
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () { drawAutoEdit ( xhr.response ) };
+    xhr.onerror = e => { console.log ( e ) };
+    xhr.open ( "GET", scriptPath, true ) ;
+    xhr.send ();
 }
-xhr2.send();
-document.querySelector("body").appendChild(s1);
+
+function drawAutoEdit ( text ) {
+    // Изменение палитры
+    text = text.replace ( /\[\"\#.+\"\](?=;)/, '["#000000", "#FFFFFF", "#FF0000"]');
+
+    // Удаление ватермарка
+    text = text.replaceAll ( '/images/bgcanvas.svg', '' );
+
+    // Изменение функции обработки рисования
+    const eventVarible = text.match ( /(?<=function\s.\().(?=,.,.\)\{var\s.=[^\}]*\})/ );
+    const pointerEventsHandler =
+          `var d = arguments[4] ? 1 : 2,` +
+          `z = document.getElementsByClassName( window.EVENTCANVAS )[0].getBoundingClientRect();` +
+          `return [Math.round(1516/z.width * (${eventVarible}.clientX-z.x) / d), Math.round(848/z.height * (${eventVarible}.clientY-z.y) / d)];`;
+    text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, pointerEventsHandler );
+
+    // Изменение функция указателя
+    const pointerGetVarible = text.match ( /(?<=function .\(.,.\)\{var ).(?=\=.+density;)/ );
+    const pointerDrawFunction = `${pointerGetVarible}[0]*=2;${pointerGetVarible}[1]*=2;`;
+    text = text.replace ( /(?<=function .\(.,.\)\{var .=.+density;)/, pointerDrawFunction );
+
+    // Изменение функции заливки
+    const fillDrawHandlerCall = `(()=>{ var cords = D(e, n, a / R.f, s); cords[0]*=2; cords[1]*=2; return cords })()`
+    text = text.replace ( /.\(.,.,.\/.\..,.\)/, fillDrawHandlerCall );
+
+    // Фикс заливки, поедающий тонкие линии, но а так вроде ничего
+    const fillReturningVerible = text.match ( /(?<=.\[.\]\[.\]=!0;return )./ );
+    const newFillCode = `${fillReturningVerible}[0]-=2;${fillReturningVerible}[1]-=2;${fillReturningVerible}[2]+=4;${fillReturningVerible}[3]+=4;`
+    text = text.replace ( /(?<=.\[.\]\[.\]=!0;).{0}(?=return .)/, newFillCode );
+
+    // GET VERIBLES SECTION //
+    // Класс евентовго холста
+    const dinamicEventCanvasClass = text.match( /(?<=className:).\..\.dynamic[^\]]+\]\]\]\)(?=\})/ );
+    const makeEventCanvasClassGlobal = `( function () { var canvasClass = ${dinamicEventCanvasClass}; window.EVENTCANVAS = canvasClass; return canvasClass } ) ()`;
+    text = text.replace ( /(?<=className:).\..\.dynamic[^\]]+\]\]\]\)(?=\})/, makeEventCanvasClassGlobal );
+
+    //text = text.
+    runScript ( text );
+}
+
+function runScript ( text ) {
+    var script = document.createElement ( "script" );
+    script.type = "text/javascript";
+    script.text = text;
+    document.head.appendChild ( script );
+}
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1682,7 +1749,7 @@ function drawRMBPipet(){
                     pointerCanvas.dispatchEvent(event);
 
                     Q(UNDO)[0].click();
-                }, 50)
+                }, 5);
             }
         })
     } else {alert(">pointerCanvas is undefined<");}
@@ -2610,7 +2677,7 @@ function moveCanvases(){
     var nnWindow = Q(UDC)[0];
     var drawContainer = Q("jsx-1562482592 drawingContainer")[0];
     var contCanvases = drawContainer.children;
-    if (Q(UDC)[0].getElementsByClassName("jsx-1562482592 drawingContainer").length > 0){
+    if (Q(UDC)[0].children.length > 0){
         drawContainer.parentNode.removeChild(drawContainer);
         drawContainer.style.position="absolute";
         drawContainer.style.left="0px";
