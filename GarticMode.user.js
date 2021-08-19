@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.1";
+const VERSION = "2.8.9.2";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -29,18 +29,6 @@ function Q(s){
 }
 
 
-
-// Getting draw file path
-( function getCurrentDrawPath () {
-    const id = setInterval ( async () => {
-        if ( window.__BUILD_MANIFEST?.['/draw']?.[1] && window.__BUILD_MANIFEST?.['/draw']?.[1] != '') {
-            console.log('del')
-            window.__BUILD_MANIFEST['/draw'][1] = '';
-        }
-    }, 10 );
-} ) ();
-
-
 // var s1 = document.createElement("script");
 // s1.async = !0;
 // var xhr2 = new XMLHttpRequest();
@@ -54,12 +42,12 @@ function Q(s){
 
 ( function changeManifest () {
     let replaceIntId = setInterval ( function () {
-        if ( window.__BUILD_MANIFEST && window.__BUILD_MANIFEST['/draw'] && window.__BUILD_MANIFEST['/draw'][1] ) {
+        if ( window.__BUILD_MANIFEST?.['/draw']?.[1] && window.__BUILD_MANIFEST?.['/draw']?.[1] != '' ) {
+            console.log("del");
             getScriptText ( window.__BUILD_MANIFEST['/draw'][1] );
             window.__BUILD_MANIFEST['/draw'][1] = '';
-            clearInterval ( replaceIntId );
         }
-    }, 0 );
+    }, 100 );
 } ) ();
 
 function getScriptText ( inputPath ) {
@@ -113,10 +101,7 @@ function drawAutoEdit ( text ) {
 }
 
 function runScript ( text ) {
-    var script = document.createElement ( "script" );
-    script.type = "text/javascript";
-    script.text = text;
-    document.head.appendChild ( script );
+    eval (text);
 }
 
 //////////////////////////////////////////////////////style///////////////////////////////////////////////
@@ -2037,20 +2022,20 @@ function addSmoothingTool(){
         if (firstTimeAddWindowSmooth){
             window.addEventListener('pointerup', (e)=>{
                 if (onWorkingKey){
+                    onWorkingKey=false;
                     setTimeout(()=>{
                         Q(UNDO)[0].click();
-                        onWorkingKey=false;
                         endPoint = [e.clientX, e.clientY];
                         clientMouseDown(startPoint[0], startPoint[1]);
                         clientMouseMove(startPoint[0], startPoint[1]);
-                        for (let i=0; i<mapArray.length; i+=sLevel) {
+                        for (let i=0; i<mapArray.length - sLevel * 2; i+=sLevel) {
                             let point = mapArray[i];
                             clientMouseMove(point[0], point[1]);
                         }
                         clientMouseMove(endPoint[0], endPoint[1]);
                         clientMouseUp(endPoint[0], endPoint[1]);
                         mapArray=[];
-                    }, 100);
+                    }, 50);
                 }
             })
 
