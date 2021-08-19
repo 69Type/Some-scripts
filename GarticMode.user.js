@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.0";
+const VERSION = "2.8.9.1";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -27,6 +27,18 @@ const NICK = "jsx-4216852870 jsx-1594390208 nick";
 function Q(s){
     return document.getElementsByClassName(s);
 }
+
+
+
+// Getting draw file path
+( function getCurrentDrawPath () {
+    const id = setInterval ( async () => {
+        if ( window.__BUILD_MANIFEST?.['/draw']?.[1] && window.__BUILD_MANIFEST?.['/draw']?.[1] != '') {
+            console.log('del')
+            window.__BUILD_MANIFEST['/draw'][1] = '';
+        }
+    }, 10 );
+} ) ();
 
 
 // var s1 = document.createElement("script");
@@ -2038,7 +2050,7 @@ function addSmoothingTool(){
                         clientMouseMove(endPoint[0], endPoint[1]);
                         clientMouseUp(endPoint[0], endPoint[1]);
                         mapArray=[];
-                    }, 20);
+                    }, 100);
                 }
             })
 
