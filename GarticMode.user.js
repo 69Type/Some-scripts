@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.3";
+const VERSION = "2.8.9.5";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -75,7 +75,7 @@ function drawAutoEdit ( text ) {
           `d = arguments[4] ? 1 : 2,` +
           `z = document.getElementsByClassName( window.EVENTCANVAS )[0].getBoundingClientRect();` +
           `if (${eventVarible}.touches) { event = ${eventVarible}.touches[0] }`+
-          `return [Math.round(1516/z.width * (${eventVarible}.clientX-z.x) / d), Math.round(848/z.height * (${eventVarible}.clientY-z.y) / d)];`;
+          `return [Math.round(1516/z.width * (event.clientX-z.x) / d), Math.round(848/z.height * (event.clientY-z.y) / d)];`;
     text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, pointerEventsHandler );
 
     // Изменение функция указателя
