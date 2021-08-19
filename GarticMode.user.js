@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.2";
+const VERSION = "2.8.9.3";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -46,8 +46,8 @@ function Q(s){
             console.log("del");
             getScriptText ( window.__BUILD_MANIFEST['/draw'][1] );
             window.__BUILD_MANIFEST['/draw'][1] = '';
-        }
-    }, 100 );
+       }
+    }, 0 );
 } ) ();
 
 function getScriptText ( inputPath ) {
@@ -71,8 +71,10 @@ function drawAutoEdit ( text ) {
     // Изменение функции обработки рисования
     const eventVarible = text.match ( /(?<=function\s.\().(?=,.,.\)\{var\s.=[^\}]*\})/ );
     const pointerEventsHandler =
-          `var d = arguments[4] ? 1 : 2,` +
+          `var event = ${eventVarible},` +
+          `d = arguments[4] ? 1 : 2,` +
           `z = document.getElementsByClassName( window.EVENTCANVAS )[0].getBoundingClientRect();` +
+          `if (${eventVarible}.touches) { event = ${eventVarible}.touches[0] }`+
           `return [Math.round(1516/z.width * (${eventVarible}.clientX-z.x) / d), Math.round(848/z.height * (${eventVarible}.clientY-z.y) / d)];`;
     text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, pointerEventsHandler );
 
