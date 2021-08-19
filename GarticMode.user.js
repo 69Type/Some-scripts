@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.5";
+const VERSION = "2.8.9.7";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -3945,6 +3945,7 @@ window.onkeydown=(e)=>{
 
 
 function flagsOff(){
+    localStorage.setItem("pre-url", "");
 
     if (drawKey && Q("jsx-1553483530 pencil")[0]){
         Q("jsx-1553483530 pencil")[0].parentNode.removeChild(Q("jsx-1553483530 pencil")[0]);
@@ -4045,7 +4046,8 @@ function main(){
             setTimeout(mainDrawFunc, 500);;
         }, 600);
         if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv)};
-        flagsOff()
+        flagsOff();
+        localStorage.setItem("pre-url", "draw");
         drawKey=true;
     }
     else if (document.URL.indexOf("lobby") != -1 && !lobbyKey){
@@ -4156,4 +4158,6 @@ function exec() {
     document.querySelector("#content").addEventListener("DOMNodeInserted", main);
     setTimeout(main, 100);
 }
+
+if (document.URL.indexOf("draw") != -1) { setTimeout( ()=>{window.location.reload()}, 500) }
 
