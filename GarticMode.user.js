@@ -7,7 +7,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.7";
+const VERSION = "2.8.9.9";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -2030,7 +2030,7 @@ function addSmoothingTool(){
                         endPoint = [e.clientX, e.clientY];
                         clientMouseDown(startPoint[0], startPoint[1]);
                         clientMouseMove(startPoint[0], startPoint[1]);
-                        for (let i=0; i<mapArray.length - sLevel * 2; i+=sLevel) {
+                        for (let i=0; i<mapArray.length - sLevel; i+=sLevel) {
                             let point = mapArray[i];
                             clientMouseMove(point[0], point[1]);
                         }
@@ -4003,6 +4003,7 @@ function offBgMenu(){
 var cur = "";
 function main(){
     if (document.URL.indexOf("book") == -1){delete blackArr};
+
     if ((document.URL.indexOf("https://garticphone.com/") != -1 && document.URL.length == 26) && !menuKey){
         //createUpdateWindow();
         window.onload=()=>{
@@ -4018,6 +4019,25 @@ function main(){
 
     }
     else if (document.URL.indexOf("?c=") != -1 && !menuLinkKey){
+        setTimeout(vipOnEnter, 10);
+        localStorage.setItem("room", document.URL);
+        //Блок главного меню при входе по ссылке
+        //alert("menuLinkKey");
+        //window.onload=()=>{
+        //deletBanner();
+        //createColorPull();
+        //styleUpdate();
+        //}
+        //setTimeout(blackListFunc, 10);
+        setTimeout(deletBanner, 10);
+        setTimeout(createColorPull, 10);
+        setTimeout(styleUpdate, 10);
+        setTimeout(mainMenuTitle, 10);
+        //setTimeout(console.clear, 2000);
+        flagsOff();
+        menuLinkKey=true;
+    }
+    else if (document.URL.indexOf("redirect") != -1 && !menuLinkKey){
         setTimeout(vipOnEnter, 10);
         localStorage.setItem("room", document.URL);
         //Блок главного меню при входе по ссылке
