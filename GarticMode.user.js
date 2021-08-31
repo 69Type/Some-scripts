@@ -1,3 +1,15 @@
+// ==UserScript==
+// @name         MAIN VERSION
+// @description  Мой самый первый юзерскрипт
+// @author       Doctor Death D. Dracula
+// @license      MIT
+// @version      auto-version
+// @include      https://garticphone.com/*
+// @grant        none
+// @supportURL   t.me/DoctorDeathDDracula
+// ==/UserScript==
+
+document.isTrusted=!0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
@@ -7,7 +19,7 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.8.9.9";
+const VERSION = "2.9.0.0";
 
 
 const UNDO = "jsx-4206980828 tool undo";
@@ -98,8 +110,49 @@ function drawAutoEdit ( text ) {
     const makeEventCanvasClassGlobal = `( function () { var canvasClass = ${dinamicEventCanvasClass}; window.EVENTCANVAS = canvasClass; return canvasClass } ) ()`;
     text = text.replace ( /(?<=className:).\..\.dynamic[^\]]+\]\]\]\)(?=\})/, makeEventCanvasClassGlobal );
 
+    //e
+    const e = text.match ( /(?<=18\]\;var\s..\=function\().(?=\)\{return)/ )[0];
+    //ne
+    const ne = text.match(/..(?=\(\)\(\"options\"\,\{disabled\:.\.disabled,)/)[0];
+    //n
+    const n = text.match(/(?<=18\]\;var\s..\=function\(.\)\{return\sObject\()./)[0];
+    // Новая толщина кисти
+    text = text.replace(/(?<=\,children\:)..\.map.+\|\|\"\"\)\}\,.\)\}\)\)/, `window.NEW_THICKNESS(${e},${n},${ne})`);
+    // Стиль инпута
+    text = text.replace (/(?<=\[)(?="\.options\.)/, `".thickness-input {width: 50px;margin: 0px 0px 0px 10px;appearance: none;outline: none;border: none;border-radius: 5px;font-size: 20px;font-family: 'Black';color: #301A6B;text-align: center;}",`);
     //text = text.
     runScript ( text );
+}
+
+window.NEW_THICKNESS = function (e, n, ne){
+    return [[2, 6, 10, 14, 18].map((function(t) {
+        return Object(n.jsx)("div", {
+            onClick: e.disabled ? null : function() {
+                return e.onChangeThickness(t)
+            },
+            className: "jsx-340028725 " + (ne()("thickness", {
+                sel: e.thickness == t
+            }) || "")
+        }, t)
+    })), Object(n.jsx)("input", {
+        value: e.thickness,
+        className: "thickness-input",
+        type: "text",
+        maxLength: 10,
+        onChange: e.disabled ? null : function(t) {
+            var s = t.target.value.match(/^(\d{1,3}(\.\d?)?)/g);
+            return e.onChangeThickness(s ? s[0] : "1");
+        },
+        onWheel: e.disabled ? null : function (t){
+            if (t.deltaY < 0){
+                e.onChangeThickness(Number(t.target.value)+1)
+            } else if (t.target.value > 1){
+                e.onChangeThickness(Number(t.target.value)-1)
+            } else {
+                e.onChangeThickness("1")
+            }
+        }
+    })]
 }
 
 function runScript ( text ) {
