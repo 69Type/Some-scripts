@@ -1,15 +1,4 @@
-// ==UserScript==
-// @name         MAIN VERSION
-// @description  Мой самый первый юзерскрипт
-// @author       Doctor Death D. Dracula
-// @license      MIT
-// @version      auto-version
-// @include      https://garticphone.com/*
-// @grant        none
-// @supportURL   t.me/DoctorDeathDDracula
-// ==/UserScript==
 
-document.isTrusted=!0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
