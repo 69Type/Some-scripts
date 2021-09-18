@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -8,24 +7,24 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const VERSION = "2.9.0.1";
-alert("мод временно не работает");
-return;
+const VERSION = "2.9.0.2";
 
 
-const UNDO = "jsx-4206980828 tool undo";
-const REDO = "jsx-4206980828 tool redo";
-const TOOL = "jsx-4206980828";
+const UNDO = "tool undo";
+const REDO = "tool redo";
+const TOOL = "jsx-902724348";
 const UDC = "core";
-const TBAR = "jsx-4206980828";
+const TBAR = "jsx-902724348";
 const UPPER = "header";
 const CORE = "core";
 const DCANV = "jsx-1116305971";
 const CCANV = "";
-const PCANV = "jsx-150592943";
+const PCANV = "jsx-187140558";
 const MINP = "jsx-46098086";
-const SLL = "jsx-1927447174 scrollElements";
-const NICK = "jsx-4216852870 jsx-1594390208 nick";
+const SLL = "scrollElements";
+const NICK = "nick";
+const PALIT = "jsx-2181691688";
+const COLOR = "jsx-2181691688 color"
 
 function Q(s){
     return document.getElementsByClassName(s);
@@ -45,10 +44,9 @@ function Q(s){
 
 ( function changeManifest () {
     let replaceIntId = setInterval ( function () {
-        if ( window.__BUILD_MANIFEST?.['/draw']?.[1] && window.__BUILD_MANIFEST?.['/draw']?.[1] != '' ) {
-            console.log("del");
-            getScriptText ( window.__BUILD_MANIFEST['/draw'][1] );
-            //window.__BUILD_MANIFEST['/draw'][1] = '';
+        if ( window.__BUILD_MANIFEST?.['/draw']?.[2] && window.__BUILD_MANIFEST?.['/draw']?.[2] != '' ) {
+            getScriptText ( window.__BUILD_MANIFEST['/draw'][2] );
+            window.__BUILD_MANIFEST['/draw'][2] = '';
        }
     }, 0 );
 } ) ();
@@ -66,29 +64,29 @@ function getScriptText ( inputPath ) {
 
 function drawAutoEdit ( text ) {
     // Изменение палитры
-    text = text.replace ( /\[\"\#.+\"\](?=;)/, '["#000000", "#FFFFFF", "#FF0000"]');
+    text = text.replace ( /\[\"\#[^\]]+\]/, '["#000000", "#FFFFFF", "#FF0000"]');
 
     // Удаление ватермарка
     text = text.replaceAll ( '/images/bgcanvas.svg', '' );
 
     // Изменение функции обработки рисования
-    const eventVarible = text.match ( /(?<=function\s.\().(?=,.,.\)\{var\s.=[^\}]*\})/ );
-    const pointerEventsHandler =
-          `var event = ${eventVarible},` +
-          `d = arguments[4] ? 1 : 2,` +
-          `z = document.getElementsByClassName( window.EVENTCANVAS )[0].getBoundingClientRect();` +
-          `if (${eventVarible}.touches) { event = ${eventVarible}.touches[0] }`+
-          `return [Math.round(1516/z.width * (event.clientX-z.x) / d), Math.round(848/z.height * (event.clientY-z.y) / d)];`;
-    text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, pointerEventsHandler );
+    //const eventVarible = text.match ( /(?<=function\s.\().(?=,.,.\)\{var\s.=[^\}]*\})/ );
+    //const pointerEventsHandler =
+//           `var event = ${eventVarible},` +
+//           `d = arguments[4] ? 1 : 2,` +
+//           `z = document.getElementsByClassName( window.EVENTCANVAS )[0].getBoundingClientRect();` +
+//           `if (${eventVarible}.touches) { event = ${eventVarible}.touches[0] }`+
+//           `return [Math.round(1516/z.width * (event.clientX-z.x) / d), Math.round(848/z.height * (event.clientY-z.y) / d)];`;
+    //text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, pointerEventsHandler );
 
     // Изменение функция указателя
-    const pointerGetVarible = text.match ( /(?<=function .\(.,.\)\{var ).(?=\=.+density;)/ );
-    const pointerDrawFunction = `${pointerGetVarible}[0]*=2;${pointerGetVarible}[1]*=2;`;
-    text = text.replace ( /(?<=function .\(.,.\)\{var .=.+density;)/, pointerDrawFunction );
+    //const pointerGetVarible = text.match ( /(?<=function .\(.,.\)\{var ).(?=\=.+density;)/ );
+    //const pointerDrawFunction = `${pointerGetVarible}[0]*=2;${pointerGetVarible}[1]*=2;`;
+    //text = text.replace ( /(?<=function .\(.,.\)\{var .=.+density;)/, pointerDrawFunction );
 
     // Изменение функции заливки
-    const fillDrawHandlerCall = `(()=>{ var cords = D(e, n, a / R.f, s); cords[0]*=2; cords[1]*=2; return cords })()`
-    text = text.replace ( /.\(.,.,.\/.\..,.\)/, fillDrawHandlerCall );
+    //const fillDrawHandlerCall = `(()=>{ var cords = D(e, n, a / R.f, s); cords[0]*=2; cords[1]*=2; return cords })()`
+    //text = text.replace ( /.\(.,.,.\/.\..,.\)/, fillDrawHandlerCall );
 
     // Фикс заливки, поедающий тонкие линии, но а так вроде ничего
     const fillReturningVerible = text.match ( /(?<=.\[.\]\[.\]=!0;return )./ );
@@ -101,17 +99,18 @@ function drawAutoEdit ( text ) {
     const makeEventCanvasClassGlobal = `( function () { var canvasClass = ${dinamicEventCanvasClass}; window.EVENTCANVAS = canvasClass; return canvasClass } ) ()`;
     text = text.replace ( /(?<=className:).\..\.dynamic[^\]]+\]\]\]\)(?=\})/, makeEventCanvasClassGlobal );
 
-    //e
-    const e = text.match ( /(?<=18\]\;var\s..\=function\().(?=\)\{return)/ )[0];
-    //ne
-    const ne = text.match(/..(?=\(\)\(\"options\"\,\{disabled\:.\.disabled,)/)[0];
-    //n
-    const n = text.match(/(?<=18\]\;var\s..\=function\(.\)\{return\sObject\()./)[0];
-    // Новая толщина кисти
-    text = text.replace(/(?<=\,children\:)..\.map.+\|\|\"\"\)\}\,.\)\}\)\)/, `window.NEW_THICKNESS(${e},${n},${ne})`);
-    // Стиль инпута
-    text = text.replace (/(?<=\[)(?="\.options\.)/, `".thickness-input {width: 50px;margin: 0px 0px 0px 10px;appearance: none;outline: none;border: none;border-radius: 5px;font-size: 20px;font-family: 'Black';color: #301A6B;text-align: center;}",`);
-    //text = text.
+//     console.log(text);
+//     //e
+//     const e = text.match ( /(?<=18\]\;var\s\w\w\=function\().(?=\)\{return)/ )[0];
+//     //ne
+//     const ne = text.match(/..(?=\(\)\(\"options\"\,\{disabled\:.\.disabled,)/)[0];
+//     //n
+//     const n = text.match(/(?<=18\]\;var\s..\=function\(.\)\{return\sObject\()./)[0];
+//     // Новая толщина кисти
+//     text = text.replace(/(?<=\,children\:)..\.map.+\|\|\"\"\)\}\,.\)\}\)\)/, `window.NEW_THICKNESS(${e},${n},${ne})`);
+//     // Стиль инпута
+//     text = text.replace (/(?<=\[)(?="\.options\.)/, `".thickness-input {width: 50px;margin: 0px 0px 0px 10px;appearance: none;outline: none;border: none;border-radius: 5px;font-size: 20px;font-family: 'Black';color: #301A6B;text-align: center;}",`);
+//     //text = text.
     runScript ( text );
 }
 
@@ -1217,7 +1216,7 @@ function getRandomInt(max) {
 }
 
 function AddButton(){
-    var btn = document.querySelector("#content > div > div > div.jsx-3071142060.colors > div > div:nth-child(4)");
+    var btn = document.querySelector("#content > div > div > div. .colors > div > div:nth-child(4)");
     btn.onclick = function(){
         if (Key1){Key1=false;}else{Key1=true};
     }
@@ -1556,9 +1555,9 @@ function addZoom(){
 //Функция изменения дизайна
 function drawStyleChange(){
     //Смещение инструментов ниже
-    Q("jsx-3071142060")[0].style.margin="0px 0px -70px 0px";
+    Q("jsx-902724348")[0].style.margin="0px 0px -70px 0px";
     //Растяжение палитры
-    var palitra = Q("jsx-3071142060")[1];
+    var palitra = Q("jsx-902724348")[1];
     palitra.style.height="auto";
     //var book = Q("jsx-1307288772 book")[0];
     //book.style.padding="0px 0px 20px 0px";
@@ -1666,17 +1665,17 @@ function firstLevelFunctions(){
 
 //Изменение палитры
 function palitEdit(){
-    var palitra = Q("jsx-3071142060")[1];
-    var nColor = Q("jsx-3071142060 color")[0].cloneNode(true);
-    var allColors = Q("jsx-3071142060 color");
+    var palitra = Q(PALIT)[1];
+    var nColor = Q("  color")[0].cloneNode(true);
+    var allColors = Q("  color");
 
     //Удаление предыдущих цветов
     while (palitra.children[1].tagName != "INPUT") {
         palitra.removeChild(palitra.firstChild);
     }
 
-    if (Q("jsx-3071142060 color").length != 36){
-        var target = Q("jsx-3071142060")[0].getElementsByTagName("input")[0];
+    if (Q("  color").length != 36){
+        var target = Q(PALIT)[0].getElementsByTagName("input")[0];
         var colorList = [[0, 0, 0], [34, 177, 76], [47, 253, 57], [51, 51, 51], [0, 81, 36], [74, 255, 169], [125, 125, 125], [255, 255, 125], [0, 9, 168], [175, 175, 175], [255, 242, 0], [0, 0, 255], [255, 255, 255], [255, 201, 14], [79, 83, 255], [90, 7, 12], [191, 191, 0],[87, 129, 215], [171, 14, 21], [119, 92, 0], [73, 189, 218], [255, 0, 0], [255, 210, 166], [153, 217, 234], [239, 71, 80], [254, 135, 48], [180, 3, 175], [245, 80, 127], [224, 96, 1], [163, 73, 164], [244, 128, 134], [80, 43, 18], [251, 30, 245], [249, 185, 188], [54, 29, 12], [253, 162, 251]];
         if (Q("jsx-1307288772 book dark")[0] != undefined){colorList[12]==[0,0,0];}
         for (let i=0; i<colorList.length; i++){
@@ -2588,7 +2587,7 @@ function addClearButton(){
         var y0 = rect.y;
         var x1 = rect.x + rect.width;
         var y1 = rect.y + rect.height;
-        var beforeColor = (()=>{var items = Q("jsx-3071142060"); for (let i=0; i<items.length; i++){if (items[i].tagName=="INPUT"){return items[i]}}})().value;
+        var beforeColor = (()=>{var items = Q(PALIT); for (let i=0; i<items.length; i++){if (items[i].tagName=="INPUT"){return items[i]}}})().value;
         var beforeElement = Q("tool sel")[0];
         var rectButton = Q("jsx-4206980828 tool rec")[0];
         rectButton.click();
@@ -4105,11 +4104,11 @@ function main(){
         setTimeout(styleUpdate, 10);
         setTimeout(mainDrawFunc, 500);
         var inv = setInterval(()=>{
-            if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0 && Q("download")[0]){clearInterval(inv); return}
+            if (document.getElementsByClassName("mirror-canvas").length != 0 && Q(PALIT)[1].children.length > 30 && Q("pipet").length != 0 && Q("download")[0]){clearInterval(inv); return}
             setTimeout(styleUpdate, 10);
             setTimeout(mainDrawFunc, 500);;
         }, 600);
-        if (document.getElementsByClassName("mirror-canvas").length != 0 && Q("jsx-3071142060")[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv)};
+        if (document.getElementsByClassName("mirror-canvas").length != 0 && Q(PALIT)[1].children.length > 30 && Q("pipet").length != 0){clearInterval(inv)};
         flagsOff();
         localStorage.setItem("pre-url", "draw");
         drawKey=true;
