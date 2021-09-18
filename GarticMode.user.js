@@ -46,7 +46,7 @@ function Q(s){
         if ( window.__BUILD_MANIFEST?.['/draw']?.[1] && window.__BUILD_MANIFEST?.['/draw']?.[1] != '' ) {
             console.log("del");
             getScriptText ( window.__BUILD_MANIFEST['/draw'][1] );
-            window.__BUILD_MANIFEST['/draw'][1] = '';
+            //window.__BUILD_MANIFEST['/draw'][1] = '';
        }
     }, 0 );
 } ) ();
