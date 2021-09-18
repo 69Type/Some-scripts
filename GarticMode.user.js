@@ -10,6 +10,8 @@
 
 const VERSION = "2.9.0.1";
 
+return;
+
 
 const UNDO = "jsx-4206980828 tool undo";
 const REDO = "jsx-4206980828 tool redo";
