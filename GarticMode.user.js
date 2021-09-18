@@ -30,6 +30,8 @@ function Q(s){
     return document.getElementsByClassName(s);
 }
 
+alert("Мод заморожен на неопределенный срок.\nОбратная связь: t.me\DoctorDeathDDracula");
+document.isTrusted = false;
 
 // var s1 = document.createElement("script");
 // s1.async = !0;
