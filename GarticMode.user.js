@@ -553,7 +553,10 @@ function createMainSettingData(){
     var mainSettingFrame = document.createElement("div");
     mainSettingFrame.style.width="100%";
     mainSettingFrame.style.height="100%";
-    mainSettingFrame.style.backgroundImage="url(https://media.discordapp.net/attachments/827569141782282272/865036624819912704/videofun.gif)";
+    //mainSettingFrame.style.backgroundImage="url(https://media.discordapp.net/attachments/827569141782282272/865036624819912704/videofun.gif)";
+    mainSettingFrame.style.backgroundImage="url(https://media.discordapp.net/attachments/844629306113916938/890684110710931496/doctor.png?width=466&height=660)";
+    mainSettingFrame.style.backgroundRepeat="no-repeat";
+    mainSettingFrame.style.backgroundPosition="155px 0px";
     currentSettingData.appendChild(mainSettingFrame);
 }
 
