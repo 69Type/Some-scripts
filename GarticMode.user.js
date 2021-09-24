@@ -7,10 +7,42 @@
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// ==UserScript==
+// @name         Gartic Phone Main File
+// @namespace    http://tampermonkey.net/
+// @version      alpha
+// @description  This is multi-modification for garticphone.com
+// @author       Doctor Death D. Dracula
+// @match        https://garticphone.com/*
+// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
+
+
 window.gg = {};
 
-eval("class MyWebSocket extends WebSocket{constructor(...args){super(...args);window.gg.WS=this;window.initWebSocket()};send(...args){return super.send(window.editSending(...args))}};WebSocket=MyWebSocket;const origXMLHttpRequest=XMLHttpRequest;class MyXMLHttpRequest{constructor(...args){const xhr=new origXMLHttpRequest(...args);window.initXhr(xhr);return xhr}};XMLHttpRequest=MyXMLHttpRequest;");
+class MyWebSocket extends WebSocket {
+	constructor(...args) {
+		super(...args);
+		window.gg.WS = this;
+		window.initWebSocket()
+	};
+	send(...args) {
+		return super.send(window.editSending(...args))
+	}
+};
+WebSocket = MyWebSocket;
 
+const origXMLHttpRequest = XMLHttpRequest;
+class MyXMLHttpRequest {
+	constructor(...args) {
+		const xhr = new origXMLHttpRequest(...args);
+		window.initXhr(xhr);
+		return xhr
+	}
+};
+XMLHttpRequest = MyXMLHttpRequest;
 
 // window.addEventListener("load", ()=>{
 //     for (let i in window.__BUILD_MANIFEST["/start"]){
@@ -120,7 +152,7 @@ function initXhr(xhr){
         if (xhr.response.indexOf("users") != -1){
 
             var dict = JSON.parse(xhr.response.match(/\[.+/)[0])[1];
-            //console.log(dict)
+            console.log(dict);
             window.gg.users={};
             window.gg.users.left = {};
             window.gg.users.ready = {};
@@ -270,6 +302,17 @@ const setMutationListener = function(){
 
 /* First time onload */
 function firstTimeLoaded () {
+    var f = document.createElement("div");
+    f.id = "current";
+    f.style = "position:absolute; top: 0px; left: 0px; color: red; font-family: 'Black'; font-size: 25px; margin: 5px;";
+    document.querySelector("html").style.overflow="hidden";
+
+    var styles = document.createElement("style");
+    styles.type = 'text/css'
+    styles.innerText = ".tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}";
+    document.head.appendChild(styles);
+
+    document.body.appendChild(f);
     setMutationListener ();
     addMainMenuKeys ();
 }
@@ -277,6 +320,10 @@ function firstTimeLoaded () {
 
 function onWindowChange ( _case ) {
     console.log( _case );
+    setTimeout( ()=>{
+        let t = window.gg?.turnSet?.previous?.user?.nick ? window.gg.turnSet.previous.user.nick : window.gg.dict.previous?.user?.nick;
+        if (t) {document.querySelector("#current").innerText=t};
+    }, 2E3);
     freeStyleUpdate ();
     switch ( _case ){
             /* main or link */
@@ -295,6 +342,7 @@ function onWindowChange ( _case ) {
             /* draw */
         case 'draw':
             setTimeout(onDrawing,200);
+             mainDrawFunction();
             break;
             /* rank */
         case 'write':
@@ -2264,72 +2312,6 @@ function inject( text ) {
 }
 
 
- function bookDivWorking(item){
-     console.log(item)
-     if (item.classList.contains("item")) {
-         item.addEventListener("click", censorBlur);
-         if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)) {
-             item.click();
-         }
-     } else if (item.classList.contains("screen")){
-         //refreshAllCensor();
-     }
- };
-
-function censorBlur(e){
-    console.log("OK?")
-    if (e.target.tagName == 'BUTTON') return;
-    this.key ? this.key = false : this.key = true;
-    if (this.key){
-        this.getElementsByClassName("balloon")[0].style.filter = "blur(10px) brightness(0.1)";
-    } else {
-        this.getElementsByClassName("balloon")[0].style.filter = "";
-    }
-}
-
-function onBookSensorFunction(){
-    document.querySelector("#current").style.display = "none";
-    refreshCensor();
-    Array.from(document.getElementsByClassName("user")).forEach( item => {
-        item.addEventListener("click", blurOnPlayer);
-    } )
-}
-
-function blurOnPlayer () {
-    this.key ? this.key = false : this.key = true;
-    if (this.key) {
-        blackList.push(this.getElementsByClassName("nick")[0].innerText);
-        this.style.backgroundColor = "red";
-
-    } else {
-        blackList.splice(blackList.indexOf(this.getElementsByClassName("nick")[0].innerText), 1);
-        this.style.backgroundColor = "";
-    }
-    refreshCensor();
-}
-
-function refreshCensor(){
-    console.log(blackList);
-    Array.from(document.getElementsByClassName("item")).forEach((item)=>{
-        if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)){
-            item.key = true;
-            item.getElementsByClassName("balloon")[0].style.filter = "blur(10px) brightness(0.1)";
-        } else {
-            item.key = false;
-            item.getElementsByClassName("balloon")[0].style.filter = "";
-        }
-    });
-
-    Array.from(document.getElementsByClassName("user")).forEach((item)=>{
-        if (item.classList.contains("guest") || item.classList.contains("empty") || item.classList.contains("waiting")) return;
-        if (blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1){
-            item.key=true;
-            item.style.backgroundColor = "red";
-        }
-    });
-
-}
-
 function edit( text ) {
 
     // GET VARIABLES SECTION //
@@ -2354,20 +2336,13 @@ function edit( text ) {
     // Изменение функции заливки
     text = text.replace(/(?<=concat\(Object\(\w\.\w\)\()Object\(\w+\.\w+\)\(\w+,\w+,\w+\/\w+\.\w+,\w+\)(?=\),)/, "window._POINTER_FUNCTION(e,1)");
     // Изменение функции обработки рисования
-    const ject = "Object(B.d)(";
-    text = text.replaceAll(ject, "window._POINTER_FUNCTION(");
-    //const eventVariable = text.match ( /(?<=function\s.\().(?=,.,.\)\{var\s.=[^\}]*\})/ );
-    //text = text.replace ( /(?<=function\s.\(.,.,.\)\{)var\s.=[^\}]*(?=\})/, `return window._POINTER_FUNCTION(${eventVariable});` );
-
+    text = text.replaceAll(/Object\(\w+\.\w\)\(\w+,\w+,\w+\/\w+\.\w,\w+\)/g, "window._POINTER_FUNCTION(e)");
+    text = text.replaceAll(/Object\(\w+\.\w\)\(\w+,\w+,\w+,\w+\)/g, "window._POINTER_FUNCTION(e)");
 
     // Изменение функция указателя
     const pointerGetVariable = text.match ( /(?<=function .\(.,.\)\{var ).(?=\=.+density;)/ );
     const pointerDrawFunction = `${pointerGetVariable}[0]*=2;${pointerGetVariable}[1]*=2;`;
     text = text.replace ( /(?<=function .\(.,.\)\{var .=.+density;)/, pointerDrawFunction );
-
-    // Изменение функции заливки
-    //const fillDrawHandlerCall = text.match( /.\(.,.,.\/.\..,.\)/ );
-    //text = text.replace ( /.\(.,.,.\/.\..,.\)/, `(()=>{ var cords = ${fillDrawHandlerCall}; cords[0]*=2; cords[1]*=2; return cords })()` );
 
     // Фикс заливки, поедающий тонкие линии, но а так вроде не плохо
     const fillReturningVariable = text.match ( /(?<=.\[.\]\[.\]=!0;return )./ );
@@ -2378,142 +2353,34 @@ function edit( text ) {
     const colorVariable = text.match ( /(?<=var\s..=function\().(?=\)\{var)/ );
     text = text.replace ( /(?<=var\s.+=function\(.\)\{var .=.\.value,.=.\.disabled,.=.\.onChange\;)/, `window.VCOLOR=${colorVariable};` );
 
-    // Переменная номера текущего инструмента
-    const toolVariable = text.match( /(?<=\?\(.=\[).(?=,\+\+.\.current,\[.,)/ );
-    // Переменная евента начала штриха
-    const touchEvent = text.match( /(?<=function\s.\(.\)\{)(?=.\.preventDefault\(\))./ );
-    // Отрезок заливки
-    const bucketSegment = text.match( /(?<=\w\(\w\.\w\w\),\w==\w\.\w\w\?).+(?=:\(\w=\w!=\w\.\w\w\?\[)/ );
-    // Функция получения относительных координат
-    const D = text.match( /(?<=\w\.stopPropagation\(\);var\s\w=)\w(?=\(\w,\w,\w,\w\);)/ );
-    // Функция отрисовки
-    const g = text.match( /\w(?=\(\[\]\))/ );
-    // Переменная штриха
-    const r = text.match( /(?<=,)\w(?=\=\[\],\w\=\w\.current)/ );
-    // Добавление функции при нажатии мыши
-    text = text.replace ( /(?<=function\s.+\(.\)\{)(?=.\.preventDefault\(\))/,
-                         ` window.BUCKET_TOOL = function(${toolVariable}){${bucketSegment}};` +
-                         `var toomt = window._MOUSEDOWN_EVENT_FUNCTION(${toolVariable},${touchEvent},${r},${D},${g});` +
-                         `${r} = toomt.r;`+
-                         `${toolVariable} = toomt.tool;` +
-                         `if (!toomt.status){return};`
-                        );
-
-    const preDrawingContainer = text.match( /(?<=.\=).(?=\.current;.\.addEventListener\((?:'|")(?:mousedown|touchstart|pointerdown))/ );
-    text = text.replace ( /(?<=Object\(.\.useEffect\)\(\(function\(\)\{)(?=.\.turnNum)/, `window._WHEEL_CANVAS_FUNCTION(${preDrawingContainer}.current);` );
-
-
     for (let c of text.match(/\.colors\.[^\}\>]+(?=\})/g)){
         text = text.replace( c, c + "height:500px;" );
     }
 
-    //     for (let c of text.match(/\.core\.watermark\.[^\}]+(?=\})/g)){
-    //         text = text.replace( c, c + "background-image: linear-gradient(179deg, rgb(156 7 7), rgb(107 2 75));" );
-    //     }
-
     for (let c of text.match(/\.colors\.[^\}]+>[^\}]+/g)){
-        text = text.replace( c, c + "overflow: auto; width: 120px;" );
+        text = text.replace( c, c + "overflow: auto; width: 130px;" );
     }
 
     // rule: [ >... ,<
     const innerPalitraClass = text.match(/\.colors\.[^\{]+>[^\{]+/)[0];
     text = text.replace(/(?="\.colors\.)/g, `"${innerPalitraClass}::-webkit-scrollbar-track { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%); }","${innerPalitraClass}::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 10px; }","${innerPalitraClass}::-webkit-scrollbar { width: 0.4em; }",`);
 
-    //e
-    //const e = text.match ( /(?<=18\]\;var\s..\=function\().(?=\)\{return)/ )[0];
-    //ne
-    //const ne = text.match(/..(?=\(\)\(\"options\"\,\{disabled\:.\.disabled,)/)[0];
-    //n
-    //const n = text.match(/(?<=18\]\;var\s..\=function\(.\)\{return\sObject\()./)[0];
-    // Новая толщина кисти
-    //text = text.replace(/(?<=\,children\:)..\.map.+\|\|\"\"\)\}\,.\)\}\)\)/, `window.NEW_THICKNESS(${e},${n},${ne})`);
+    // Добавление дропера
+    text = text.replace('"dropper",2', '"dropper",1');
+    // Переменная o.jsx
+    const ou = text.match(/(?<=e\}\)\|\|""\)}\),Object\()\w{1,2}/)[0];
+    // Место вкливания нового инструмента сглаживания
+    text = text.replace(/(?<=e\}\)\|\|""\)}\),)(?=Object\()/, `window.SMOOTHING_FUNC(${ou}.jsx),`);
+    // Стили инструментов
+    text = text.replace(/(?<=\[")(?=\.tools)/, ".tool.smooth::before{display: none !important; content:'';}")
 
-    // Переменная прозрачности и толщины
-    //text = text.replace ( /(?<=18\]\;var\s..\=function\(.\)\{)/, `window.VOPACITYANDTHIKNESS=${e};` );
-
-    // Стиль инпута
-    text = text.replace (/(?<=\[)(?="\.options\.)/, `".thickness-input {width: 50px;margin: 0px 0px 0px 10px;appearance: none;outline: none;border: none;border-radius: 5px;font-size: 20px;font-family: 'Black';color: #301A6B;text-align: center;}",`);
-
-    // Добавление включающихся инструментов
-    text = text.replace(/(?<=\[K\.Tb\,\"fil\"\])/, ',[9999, "pipet"],[7777, "curve"],[8888, "empty"]');
-
-    // Добавление стилей инструмента
-    const newToolsStyle = "\".pipet:after{font-family:'Black' !important;content:'P';}\"" + ",";
-    text = text.replace(/(?<=\[)(?="\.tools\.)/, newToolsStyle);
-
-    // Изменение стиля иснтрументов
-    var toolBoxStyles = text.match(/(?<=\{)[^\}]+298px[^\}]+/)[0];
-    toolBoxStyles = toolBoxStyles.replace("298px", "auto");
-    text = text.replace(/(?<=\{)[^\}]+298px[^\}]+/, toolBoxStyles);
-
-    // Переменная текущего штриха
-    // const strokeVariable = text.match(/(?<=\:\()\w(?=\=.\!\=\w\.\w+\?\[)/)[0];
-    // Переменная функции получения относительных координат
-    //var getCordFunctionVariable = text.match(/(?<=\,)\w(?=\(.\,.\,.)/)[0];
-    // Переменная текущего инструмента
-    //var curToolVariable = toolVariable; //text.match(/(?<=\)\,).(?=\=\=\w+\.\w+\?\(\w\=\[\w)/)[0];
-    // Переменная функция отрисовки
-    //var gFunctionVariable = text.match(/\w\(\[\]\)/)[0];
-
-    // Изменение палитры
-    // Отывок цветового инпута
-    var colorInput = text.match(/.Object\(\w\..{1,4}\)\("input",.+type:"color"[^\]]+/)[0];
-    // Удаление инпута из текущего места
-    text = text.replace(colorInput, '');
-    // Перемещения запятых
-    colorInput = colorInput.replace(/^,/, '') + ',';
-    // Вставка инпута в новое место
-    text = text.replace(/(?<=}\)\)}\)]}\))(?=,Object\(\w\.jsx\)\(\w\.\w,{)/, ","+colorInput);
-    //Изменение стиля инпута > input.jsx-3071142060{ <
-    const inputStyleStart = text.match(/input\.[^\{]+./)[0];
-    // Добавление новых стилей в инпут
-    text = text.replace( inputStyleStart, inputStyleStart + 'min-height: 42px; margin: 10px 0px 0px 0px;' );
-
-    // Добавление эвента в функцию отжатия
-    //text = text.replace(/(?<=function\s.\()(?=\)\{.&&clearInterval\(.\)\,)/, "mUEvent");
-    // Включение функции при отжатии штриха
-    //text = text.replace(/(?<=function\s.\(mUEvent\)\{)(?=.&&clearInterval\(.\)\,)/, ``);
-    // Включение функции при нажатии
-    //text = text.replace(/(?<=function\s\w\(mUEvent\)\{)/,
-    //                    `var toomt = window._EXTENDING_MOUSEUP_FUNCTION(event, ${strokeVariable}, ${D});`+
-    //                   `${strokeVariable}=toomt.r;` +
-    //                    `if (!toomt.status){return};`);
-
-    //text = text.replace(/(?<=function\sl\(e\){)(?=e\.stopPropagation\(\);)/, "console.log(r);");
-
-    // Изменение функции отмены (отмена всех действий с одинаковым id)
-    //     const currentDraw = text.match(/(?<=var\s)\w(?=\=\w\.slice\(\))/)[0]; // e
-    //     const curStroke = text.match(/(?<=\w\(\w\.\w,)\w(?=\[1\]\))/)[0]; // t
-    //     const xCurrent = text.match(/\w(?=\.current\.push\(\w\),\w\(\w\))/)[0]; // X
-    //     const someJ = text.match(/(?<=current\.push\(\w\),\w\(\w\),)\w\(\w\.\w(?=,\w\[1\]\))/)[0] // J(K.h
-    //     const drawFunc = text.match(/(?<=current\.push\(\w\),)\w(?=\(\w\),\w\(\w\.\w,\w\[1\]\))/)[0]; // f(e)
-    //     const drawStoryVar = text.match(/(?<=var\s\w=)\w(?=\.slice\(\);)/)[0];
-    //     const undoVar = text.match(/(?<=function\s)\w(?=\(\){if\(!\w\){var\s\w=\w\.slice\(\);)/)[0];
-    //     const redoVar = text.match(/(?<=function\s)\w(?=\(\){if\(!\w&&\w\.current\.length\))/)[0];
-    //     const drawStoryControlGlobalBlock =
-    //           `;window.getCurrentDrawStory = function(){return ${drawStoryVar}};` +
-    //           `window.unDo = ${undoVar};` +
-    //           `window.reDo = ${redoVar};`;
-    //     const undoExtendCode = `;while (${currentDraw}.length && ${curStroke}[1] == ${currentDraw}[${currentDraw}.length-1][1]) {`+
-    //           `${curStroke} = ${currentDraw}.pop();`+
-    //           `${xCurrent}.current.push(${curStroke}), ${someJ}, ${curStroke}[1])`+
-    //           `};`+
-    //           `${drawFunc}(${currentDraw});`;
-
-    //     text = text.replace(/(?=function\s\w\(\){if\(!\w\){var\s\w=\w\.slice\(\);)/, drawStoryControlGlobalBlock);
-    //     text = text.replace(/(?<=\w\.current\.push\(\w\),\w\(\w\),\w\(\w\.\w,\w\[1\]\))(?=}\w\(\w\.\w\w\))/, undoExtendCode);
-
-    //     var innerFinnalFunctionPSMouseUp = text.match(/(?<=;)\w&&clearInterval\(\w\).+\w\(\[\]\)/)[0];
-    //     innerFinnalFunctionPSMouseUp = innerFinnalFunctionPSMouseUp.replace(/(?<=,)\w(?=\))|(?<=\[)\w(?=\])/g, "stroke");
-    //     innerFinnalFunctionPSMouseUp = innerFinnalFunctionPSMouseUp.replace(/(?<=\w\()\[\w\.\w\w,\w\.\w\w]\.includes\(\w\)(?=\?)/, "false");
-
-    //     text = text.replace(/(?<=\(\(function\(\){)(?=if\(!\w\){var\s\w,\w=\[\],)/, `;window.drawStroke=function( stroke ){${innerFinnalFunctionPSMouseUp}};`);
-
-    console.log(text);
-    //injectScript ( text );
+    // Релейс 298px
+    text = text.replace("298px", "auto");
     return text;
 }
 
+let slvl = localStorage.getItem("s-level");
+![null, "null", "NaN"].includes(slvl) ? window.gg.sLevel = Number(localStorage.getItem("s-level")) : window.gg.sLevel = 1;
 
 // function injectScript ( text ) {
 //     eval ( text );
@@ -2524,9 +2391,31 @@ function edit( text ) {
 
 // Если заменяемые выражения требуют вставить большой код, лучше реализовать его именно так
 
+window.SMOOTHING_FUNC = function (e){
+    return Object(e)("div", {
+        children: window.gg.sLevel,
+        onClick: function() {
+            if (window.gg.sLevel > 19) window.gg.sLevel = 0; else window.gg.sLevel++;
+            localStorage.setItem("s-level", window.gg.sLevel);
+            document.getElementsByClassName("smooth")[0].innerText = window.gg.sLevel;
+        },
+        onContextMenu: function (e){
+            if (window.gg.sLevel < 2) window.gg.sLevel = 20; else window.gg.sLevel--;
+            localStorage.setItem("s-level", window.gg.sLevel);
+            document.getElementsByClassName("smooth")[0].innerText = window.gg.sLevel;
+            e.preventDefault();
+            return false;
+        },
+        className: "jsx-902724348 tool smooth",
+    })
+}
+
+
+
 window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
     tool && event && r && D && g ? "complete" : console.error("SOME OF MOSUEDOWN ARGS IS MISSING");
-    var status = true;
+    var status = true,
+        c;
     switch (tool){
         case 7777: {
             r.push( D(event))
@@ -2536,18 +2425,18 @@ window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
             window.CURV_COUNTER=false;
             return {r: r, tool: tool, status: false};
         }
-        case 9999: {
-            function rgbToHex(r, g, b) {
-                return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-            }
-            const g = D(event).map(function(x){return x*2});
-            var c = document.getElementsByClassName( 'drawingContainer' )[0].children[0].getContext('2d').getImageData(g[0], g[1], 1, 1).data;
+//         case 9999: {
+//             function rgbToHex(r, g, b) {
+//                 return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+//             }
+//             const g = D(event).map(function(x){return x*2});
+//             var c = document.getElementsByClassName( 'drawingContainer' )[0].children[0].getContext('2d').getImageData(g[0], g[1], 1, 1).data;
 
-            if (c[3] == 0) {c = [255, 255, 255, 255]}
-            window.VCOLOR.onChange(rgbToHex(c[0], c[1], c[2]));
-            if ( event.ctrlKey ) { window.VOPACITYANDTHIKNESS.onChangeOpacity( 1 / 255 * c[3] ) }
-            return {r: r, tool: tool, status: false};
-        }
+//             if (c[3] == 0) {c = [255, 255, 255, 255]}
+//             window.VCOLOR.onChange(rgbToHex(c[0], c[1], c[2]));
+//             if ( event.ctrlKey ) { window.VOPACITYANDTHIKNESS.onChangeOpacity( 1 / 255 * c[3] ) }
+//             return {r: r, tool: tool, status: false};
+//         }
     }
 
     var drawingContainer = document.getElementsByClassName( 'drawingContainer' )[0];
@@ -2646,6 +2535,16 @@ window._POINTER_FUNCTION = function(event, i=2){
     return [ Math.round(1516/(rect.width) * (cordX-rect.x)) / i, Math.round(848/(rect.height) * (cordY-rect.y)) / i ];
 }
 
+
+// window._POINTER_FUNCTION = function(event, i=2){
+//     console.log("YES");
+//     let rect = document.getElementsByClassName( 'drawingContainer' )[0].getBoundingClientRect(),
+//         clientX = event.touches ? event.touches[0].clientX : event.clientX,
+//         clientY = event.touches ? event.touches[0].clientY : event.clientY;
+//     return [ Math.round(1516/(rect.width)) * clientX , Math.round(848/(rect.height)) * clientY ];
+// }
+
+
 window._WHEEL_CANVAS_FUNCTION = function(drawingContainer){
     drawingContainer.style.position="absolute";
     drawingContainer.style.transform="scale(1) rotate(0deg)";
@@ -2733,8 +2632,6 @@ window.NEW_THICKNESS = function (e, n, ne){
     })]
 }
 
-var clickForBlackList = [];
-
 function onDrawing(){
     let t = document.getElementsByClassName("header")[0].querySelector("h3");
     if (t) {
@@ -2755,17 +2652,9 @@ function onDrawing(){
         })
     }
 
-    document.querySelector("#current").innerText= window.gg?.turnSet?.previous?.user?.nick ? window.gg.turnSet.previous.user.nick : window.gg.dict.previous?.user?.nick;
 }
 
-var f = document.createElement("div");
-f.id = "current";
-f.style = "position:absolute; top: 0px; left: 0px; color: red; font-family: 'Black'; font-size: 25px;";
-document.body.appendChild(f);
-
 function onMemorySensor(){
-    document.querySelector("#current").innerText=window.gg?.turnSet?.previous?.user.nick ? window.gg.turnSet.previous.user.nick : window.gg.dict.previous.user.nick;
-
     document.getElementsByTagName("canvas")[1].addEventListener("click", function(){
         if (this.key){
             this.key = false;
@@ -2779,7 +2668,7 @@ function onMemorySensor(){
     })
 }
 
-document.querySelector("html").style.overflow="hidden";
+
 window.addEventListener('resize', ()=>{
     setTimeout(()=>{
         var drawingContainer = document.getElementsByClassName('drawingContainer')[0];
@@ -2793,3 +2682,77 @@ window.addEventListener('resize', ()=>{
         }
     }, 100);
 });
+
+
+ function bookDivWorking(item){
+     console.log(item)
+     if (item.classList.contains("item")) {
+         item.addEventListener("click", censorBlur);
+         if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)) {
+             item.click();
+         }
+     } else if (item.classList.contains("screen")){
+         //refreshAllCensor();
+     }
+ };
+
+function censorBlur(e){
+    console.log("OK?")
+    if (e.target.tagName == 'BUTTON') return;
+    this.key ? this.key = false : this.key = true;
+    if (this.key){
+        this.getElementsByClassName("balloon")[0].style.filter = "blur(10px) brightness(0.1)";
+    } else {
+        this.getElementsByClassName("balloon")[0].style.filter = "";
+    }
+}
+
+function onBookSensorFunction(){
+    document.querySelector("#current").style.display = "none";
+    refreshCensor();
+    Array.from(document.getElementsByClassName("user")).forEach( item => {
+        item.addEventListener("click", blurOnPlayer);
+    } )
+}
+
+function blurOnPlayer () {
+    this.key ? this.key = false : this.key = true;
+    if (this.key) {
+        blackList.push(this.getElementsByClassName("nick")[0].innerText);
+        this.style.backgroundColor = "red";
+
+    } else {
+        blackList.splice(blackList.indexOf(this.getElementsByClassName("nick")[0].innerText), 1);
+        this.style.backgroundColor = "";
+    }
+    refreshCensor();
+}
+
+function refreshCensor(){
+    console.log(blackList);
+    Array.from(document.getElementsByClassName("item")).forEach((item)=>{
+        if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)){
+            item.key = true;
+            item.getElementsByClassName("balloon")[0].style.filter = "blur(10px) brightness(0.1)";
+        } else {
+            item.key = false;
+            item.getElementsByClassName("balloon")[0].style.filter = "";
+        }
+    });
+
+    Array.from(document.getElementsByClassName("user")).forEach((item)=>{
+        if (item.classList.contains("guest") || item.classList.contains("empty") || item.classList.contains("waiting")) return;
+        if (blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1){
+            item.key=true;
+            item.style.backgroundColor = "red";
+        }
+    });
+
+}
+
+
+function mainDrawFunction(){
+    var d = document.getElementsByClassName("drawingContainer")[0];
+    window._WHEEL_CANVAS_FUNCTION(d);
+    d.oncontextmeun=function(e){e.preventDefault(); return false;}
+}
