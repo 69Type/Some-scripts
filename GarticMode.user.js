@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 window.gg = {};
 
 class MyWebSocket extends WebSocket {
@@ -1874,6 +1873,7 @@ function clearCausesOfBgStyle() {
     document.querySelector("#__next").style.backgroundImage = "";
     document.querySelector("#__next").style.backgroundColor="";
     document.querySelector("#content").firstChild.style.backgroundImage="";
+    document.querySelector("#content").firstChild.style.backgroundColor="";
 }
 
 
@@ -2307,6 +2307,13 @@ function edit( text ) {
 
     //////// EDITING /////////
 
+    // Получение переменной смены цвета
+    const pre = text.match(/]\);var\s\w+=function\(\w\){/)[0];
+    text = text.replace(/]\);var\s\w+=function\(\w\){/, pre+"window.EVAR=e;");
+    // Получение переменной смены прозрачности
+    const pre1 = text.match(/8];var\s\w+=function\(\w\){/)[0];
+    text = text.replace(/8];var\s\w+=function\(\w\){/, pre1 + "window.OVAR=e;");
+
     // Изменение палитры
     text = text.replace ( /\[\"\#[^\]]+]/, 'window.palitra');
 
@@ -2350,22 +2357,43 @@ function edit( text ) {
         text = text.replace( c, c + "overflow: auto; width: 130px;" );
     }
 
+    // Изменение палитры
+    // Отывок цветового инпута
+    var colorInput = text.match(/.Object\(\w\..{1,4}\)\("input",.+type:"color"[^\]]+/)[0];
+    // Удаление инпута из текущего места
+    text = text.replace(colorInput, '');
+    // Перемещения запятых
+    colorInput = colorInput.replace(/^,/, '') + ',';
+    // Вставка инпута в новое место
+    text = text.replace(/(?<=}\)\)}\)]}\))(?=,Object\(\w\.jsx\)\(\w\.\w,{)/, ","+colorInput);
+    //Изменение стиля инпута > input.jsx-3071142060{ <
+    const inputStyleStart = text.match(/input\.[^\{]+./)[0];
+    // Добавление новых стилей в инпут
+    text = text.replace( inputStyleStart, inputStyleStart + 'min-height: 42px; margin: 10px 0px 0px 0px;' );
+
     // rule: [ >... ,<
     const innerPalitraClass = text.match(/\.colors\.[^\{]+>[^\{]+/)[0];
     text = text.replace(/(?="\.colors\.)/g, `"${innerPalitraClass}::-webkit-scrollbar-track { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%); }","${innerPalitraClass}::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 10px; }","${innerPalitraClass}::-webkit-scrollbar { width: 0.4em; }",`);
 
     // Добавление дропера
-    text = text.replace('"dropper",2', '"dropper",1');
+    text = text.replace('"dropper",2', '"dropper",0');
     // Переменная o.jsx
     const ou = text.match(/(?<=e\}\)\|\|""\)}\),Object\()\w{1,2}/)[0];
     // Место вкливания нового инструмента сглаживания
     text = text.replace(/(?<=e\}\)\|\|""\)}\),)(?=Object\()/, `window.SMOOTHING_FUNC(${ou}.jsx),`);
-    // Стили инструментов
-    text = text.replace(/(?<=\[")(?=\.tools)/, ".tool.smooth::before{display: none !important; content:'';}")
 
     // Релейс 298px
     text = text.replace("298px", "auto");
+
+    // Замена пипетки
+    text = text.replace(/var\s\w+=\w+\.\w+\.apply\(void\s0,[^\}]+/, "return window._DROPPER(e)");
+
+    // Переменная текущего штриха
+    const r = text.match(/\w+(?=\),document\.removeEventListener\("mousemove",\w,!1\))/)[0];
+    text = text.replace(/(?<=function\s\w\(\){)(?=\w&&clearInterval\(\w\),)/, `${r}=window._MOUSEUP(${r});`);
+
     return text;
+
 }
 
 let slvl = localStorage.getItem("s-level");
@@ -2376,20 +2404,46 @@ let slvl = localStorage.getItem("s-level");
 //     console.log("+injected+");
 //     window.__BUILD_MANIFEST['/draw'][1] = '';
 // }
-
+window._MOUSEUP = function(r){
+    if ([1].includes(r[0])){
+        let pEnd = r[r.length-1],
+            arr = r.splice(0,4);
+        for (let i=0; i<r.length-1; i+=window.gg.sLevel){
+            arr.push(r[i]);
+        }
+        arr.push(pEnd);
+        r = arr;
+    }
+    return r;
+}
 
 // Если заменяемые выражения требуют вставить большой код, лучше реализовать его именно так
+
+window._DROPPER = function(e){
+    var t = window._POINTER_FUNCTION(e, 1),
+        d = document.getElementsByClassName("drawingContainer")[0],
+        data = d.children[d.children.length>3&&e.ctrlKey?1:0].getContext("2d").getImageData(t[0],t[1],1,1).data;
+    if (!data[3]){
+        window.EVAR.onChange("#FFFFFF");
+        window.OVAR.onChangeOpacity("1");
+    } else {
+        window.EVAR.onChange(rgbToHex(...data));
+        window.OVAR.onChangeOpacity(data[3]/255);
+    }
+};
+
+
 
 window.SMOOTHING_FUNC = function (e){
     return Object(e)("div", {
         children: window.gg.sLevel,
         onClick: function() {
-            if (window.gg.sLevel > 19) window.gg.sLevel = 0; else window.gg.sLevel++;
+            if (window.gg.sLevel > 9) window.gg.sLevel = 1; else window.gg.sLevel++;
             localStorage.setItem("s-level", window.gg.sLevel);
             document.getElementsByClassName("smooth")[0].innerText = window.gg.sLevel;
         },
         onContextMenu: function (e){
-            if (window.gg.sLevel < 2) window.gg.sLevel = 20; else window.gg.sLevel--;
+            if (window.gg.sLevel < 2) window.gg.sLevel = 10; else window.gg.sLevel--;
             localStorage.setItem("s-level", window.gg.sLevel);
             document.getElementsByClassName("smooth")[0].innerText = window.gg.sLevel;
             e.preventDefault();
@@ -2397,7 +2451,7 @@ window.SMOOTHING_FUNC = function (e){
         },
         className: "jsx-902724348 tool smooth",
     })
-}
+};
 
 
 
@@ -2745,3 +2799,42 @@ function mainDrawFunction(){
     window._WHEEL_CANVAS_FUNCTION(d);
     d.oncontextmeun=function(e){e.preventDefault(); return false;}
 }
+
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function rgbaToHex(r, g, b, a) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1) + (a).toString(16).padStart(2,0);
+}
+
+
+const dynamElem = (tag, options, parent) => {
+    options = Object.assign(options, {
+        delete: function(){
+            this.parentNode.removeChild(this)
+        }
+    })
+    let t = Object.assign(document.createElement(tag), options);
+    console.log(parent);
+    return parent ? parent.appendChild(t) : t;
+};
+
+const dynamStyle = (elem, styles) => Object.assign(elem.style, styles);
+
+
+window.f = function askAll(text, a, f1, b, f2, image){
+    let background = dynamElem("div", {
+        style: "position: absolute; width: 100%; height: 100%; background-color: #000000cc; top: 0px; left: 0px"
+    }, document.body);
+    console.log(background)
+    if (!b){
+
+    }
+}
+
+
+
+
+
+
