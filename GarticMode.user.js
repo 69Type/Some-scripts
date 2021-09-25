@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -2787,7 +2786,7 @@ function contextMenuOnCanvas (e){
     }, document.body),
         contextmenu = dynamElem("div", {
             id:"book-contextmenu",
-            style:`height:auto;width:auto;border-radius:0px;border:2px solid black;background-color:rgba(255, 255, 255, 0.8);position:absolute;left:${e.clientX}px;top:${e.clientY}px;padding:3px;display:grid;`,
+            style:`height:auto;width:auto;border-radius:0px;border:1px solid black;background-color:rgba(255, 255, 255, 0.8);position:absolute;left:${e.clientX}px;top:${e.clientY}px;padding:3px;display:grid;`,
             oncontextmenu: ()=>{return !1}
         }, background),
         copy = dynamElem("div", {
@@ -2805,7 +2804,7 @@ function contextMenuOnCanvas (e){
             style: "font-family:Black;height:auto;width:auto;border-radius:3px;text-align:left;",
             onclick: () => {
                 let link = document.createElement('a');
-                link.download = `${nick}.png`;
+                link.download = `${nick} ${new Date().toJSON().slice(0,10).replace(/-/g,'.')}.png`;
                 link.href = canv.toDataURL();
                 link.click();
                 background.delete();
