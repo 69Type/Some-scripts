@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -6,7 +7,6 @@
 // ! So if someone comes here who understands something about this, then do not be surprised by such a terrible code :)         ! //
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 window.gg = {};
 
@@ -138,7 +138,6 @@ WebSocket = MyWebSocket;
 function initXhr(xhr){
     xhr.addEventListener('load', (e)=>{
         if (xhr.response.indexOf("users") != -1){
-
             var dict = JSON.parse(xhr.response.match(/\[.+/)[0])[1];
             console.log(dict);
             window.gg.users={};
@@ -297,7 +296,7 @@ function firstTimeLoaded () {
 
     var styles = document.createElement("style");
     styles.type = 'text/css'
-    styles.innerText = ".tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}";
+    styles.innerText = ".tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}.thickness-input{font-family:'Black';font-size:25px;border-radius:6px;appearance:none;border:none;width:50px;margin:0 0 0 5px;height:30px;text-align:center;}";
     document.head.appendChild(styles);
 
     document.body.appendChild(f);
@@ -2307,6 +2306,10 @@ function edit( text ) {
 
     //////// EDITING /////////
 
+
+    const pre2 = text.match(/18];var\s\w+=function\(\w+\){return\sObject\(\w+\.jsxs\)/)[0];
+    const ovar = pre2.match(/\w+(?=.jsxs)/);
+
     // Получение переменной смены цвета
     const pre = text.match(/]\);var\s\w+=function\(\w\){/)[0];
     text = text.replace(/]\);var\s\w+=function\(\w\){/, pre+"window.EVAR=e;");
@@ -2392,6 +2395,11 @@ function edit( text ) {
     const r = text.match(/\w+(?=\),document\.removeEventListener\("mousemove",\w,!1\))/)[0];
     text = text.replace(/(?<=function\s\w\(\){)(?=\w&&clearInterval\(\w\),)/, `${r}=window._MOUSEUP(${r});`);
 
+
+    // Инпут толщины
+    const mapa = text.match(/(?<=\w:)\w+\.map\(\(f.{1,100}\w+\.onChangeThickness.+},\w+\)}\)\)/)[0];
+    text = text.replace(/(?<=\w:)\w+\.map\(\(f.{1,100}\w+\.onChangeThickness.+},\w+\)}\)\)/, `[${mapa}, NEW_THICKNESS(e,${ovar})]`);
+
     return text;
 
 }
@@ -2415,7 +2423,13 @@ window._MOUSEUP = function(r){
         r = arr;
     }
     return r;
-}
+};
+
+
+window.PIXEL_FUNCTION = function(){
+
+};
+
 
 // Если заменяемые выражения требуют вставить большой код, лучше реализовать его именно так
 
@@ -2433,6 +2447,19 @@ window._DROPPER = function(e){
 };
 
 
+window.HIDE_TOOL = function (e){
+    return Object(e)("div", {
+        children: window.gg.sLevel,
+        disabled: true,
+        onMouseDown: function(){
+            console.log("down")
+        },
+        onMouseUp: function(){
+            console.log("up")
+        },
+        className: "jsx-902724348 tool my-hide",
+    })
+};
 
 window.SMOOTHING_FUNC = function (e){
     return Object(e)("div", {
@@ -2645,16 +2672,7 @@ window._WHEEL_CANVAS_FUNCTION = function(drawingContainer){
 }
 
 window.NEW_THICKNESS = function (e, n, ne){
-    return [[2, 6, 10, 14, 18].map((function(t) {
-        return Object(n.jsx)("div", {
-            onClick: e.disabled ? null : function() {
-                return e.onChangeThickness(t)
-            },
-            className: "jsx-340028725 " + (ne()("thickness", {
-                sel: e.thickness == t
-            }) || "")
-        }, t)
-    })), Object(n.jsx)("input", {
+    return Object(n.jsx)("input", {
         value: e.thickness,
         className: "thickness-input",
         type: "text",
@@ -2669,10 +2687,10 @@ window.NEW_THICKNESS = function (e, n, ne){
             } else if (t.target.value > 1){
                 e.onChangeThickness(Number(t.target.value)-1)
             } else {
-                e.onChangeThickness("1")
+                e.onChangeThickness("1");
             }
         }
-    })]
+    });
 }
 
 function onDrawing(){
