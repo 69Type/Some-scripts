@@ -1,4 +1,14 @@
-
+// ==UserScript==
+// @name         Gartic Phone Main File
+// @namespace    http://tampermonkey.net/
+// @version      alpha
+// @description  This is multi-modification for garticphone.com
+// @author       Doctor Death D. Dracula
+// @match        https://garticphone.com/*
+// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
@@ -11,24 +21,24 @@
 window.gg = {};
 
 class MyWebSocket extends WebSocket {
-	constructor(...args) {
-		super(...args);
-		window.gg.WS = this;
-		window.initWebSocket()
-	};
-	send(...args) {
-		return super.send(window.editSending(...args))
-	}
+    constructor(...args) {
+        super(...args);
+        window.gg.WS = this;
+        window.initWebSocket()
+    };
+    send(...args) {
+        return super.send(window.editSending(...args))
+    }
 };
 WebSocket = MyWebSocket;
 
 const origXMLHttpRequest = XMLHttpRequest;
 class MyXMLHttpRequest {
-	constructor(...args) {
-		const xhr = new origXMLHttpRequest(...args);
-		window.initXhr(xhr);
-		return xhr
-	}
+    constructor(...args) {
+        const xhr = new origXMLHttpRequest(...args);
+        window.initXhr(xhr);
+        return xhr
+    }
 };
 XMLHttpRequest = MyXMLHttpRequest;
 
@@ -329,7 +339,7 @@ function onWindowChange ( _case ) {
             /* draw */
         case 'draw':
             setTimeout(onDrawing,200);
-             mainDrawFunction();
+            mainDrawFunction();
             break;
             /* rank */
         case 'write':
@@ -426,9 +436,10 @@ function addTopMenuInterval () {
 }
 
 function resizeEvent () {
-    var scale = `scale(${getScale()})`,
+    let scale = `scale(${getScale()})`,
         topMenu = document.getElementsByClassName("top-menu")[0],
-        settings = document.getElementsByClassName("settings-menu")[0];
+        settings = document.getElementsByClassName("settings-menu")[0]
+    //document.;
     topMenu ? topMenu.style.transform = scale : 0;
     settings ? settings.style.transform = scale : 0;
 }
@@ -2260,12 +2271,17 @@ if (document.URL.indexOf('draw') != -1){
         if (document.URL.indexOf('draw') == -1){
             window.location.reload();
             clearInterval(id);
-        }})
+        }},500)
     }
 
 for (let j=0; j<RANDOMCOLORS; j++) {
     window.palitra.push(("#" + ((1<<24)*Math.random() | 0).toString(16)).padEnd(7, "0"));
 }
+
+
+const testForFile = setTimeout(()=>{
+    confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]");
+}, 3000);
 
 // Getting draw file path
 window.addEventListener("load", ()=>{
@@ -2273,6 +2289,7 @@ window.addEventListener("load", ()=>{
         if (window.__BUILD_MANIFEST["/draw"][i].indexOf("/draw") != -1){
             console.log(window.__BUILD_MANIFEST["/draw"][i]);
             getScriptText( window.__BUILD_MANIFEST["/draw"][i], i );
+            clearTimeout(testForFile);
             break;
         }
     }
@@ -2495,18 +2512,18 @@ window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
             window.CURV_COUNTER=false;
             return {r: r, tool: tool, status: false};
         }
-//         case 9999: {
-//             function rgbToHex(r, g, b) {
-//                 return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-//             }
-//             const g = D(event).map(function(x){return x*2});
-//             var c = document.getElementsByClassName( 'drawingContainer' )[0].children[0].getContext('2d').getImageData(g[0], g[1], 1, 1).data;
+            //         case 9999: {
+            //             function rgbToHex(r, g, b) {
+            //                 return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+            //             }
+            //             const g = D(event).map(function(x){return x*2});
+            //             var c = document.getElementsByClassName( 'drawingContainer' )[0].children[0].getContext('2d').getImageData(g[0], g[1], 1, 1).data;
 
-//             if (c[3] == 0) {c = [255, 255, 255, 255]}
-//             window.VCOLOR.onChange(rgbToHex(c[0], c[1], c[2]));
-//             if ( event.ctrlKey ) { window.VOPACITYANDTHIKNESS.onChangeOpacity( 1 / 255 * c[3] ) }
-//             return {r: r, tool: tool, status: false};
-//         }
+            //             if (c[3] == 0) {c = [255, 255, 255, 255]}
+            //             window.VCOLOR.onChange(rgbToHex(c[0], c[1], c[2]));
+            //             if ( event.ctrlKey ) { window.VOPACITYANDTHIKNESS.onChangeOpacity( 1 / 255 * c[3] ) }
+            //             return {r: r, tool: tool, status: false};
+            //         }
     }
 
     var drawingContainer = document.getElementsByClassName( 'drawingContainer' )[0];
@@ -2745,17 +2762,17 @@ window.addEventListener('resize', ()=>{
 });
 
 
- function bookDivWorking(item){
-     console.log(item)
-     if (item.classList.contains("item")) {
-         item.addEventListener("click", censorBlur);
-         if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)) {
-             item.click();
-         }
-     } else if (item.classList.contains("screen")){
-         //refreshAllCensor();
-     }
- };
+function bookDivWorking(item){
+    console.log(item)
+    if (item.classList.contains("item")) {
+        item.addEventListener("click", censorBlur);
+        if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)) {
+            item.click();
+        }
+    } else if (item.classList.contains("screen")){
+        //refreshAllCensor();
+    }
+};
 
 function censorBlur(e){
     console.log("OK?")
@@ -2834,20 +2851,61 @@ const dynamElem = (tag, options, parent) => {
         }
     })
     let t = Object.assign(document.createElement(tag), options);
-    console.log(parent);
     return parent ? parent.appendChild(t) : t;
 };
 
 const dynamStyle = (elem, styles) => Object.assign(elem.style, styles);
 
+const dict = {
+    title: "TITLE",
+    info: [{type: "image", id:"", src:"", style: ""}, {type:"link", id:"", text:"", link:"", style:""}, {type: "text", id: "", text: "", style: ""}],
+    buttons: [{text: "YES", f: function(){}, close: false, style: ""}, {text: "NO", f: function(){}, close: false, style: ""}],
+    closeButton: false,
+}
 
-window.f = function askAll(text, a, f1, b, f2, image){
+window.f = function askAll(dict){
+    if (document.querySelector("#ask-box-bg")) return false;
     let background = dynamElem("div", {
-        style: "position: absolute; width: 100%; height: 100%; background-color: #000000cc; top: 0px; left: 0px"
-    }, document.body);
-    console.log(background)
-    if (!b){
+        id: "ask-box-bg",
+        style: "position:absolute;display:flex;inset:0;background-color:rgba(0,0,0,0.8);-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;"
+    }, document.body),
+        miniWindow = dynamElem("div", {
+            id: "mini-w",
+            style: "position:relative;display:flex;flex-direction:column;-webkit-box-align:center;align-items:center;background-color:rgb(255,255,255);padding:25px 30px;border-radius:12px;transform:scale(1.03304);"
+        }, background),
+        titleBox = dynamElem("div", {
+            innerText: dict.title ? dict.title : "",
+            style: "font-family:'Black';font-size:24px;color:rgb(48,26,107);text-align:center;line-height:29px;text-transform:uppercase;"
+        }, miniWindow);
 
+    for (let i=0; i<dict.info.length; i++){
+        switch(dict.info[i].type){
+            case "image":
+                var image = new Image();
+                image.crossOrigin="*";
+                image.src = dict.info[i].src;
+                image.onload=()=>{
+                    console.log(image.width);
+                }
+                miniWindow.appendChild(image);
+                break;
+            case "link":{
+                let t = dynamElem("a", {
+                    id: dict.info[i].id ? dict.info[i].id : dict.info[i].type+i,
+                    title: "LOL",
+                    href: "https://media.discordapp.net/attachments/805153354723360820/889196277085126666/unknown.png?width=1173&height=660",
+                    style: dict.info[i].style ? dict.info[i].style : "font-family:Black;font-size:18px;color:#00b7ff;text-align:center;line-height:29px;text-transform:uppercase;"
+                }, miniWindow);
+                t.appendChild(document.createTextNode(dict.info[i].text));
+            }
+                break;
+            case "text":
+                dynamElem("div", {
+                    id: dict.info[i].id ? dict.info[i].id : dict.info[i].type+i,
+                    style: dict.info[i].style ? dict.info[i].style : "font-family:Black;font-size:18px;color:rgb(48,26,107);text-align:center;line-height:29px;text-transform:uppercase;",
+                    innerText: dict.info[i].text
+                }, miniWindow);
+        }
     }
 }
 
