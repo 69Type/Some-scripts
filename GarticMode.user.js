@@ -1,14 +1,4 @@
-// ==UserScript==
-// @name         Gartic Phone Main File
-// @namespace    http://tampermonkey.net/
-// @version      alpha
-// @description  This is multi-modification for garticphone.com
-// @author       Doctor Death D. Dracula
-// @match        https://garticphone.com/*
-// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
-// @grant        none
-// @run-at       document-start
-// ==/UserScript==
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
@@ -306,7 +296,7 @@ function firstTimeLoaded () {
 
     var styles = document.createElement("style");
     styles.type = 'text/css'
-    styles.innerText = ".tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}.thickness-input{font-family:'Black';font-size:25px;border-radius:6px;appearance:none;border:none;width:50px;margin:0 0 0 5px;height:30px;text-align:center;}";
+    styles.innerText = ".context-option:hover{background-color:#92ebff}.tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}.thickness-input{font-family:'Black';font-size:25px;border-radius:6px;appearance:none;border:none;width:50px;margin:0 0 0 5px;height:30px;text-align:center;}";
     document.head.appendChild(styles);
 
     document.body.appendChild(f);
@@ -2763,19 +2753,67 @@ window.addEventListener('resize', ()=>{
 
 
 function bookDivWorking(item){
-    console.log(item)
     if (item.classList.contains("item")) {
         item.addEventListener("click", censorBlur);
         if (blackList.indexOf(item.querySelector("span").innerText) != -1 || (item.getElementsByClassName("nick")[0] ? blackList.indexOf(item.getElementsByClassName("nick")[0].innerText) != -1 : false)) {
             item.click();
+        }
+        item.addEventListener("mouseup", contextMenuOnCanvas);
+        item.oncontextmenu = function (e){
+            e.preventDefault();
+            return false;
         }
     } else if (item.classList.contains("screen")){
         //refreshAllCensor();
     }
 };
 
+function contextMenuOnCanvas (e){
+    if (e.which != 3) return;
+    let canv = this.getElementsByTagName("canvas")[0],
+        nick = this.getElementsByClassName("nick")[0].innerText,
+        item = document.querySelector("book-contextmenu");
+
+    if (item){item.parentNode.removeChild(item)};
+
+    var background = dynamElem("div", {
+        id: "book-contextmenu",
+        style: "position:absolute;top:0px;left:0px;width:100%;height:100%",
+        onclick: function(e){
+            if (e.target == background){
+                background.delete()
+            }
+        }
+    }, document.body),
+        contextmenu = dynamElem("div", {
+            id:"book-contextmenu",
+            style:`height:auto;width:auto;border-radius:0px;border:2px solid black;background-color:rgba(255, 255, 255, 0.8);position:absolute;left:${e.clientX}px;top:${e.clientY}px;padding:3px;display:grid;`,
+            oncontextmenu: ()=>{return !1}
+        }, background),
+        copy = dynamElem("div", {
+            className: "context-option",
+            innerText: "COPY",
+            style:"font-family:Black;height:auto;width:auto;border-radius:3px;text-align:left;",
+            onclick: () => {
+                canv.toBlob(blob => navigator.clipboard.write([new window.ClipboardItem({'image/png': blob})]));
+                background.delete();
+            }
+        }, contextmenu),
+        save = dynamElem("div", {
+            className: "context-option",
+            innerText: "DOWNLOAD",
+            style: "font-family:Black;height:auto;width:auto;border-radius:3px;text-align:left;",
+            onclick: () => {
+                let link = document.createElement('a');
+                link.download = `${nick}.png`;
+                link.href = canv.toDataURL();
+                link.click();
+                background.delete();
+            }
+        }, contextmenu);
+}
+
 function censorBlur(e){
-    console.log("OK?")
     if (e.target.tagName == 'BUTTON') return;
     this.key ? this.key = false : this.key = true;
     if (this.key){
@@ -2793,7 +2831,7 @@ function onBookSensorFunction(){
     } )
 }
 
-function blurOnPlayer () {
+function blurOnPlayer (e) {
     this.key ? this.key = false : this.key = true;
     if (this.key) {
         blackList.push(this.getElementsByClassName("nick")[0].innerText);
@@ -2805,6 +2843,7 @@ function blurOnPlayer () {
     }
     refreshCensor();
 }
+
 
 function refreshCensor(){
     console.log(blackList);
