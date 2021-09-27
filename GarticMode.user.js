@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -321,7 +322,7 @@ function onWindowChange ( _case ) {
         case 'lobby':
             setTimeout(()=>{
                 if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.reload()}}
-            })
+            }, 2000);
             break;
             /* first write */
         case 'first':
