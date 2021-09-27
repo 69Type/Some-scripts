@@ -2277,6 +2277,10 @@ const testForFile = setTimeout(()=>{
     if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]")) window.location.replace("https://garticphone.com/");
 }, 3000);
 
+const testForInject = setTimeout(()=>{
+    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]")) window.location.replace("https://garticphone.com/");
+}, 3000);
+
 // Getting draw file path
 window.addEventListener("load", ()=>{
     for (let i in window.__BUILD_MANIFEST["/draw"]){
@@ -2303,6 +2307,7 @@ async function getScriptText(path, i){
 
 function inject( text ) {
     eval (text);
+    clearTimeout(testForInject);
     //     let s = document.createElement("script");
     //     s.type="text/javascript";
     //     s.innerText = text;
