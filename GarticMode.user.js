@@ -135,6 +135,7 @@ WebSocket = MyWebSocket;
 */
 
 function initXhr(xhr){
+    window.gg.xhr = xhr;
     xhr.addEventListener('load', (e)=>{
         if (xhr.response.indexOf("users") != -1){
             var dict = JSON.parse(xhr.response.match(/\[.+/)[0])[1];
@@ -160,6 +161,7 @@ window.editSending = function(a) {
 
 function initWebSocket(){
     window.gg.WS.addEventListener('message', (e)=>{
+        console.log(e.data);
         if (e.data.indexOf("42") == -1) return;
         console.log("message:",e.data);
         var command = JSON.parse(e.data.slice(2))[1];
@@ -317,6 +319,9 @@ function onWindowChange ( _case ) {
             break;
             /* lobby */
         case 'lobby':
+            setTimeout(()=>{
+                if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.reload()}}
+            })
             break;
             /* first write */
         case 'first':
@@ -2269,7 +2274,7 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 
 
 const testForFile = setTimeout(()=>{
-    confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]");
+    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]")) window.location.reload();
 }, 3000);
 
 // Getting draw file path
