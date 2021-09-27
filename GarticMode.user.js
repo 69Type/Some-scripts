@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -145,7 +144,7 @@ function initXhr(xhr){
             window.gg.users.left = {};
             window.gg.users.ready = {};
             window.gg.users.active = (()=>{let d = {}; dict.users.forEach((item)=>{d[item.id]=item}); return d})();
-            if (!window.gg.users) {alert("what"); window.location.reload()}
+            if (!window.gg.users) {alert("what"); window.location.replace("https://garticphone.com/")}
             window.gg.mode = dict.configs.mode;
             window.gg.link = `https://garticphone.com/${navigator.language}/?c=${dict.code}`;
             window.gg.ownID = dict.user.id;
@@ -321,7 +320,7 @@ function onWindowChange ( _case ) {
             /* lobby */
         case 'lobby':
             setTimeout(()=>{
-                if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.reload()}}
+                if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.replace("https://garticphone.com/")}}
             }, 2000);
             break;
             /* first write */
@@ -2264,7 +2263,7 @@ window.palitra = [
 if (document.URL.indexOf('draw') != -1){
     const id = setInterval(()=>{
         if (document.URL.indexOf('draw') == -1){
-            window.location.reload();
+            window.location.replace("https://garticphone.com/");
             clearInterval(id);
         }},500)
     }
@@ -2275,7 +2274,7 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 
 
 const testForFile = setTimeout(()=>{
-    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]")) window.location.reload();
+    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]")) window.location.replace("https://garticphone.com/");
 }, 3000);
 
 // Getting draw file path
