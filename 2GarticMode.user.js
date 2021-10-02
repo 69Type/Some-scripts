@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -147,8 +148,6 @@ class MyWebSocket {
 WebSocket = MyWebSocket;
 */
 
-initXhr(window.xhr);
-initWebSocket(window.ws);
 
 function initXhr(xhr){
     window.gg.xhr = xhr;
