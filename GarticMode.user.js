@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -2383,6 +2384,7 @@ function edit( text ) {
 
 
     window.gg.paletteType = localStorage.paletteType ? localStorage.paletteType : "1";
+    localStorage.paletteType = window.gg.paletteType;
     if (["2","3"].includes(window.gg.paletteType)){
         // Изменение палитры
         switch (window.gg.paletteType){
@@ -3063,7 +3065,7 @@ function askAll(dict){
         dict.buttons.forEach(function(button){
             var curButton = dynamElem("button", {
                 className: "title-button",
-                style: "background-color:rgb(86,53,220);color:rgb(255,255,255);border:none;font-family:Black;text-transform:uppercase;font-size:16px;border-radius:5px;cursor:pointer;padding:10px;width:100%;margin:15px 3px auto;",
+                style: "background-color:rgb(86,53,220);color:rgb(255,255,255);border:none;font-family:Black;text-transform:uppercase;font-size:16px;border-radius:5px;cursor:pointer;padding:10px;width:100%;margin:15px 10px auto;",
                 innerText: button.text,
                 onclick: button.f,
             }, buttomPlane);
