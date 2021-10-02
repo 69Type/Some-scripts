@@ -8,12 +8,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 window.gg = {};
+window.gg.cst = {
+    drawing: {
+        defaultPalette: ["#000000","#666666","#0050CD","#FFFFFF","#AAAAAA","#26C9FF","#017420","#691506","#964112","#11B03C","#FF0013","#FF7829","#B0701C","#99004E","#CB5A57","#FFC126","#FF008F","#FEAFA8"],
+        megaPalette: ["#000000","#333333","#666666","#999999","#CCCCCC","#FFFFFF","#FFFFCC","#FFFF99","#FFFF66","#FFFF33","#FFFF00","#CCCC00","#FFCC66","#FFCC00","#FFCC33","#CC9900","#CC9933","#996600","#FF9900","#FF9933","#CC9966","#CC6600","#996633","#663300","#FFCC99","#FF9966","#FF6600","#CC6633","#993300","#660000","#FF6633","#CC3300","#FF3300","#FF0000","#CC0000","#990000","#FFCCCC","#FF9999","#FF6666","#FF3333","#FF0033","#CC0033","#CC9999","#CC6666","#CC3333","#993333","#990033","#330000","#FF6699","#FF3366","#FF0066","#CC3366","#996666","#663333","#FF99CC","#FF3399","#FF0099","#CC0066","#993366","#660033","#FF66CC","#FF00CC","#FF33CC","#CC6699","#CC0099","#990066","#FFCCFF","#FF99FF","#FF66FF","#FF33FF","#FF00FF","#CC3399","#CC99CC","#CC66CC","#CC00CC","#CC33CC","#990099","#993399","#CC66FF","#CC33FF","#CC00FF","#9900CC","#996699","#660066","#CC99FF","#9933CC","#9933FF","#9900FF","#660099","#663366","#9966CC","#9966FF","#6600CC","#6633CC","#663399","#330033","#CCCCFF","#9999FF","#6633FF","#6600FF","#330099","#330066","#9999CC","#6666FF","#6666CC","#666699","#333399","#333366","#3333FF","#3300FF","#3300CC","#3333CC","#000099","#000066","#6699FF","#3366FF","#0000FF","#0000CC","#0033CC","#000033","#0066FF","#0066CC","#3366CC","#0033FF","#003399","#003366","#99CCFF","#3399FF","#0099FF","#6699CC","#336699","#006699","#66CCFF","#33CCFF","#00CCFF","#3399CC","#0099CC","#003333","#99CCCC","#66CCCC","#339999","#669999","#006666","#336666","#CCFFFF","#99FFFF","#66FFFF","#33FFFF","#00FFFF","#00CCCC","#99FFCC","#66FFCC","#33FFCC","#00FFCC","#33CCCC","#009999","#66CC99","#33CC99","#00CC99","#339966","#009966","#006633","#66FF99","#33FF99","#00FF99","#33CC66","#00CC66","#009933","#99FF99","#66FF66","#33FF66","#00FF66","#339933","#006600","#CCFFCC","#99CC99","#66CC66","#669966","#336633","#003300","#33FF33","#00FF33","#00FF00","#00CC00","#33CC33","#00CC33","#66FF00","#66FF33","#33FF00","#33CC00","#339900","#009900","#CCFF99","#99FF66","#66CC00","#66CC33","#669933","#336600","#99FF00","#99FF33","#99CC66","#99CC00","#99CC33","#669900","#CCFF66","#CCFF00","#CCFF33","#CCCC99","#666633","#333300","#CCCC66","#CCCC33","#999966","#999933","#999900","#666600"],
+        customPalette: localStorage.customPalette ? JSON.parse(localStorage.customPalette) : [],
+    },
+    style: {
+        textBorder: "rgb(23 5 87) 3px 0 0,rgb(23 5 87) 2.83487px 0.981584px 0,rgb(23 5 87) 2.35766px 1.85511px 0,rgb(23 5 87) 1.62091px 2.52441px 0,rgb(23 5 87) 0.705713px 2.91581px 0,rgb(23 5 87) -0.287171px 2.98622px 0,rgb(23 5 87) -1.24844px 2.72789px 0,rgb(23 5 87) -2.07227px 2.16926px 0,rgb(23 5 87) -2.66798px 1.37182px 0,rgb(23 5 87) -2.96998px 0.42336px 0,rgb(23 5 87) -2.94502px -0.571704px 0,rgb(23 5 87) -2.59586px -1.50383px 0,rgb(23 5 87) -1.96093px -2.27041px 0,rgb(23 5 87) -1.11013px -2.78704px 0,rgb(23 5 87) -0.137119px -2.99686px 0,rgb(23 5 87) 0.850987px -2.87677px 0,rgb(23 5 87) 1.74541px -2.43999px 0,rgb(23 5 87) 2.44769px -1.73459px 0,rgb(23 5 87) 2.88051px -0.838247px 0",
+    }
+};
+window.gg.cst.drawing.megaPalette
+
 
 class MyWebSocket extends WebSocket {
     constructor(...args) {
         super(...args);
-        window.gg.WS = this;
-        window.initWebSocket()
+        window.initWebSocket(this)
     };
     send(...args) {
         return super.send(window.editSending(...args))
@@ -30,6 +41,9 @@ class MyXMLHttpRequest {
     }
 };
 XMLHttpRequest = MyXMLHttpRequest;
+
+
+
 
 // window.addEventListener("load", ()=>{
 //     for (let i in window.__BUILD_MANIFEST["/start"]){
@@ -134,6 +148,7 @@ class MyWebSocket {
 WebSocket = MyWebSocket;
 */
 
+
 function initXhr(xhr){
     window.gg.xhr = xhr;
     xhr.addEventListener('load', (e)=>{
@@ -159,7 +174,8 @@ window.editSending = function(a) {
     return a;
 }
 
-function initWebSocket(){
+function initWebSocket(ws){
+    window.gg.WS = ws;
     window.gg.WS.addEventListener('message', (e)=>{
         console.log(e.data);
         if (e.data.indexOf("42") == -1) return;
@@ -297,12 +313,15 @@ function firstTimeLoaded () {
 
     var styles = document.createElement("style");
     styles.type = 'text/css'
-    styles.innerText = ".context-option:hover{background-color:#92ebff}.tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}.thickness-input{font-family:'Black';font-size:25px;border-radius:6px;appearance:none;border:none;width:50px;margin:0 0 0 5px;height:30px;text-align:center;}";
+    styles.innerText = ".my-scroll::-webkit-scrollbar-track { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%); }.my-scroll::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 10px; }.my-scroll::-webkit-scrollbar { width: 0.4em; }.title-button:hover{background-color:#442aad !important;}.custom-palette-color:hover::before{content:'x';color:red;font-family:'Black';text-align:center;font-size:35px;top:-5px;left:5px;position:relative;}.custom-palette-plus-button:hover{transform:scale(1.1);}.context-option:hover{background-color:#92ebff}.tool.smooth::before{display: none !important; content:'';}.tool.smooth{font-family:'Black';font-size:30px;color:#ff8eaf99}.tool.smooth:active{color:#fff}.thickness-input{font-family:'Black';font-size:25px;border-radius:6px;appearance:none;border:none;width:50px;margin:0 0 0 5px;height:30px;text-align:center;}";
     document.head.appendChild(styles);
 
     document.body.appendChild(f);
     setMutationListener ();
     addMainMenuKeys ();
+    initSettings();
+
+    if (localStorage.version != "4") window.f(dict);
 }
 
 
@@ -450,6 +469,9 @@ var background,
     currentSetting,
     currentSettingData;
 function createSettings(){
+
+    window.gg.showReloadAlert=false;
+
     background = document.createElement("div");
     background.state = "ready";
     background.classList.add("background-menu");
@@ -547,6 +569,7 @@ function closeBackground(){
     if ( background && background.parentNode ){
         background.style.opacity = 0;
         setTimeout( () => { background.parentNode.removeChild( background ); background.state = "closed" }, 500 );
+        if (window.gg.showReloadAlert) showReloadAlert();
     }
 }
 
@@ -1882,29 +1905,273 @@ function clearCausesOfBgStyle() {
 
 
 function createDrawingSettingData(){
-    var t = document.createElement("div");
-    t.style = "position: 0; top: 0; left: 0; margin: auto; font-family: 'Black'; font-size: 46px; color: #adadad;";
-    t.innerText = "EMPTY HERE...";
-    currentSettingData.appendChild(t);
-};
+    window.gg.wasAlert = false;
+    //    var t = document.createElement("div");
+    //     t.style = "position: 0; top: 0; left: 0; margin: auto; font-family: 'Black'; font-size: 46px; color: #adadad;";
+    //     t.innerText = "EMPTY HERE...";
+    //     currentSettingData.appendChild(t);
+    var subDataDrawingBox = dynamElem("div",{
+        style: "width: 100%; height: 100%; display:flex; flex-direction:column;"
+    }, currentSettingData),
+        paletteBox = dynamElem("div",{
+            style: "display:flex; flex-direction:column;height:100%;width:100%;"
+        }, subDataDrawingBox),
+        paletteTitle = dynamElem("div", {
+            style:"color:rgb(48,26,107);font-family:Black;text-align:center;text-transform:uppercase;font-size:21px;margin:0 0 4px;padding: 10px;",
+            innerText:"PALETTE"
+        }, paletteBox),
+        subPaletteBox = dynamElem("div", {
+            style:"display:flex; flex-direction:row;border:4px solid #fff; border-radius: 10px;"
+        }, paletteBox),
+
+
+        defaultPaletteBlock = dynamElem("div", {
+            style:"display:flex;flex-direction:column;flex:1;",
+            onclick: function (){
+                localStorage.paletteType = "1";
+                defaultPalettteCheckBox.innerText="";
+                megaPalettteCheckBox.innerText="";
+                customPalettteCheckBox.innerText="";
+                window.gg.showReloadAlert=true;
+            }
+        }, subPaletteBox),
+        titleBox = dynamElem("div", {
+            style: "display:flex;flex-direction:row;padding: 10px;"
+        }, defaultPaletteBlock),
+        defaultPalettteCheckBox = dynamElem("div", {
+            style:"width:30px;height:30px;border:3px solid #FFF;border-radius:5px;font-family:ico;color:rgb(48,26,107);line-height:30px;text-align:center;cursor:pointer;"
+        }, titleBox),
+        defaultPaletteTitle = dynamElem("div", {
+            style: "color:rgb(48,26,107);font-family:Black;text-align:center;text-transform:uppercase;font-size:21px;padding: 10px;flex:1;",
+            innerText:"DEFAULT"
+        }, titleBox),
+        defaultPaletteSpace = dynamElem("div", {
+            style: "flex:1;display: flex;"
+        }, defaultPaletteBlock),
+
+
+        stick = dynamElem("div", {
+            style: "width: 5px; height: 470px; margin:10px 0px; border-radius: 10px; background-color:#301a6b;"
+        }, subPaletteBox),
+
+
+        megaPaletteBlock = dynamElem("div", {
+            style:"display:flex;flex-direction:column;flex:1;",
+            onclick: function (){
+                localStorage.paletteType = "2";
+                megaPalettteCheckBox.innerText="";
+                customPalettteCheckBox.innerText="";
+                defaultPalettteCheckBox.innerText="";
+                window.gg.showReloadAlert=true;
+            }
+        },subPaletteBox),
+        titleBox1 = dynamElem("div", {
+            style: "display:flex;flex-direction:row;padding: 10px;"
+        }, megaPaletteBlock),
+        megaPalettteCheckBox = dynamElem("div", {
+            style:"width:30px;height:30px;border:3px solid #FFF;border-radius:5px;font-family:ico;color:rgb(48,26,107);line-height:30px;text-align:center;cursor:pointer;"
+        }, titleBox1),
+        megaPaletteTitle = dynamElem("div", {
+            style: "color:rgb(48,26,107);font-family:Black;text-align:center;text-transform:uppercase;font-size:21px;padding: 10px;flex:1;",
+            innerText:"FULL"
+        }, titleBox1),
+        megaPaletteSpace = dynamElem("div", {
+            style: "flex:1;display: flex;"
+        }, megaPaletteBlock),
+
+
+
+        stick2 = dynamElem("div", {
+            style: "width: 5px; height: 470px; margin:10px 0px; border-radius: 10px; background-color:#301a6b;"
+        }, subPaletteBox),
+
+
+        customPaletteBlock = dynamElem("div", {
+            style:"display:flex;flex-direction:column;flex:1;",
+            onclick: function (){
+                localStorage.paletteType = "3";
+                customPalettteCheckBox.innerText="";
+                defaultPalettteCheckBox.innerText="";
+                megaPalettteCheckBox.innerText="";
+                window.gg.showReloadAlert=true;
+            }
+        }, subPaletteBox),
+        titleBox2 = dynamElem("div", {
+            style: "display:flex;flex-direction:row;padding: 10px;"
+        }, customPaletteBlock),
+        customPalettteCheckBox = dynamElem("div", {
+            style:"width:30px;height:30px;border:3px solid #FFF;border-radius:5px;font-family:ico;color:rgb(48,26,107);line-height:30px;text-align:center;cursor:pointer;"
+        }, titleBox2),
+        customPaletteTitle = dynamElem("div", {
+            style: "color:rgb(48,26,107);font-family:Black;text-align:center;text-transform:uppercase;font-size:21px;padding: 10px;flex:1;",
+            innerText:"CUSTOM"
+        }, titleBox2),
+        customPaletteSpace = dynamElem("div", {
+            style: "flex:1;display: flex;"
+        }, customPaletteBlock);
+
+
+    switch (localStorage.paletteType){
+        case"1":defaultPalettteCheckBox.innerText="";break;
+        case"2":megaPalettteCheckBox.innerText="";;break;
+        case"3":customPalettteCheckBox.innerText="";break;
+    }
+    defaultPaletteSpace.appendChild(createDefaultPaletteModule());
+    megaPaletteSpace.appendChild(createMegaPaletteModule());
+    customPaletteSpace.appendChild(createCustomPaletteModule());
+}
+
+
+function createDefaultPaletteModule(){
+    var palette = dynamElem("div", {
+        style:"flex:1 1 0;display:flex;flex-direction:column;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;"
+    }), childPalette = dynamElem("div", {
+        style:"padding:10px 0 10px 8px;width:114px;border-radius:9px;background-color:rgba(94,25,51,0.5);border:2px solid rgba(94,25,51,0);display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;"
+    }, palette),
+        subChild = dynamElem("div", {
+            style:"display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;"
+        }, childPalette),
+        colorInput = dynamElem("div", {
+            style:"border:2px solid rgb(79,22,58);border-radius:5px;width:102px;height:52px;padding:0;appearance:none;cursor:pointer;background:none;box-sizing:content-box;outline:none;background-color:#000;"
+        }, childPalette);
+    window.gg.cst.drawing.defaultPalette.forEach(function(color){
+        var colorBox = dynamElem("div", {
+            style:`border:2px solid rgb(79,22,58);width:28px;height:29px;border-radius:4px;cursor:pointer;margin:0 5px 7px 0;background-color:${color ? color : "#4f163a"}`
+        }, subChild);
+    });
+    return palette;
+}
+
+function createMegaPaletteModule(){
+    var palette = dynamElem("div", {
+        style:"flex:1 1 0;display:flex;flex-direction:column;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;height:400px;"
+    }), subPalette = dynamElem("div", {
+        className: "my-scroll",
+        style:"padding:10px 0 10px 8px;border-radius:9px;background-color:rgba(94,25,51,0.5);border:2px solid rgba(94,25,51,0);display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;overflow:auto;width:130px;"
+    }, palette), colorList = dynamElem("div", {
+        style:"display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;"
+    }, subPalette), colorInput = dynamElem("div", {
+        style:"min-height:42px;margin:10px 0 0;border:2px solid rgb(79,22,58);border-radius:5px;width:102px;height:52px;padding:0;appearance:none;cursor:pointer;background:none;box-sizing:content-box;background-color:#000"
+    }, palette);
+    window.gg.cst.drawing.megaPalette.forEach(function(color){
+        var colorBox = dynamElem("div", {
+            style:`border:2px solid rgb(79,22,58);width:28px;height:29px;border-radius:4px;cursor:pointer;margin:0 5px 7px 0;background-color:${color ? color : "#4f163a"}`
+        }, colorList);
+    });
+    return palette;
+}
+
+function showReloadAlert(){
+    var dict = {
+        title: "WARNING",
+        info: [
+            {
+                type: "text",
+                id: "",
+                text: "the changes will take effect after the page is reloaded",
+            }
+        ],
+        buttons: [
+            {
+                text: "RELOAD",
+                f: function(){
+                    if (window.gg.link){
+                        window.location.replace(window.gg.link);
+                    } else {
+                        window.location.reload();
+                    }
+                },
+                close: true,
+                style: ""
+            },
+            {
+                text: "CLOSE",
+                f: function(){},
+                close: true,
+                style: ""
+            }
+        ],
+        closeButton: false,
+    };
+    askAll(dict);
+}
+window.showReloadAlert = showReloadAlert;
+
+
+function createCustomPaletteModule(){
+    var palette = dynamElem("div", {
+        style:"flex:1 1 0;display:flex;flex-direction:column;-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;height:400px;"
+    }), subPalette = dynamElem("div", {
+        className: "my-scroll",
+        style:"padding:10px 0 10px 8px;border-radius:9px;background-color:rgba(94,25,51,0.5);border:2px solid rgba(94,25,51,0);display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;overflow:auto;width:130px;"
+    }, palette), colorList = dynamElem("div", {
+        style:"display:flex;flex-flow:row wrap;-webkit-box-pack:start;place-content:flex-start;align-items:flex-start;"
+    }, subPalette), colorInput = dynamElem("div", {
+        style:"min-height:42px;margin:10px 0 0;border:2px solid rgb(79,22,58);border-radius:5px;width:102px;height:42px;padding:0;appearance:none;cursor:pointer;background:none #000;box-sizing:content-box;"
+    }, palette), plusButton = dynamElem("div", {
+        innerText: "+",
+        style:"border:2px solid #fff;width:28px;height:29px;border-radius:4px;cursor:pointer;margin:0 5px 7px 0;font-family:'Black';color:#fff;text-align:center;font-size:27px;",
+    }, colorList), extendColorInput = dynamElem("input", {
+        className: "custom-palette-plus-button",
+        type: "color",
+        style:"opacity:0;width:100%;height:100%;position:relative;top:-29px;left:-2px;cursor:pointer;",
+        onchange: function(e){
+
+            if (window.gg.cst.drawing.customPalette.indexOf(this.value) != -1) {
+                window.gg.cst.drawing.customPalette.splice(window.gg.cst.drawing.customPalette.indexOf(this.value), 1);
+                var arr = document.getElementsByClassName("custom-palette-color");
+                for (let i=0; i<arr.length; i++) { if (arr[i].value == this.value){arr[i].parentNode.removeChild(arr[i]);} };
+            }
+
+            var colorBox = dynamElem("div", {
+                value: this.value,
+                className: "custom-palette-color",
+                style:`border:2px solid rgb(79,22,58);width:28px;height:29px;border-radius:4px;cursor:pointer;margin:0 5px 7px 0;background-color:${this.value ? this.value : "#4f163a"}`,
+                onclick: function(){
+                    window.gg.cst.drawing.customPalette.splice(window.gg.cst.drawing.customPalette.indexOf(this.value), 1);
+                    localStorage.customPalette = JSON.stringify(window.gg.cst.drawing.customPalette);
+                    this.parentNode.removeChild(this);
+                }
+            }, colorList);
+            window.gg.cst.drawing.customPalette.push(this.value);
+            localStorage.customPalette = JSON.stringify(window.gg.cst.drawing.customPalette);
+        }
+    }, plusButton), defaultBlack = dynamElem("div", {
+        style:"border:2px solid rgb(79,22,58);width:28px;height:29px;border-radius:4px;margin:0 5px 7px 0;background-color:#000"
+    }, colorList);
+
+    window.gg.cst.drawing.customPalette.forEach(function(color){
+        var colorBox = dynamElem("div", {
+            value: color,
+            className: "custom-palette-color",
+            style:`border:2px solid rgb(79,22,58);width:28px;height:29px;border-radius:4px;cursor:pointer;margin:0 5px 7px 0;background-color:${color ? color : "#4f163a"}`,
+            onclick: function(){
+                window.gg.cst.drawing.customPalette.splice(window.gg.cst.drawing.customPalette.indexOf(this.value), 1);
+                localStorage.customPalette = JSON.stringify(window.gg.cst.drawing.customPalette);
+                this.parentNode.removeChild(this);
+            }
+        }, colorList);
+    });
+    return palette;
+}
+
+
 function createOtherSettingData(){
     var t = document.createElement("div");
     t.style = "position: 0; top: 0; left: 0; margin: auto; font-family: 'Black'; font-size: 46px; color: #adadad;";
     t.innerText = "EMPTY HERE...";
     currentSettingData.appendChild(t);
-};
+}
 function createStreamerSettingData(){
     var t = document.createElement("div");
     t.style = "position: 0; top: 0; left: 0; margin: auto; font-family: 'Black'; font-size: 46px; color: #adadad;";
     t.innerText = "EMPTY HERE...";
     currentSettingData.appendChild(t);
-};
-
+}
 function addResizeEvent(){
     window.removeEventListener("resize", resizeEvent);
     window.addEventListener("resize", resizeEvent);
 }
-
 function addMainMenuKeys(){
     window.onkeydown=(e)=>{
         // console.log(e);
@@ -2034,225 +2301,6 @@ window.OWN_TOOLS_ID = -666;
 
 
 const RANDOMCOLORS = 0; // <- количество рандомных добавляемых цветов
-window.palitra = [
-    "#000000",
-    "#333333",
-    "#666666",
-    "#999999",
-    "#CCCCCC",
-    "#FFFFFF",
-    "#FFFFCC",
-    "#FFFF99",
-    "#FFFF66",
-    "#FFFF33",
-    "#FFFF00",
-    "#CCCC00",
-    "#FFCC66",
-    "#FFCC00",
-    "#FFCC33",
-    "#CC9900",
-    "#CC9933",
-    "#996600",
-    "#FF9900",
-    "#FF9933",
-    "#CC9966",
-    "#CC6600",
-    "#996633",
-    "#663300",
-    "#FFCC99",
-    "#FF9966",
-    "#FF6600",
-    "#CC6633",
-    "#993300",
-    "#660000",
-    "#FF6633",
-    "#CC3300",
-    "#FF3300",
-    "#FF0000",
-    "#CC0000",
-    "#990000",
-    "#FFCCCC",
-    "#FF9999",
-    "#FF6666",
-    "#FF3333",
-    "#FF0033",
-    "#CC0033",
-    "#CC9999",
-    "#CC6666",
-    "#CC3333",
-    "#993333",
-    "#990033",
-    "#330000",
-    "#FF6699",
-    "#FF3366",
-    "#FF0066",
-    "#CC3366",
-    "#996666",
-    "#663333",
-    "#FF99CC",
-    "#FF3399",
-    "#FF0099",
-    "#CC0066",
-    "#993366",
-    "#660033",
-    "#FF66CC",
-    "#FF00CC",
-    "#FF33CC",
-    "#CC6699",
-    "#CC0099",
-    "#990066",
-    "#FFCCFF",
-    "#FF99FF",
-    "#FF66FF",
-    "#FF33FF",
-    "#FF00FF",
-    "#CC3399",
-    "#CC99CC",
-    "#CC66CC",
-    "#CC00CC",
-    "#CC33CC",
-    "#990099",
-    "#993399",
-    "#CC66FF",
-    "#CC33FF",
-    "#CC00FF",
-    "#9900CC",
-    "#996699",
-    "#660066",
-    "#CC99FF",
-    "#9933CC",
-    "#9933FF",
-    "#9900FF",
-    "#660099",
-    "#663366",
-    "#9966CC",
-    "#9966FF",
-    "#6600CC",
-    "#6633CC",
-    "#663399",
-    "#330033",
-    "#CCCCFF",
-    "#9999FF",
-    "#6633FF",
-    "#6600FF",
-    "#330099",
-    "#330066",
-    "#9999CC",
-    "#6666FF",
-    "#6666CC",
-    "#666699",
-    "#333399",
-    "#333366",
-    "#3333FF",
-    "#3300FF",
-    "#3300CC",
-    "#3333CC",
-    "#000099",
-    "#000066",
-    "#6699FF",
-    "#3366FF",
-    "#0000FF",
-    "#0000CC",
-    "#0033CC",
-    "#000033",
-    "#0066FF",
-    "#0066CC",
-    "#3366CC",
-    "#0033FF",
-    "#003399",
-    "#003366",
-    "#99CCFF",
-    "#3399FF",
-    "#0099FF",
-    "#6699CC",
-    "#336699",
-    "#006699",
-    "#66CCFF",
-    "#33CCFF",
-    "#00CCFF",
-    "#3399CC",
-    "#0099CC",
-    "#003333",
-    "#99CCCC",
-    "#66CCCC",
-    "#339999",
-    "#669999",
-    "#006666",
-    "#336666",
-    "#CCFFFF",
-    "#99FFFF",
-    "#66FFFF",
-    "#33FFFF",
-    "#00FFFF",
-    "#00CCCC",
-    "#99FFCC",
-    "#66FFCC",
-    "#33FFCC",
-    "#00FFCC",
-    "#33CCCC",
-    "#009999",
-    "#66CC99",
-    "#33CC99",
-    "#00CC99",
-    "#339966",
-    "#009966",
-    "#006633",
-    "#66FF99",
-    "#33FF99",
-    "#00FF99",
-    "#33CC66",
-    "#00CC66",
-    "#009933",
-    "#99FF99",
-    "#66FF66",
-    "#33FF66",
-    "#00FF66",
-    "#339933",
-    "#006600",
-    "#CCFFCC",
-    "#99CC99",
-    "#66CC66",
-    "#669966",
-    "#336633",
-    "#003300",
-    "#33FF33",
-    "#00FF33",
-    "#00FF00",
-    "#00CC00",
-    "#33CC33",
-    "#00CC33",
-    "#66FF00",
-    "#66FF33",
-    "#33FF00",
-    "#33CC00",
-    "#339900",
-    "#009900",
-    "#CCFF99",
-    "#99FF66",
-    "#66CC00",
-    "#66CC33",
-    "#669933",
-    "#336600",
-    "#99FF00",
-    "#99FF33",
-    "#99CC66",
-    "#99CC00",
-    "#99CC33",
-    "#669900",
-    "#CCFF66",
-    "#CCFF00",
-    "#CCFF33",
-    "#CCCC99",
-    "#666633",
-    "#333300",
-    "#CCCC66",
-    "#CCCC33",
-    "#999966",
-    "#999933",
-    "#999900",
-    "#666600"
-];
-
 
 // ! GLOBALS LIST ! //
 // EVENTCANVAS - класс колста с указателем
@@ -2333,8 +2381,43 @@ function edit( text ) {
     const pre1 = text.match(/8];var\s\w+=function\(\w\){/)[0];
     text = text.replace(/8];var\s\w+=function\(\w\){/, pre1 + "window.OVAR=e;");
 
-    // Изменение палитры
-    text = text.replace ( /\[\"\#[^\]]+]/, 'window.palitra');
+
+    window.gg.paletteType = localStorage.paletteType ? localStorage.paletteType : "1";
+    if (["2","3"].includes(window.gg.paletteType)){
+        // Изменение палитры
+        switch (window.gg.paletteType){
+            case "2": {
+                window.palitra = window.gg.cst.drawing.megaPalette;
+                break;
+            }
+            case "3": {
+                window.palitra = ["#000000"].concat(window.gg.cst.drawing.customPalette);
+                break;
+            }
+        }
+        for (let c of text.match(/\.colors\.[^\}]+>[^\}]+/g)){
+            text = text.replace( c, c + "overflow: auto; width: 130px;" );
+        }
+        text = text.replace ( /\[\"\#[^\]]+]/, 'window.palitra');
+        // Изменение палитры
+        // Отывок цветового инпута
+        var colorInput = text.match(/.Object\(\w\..{1,4}\)\("input",.+type:"color"[^\]]+/)[0];
+        // Удаление инпута из текущего места
+        text = text.replace(colorInput, '');
+        // Перемещения запятых
+        colorInput = colorInput.replace(/^,/, '') + ',';
+        // Вставка инпута в новое место
+        text = text.replace(/(?<=}\)\)}\)]}\))(?=,Object\(\w\.jsx\)\(\w\.\w,{)/, ","+colorInput);
+        //Изменение стиля инпута > input.jsx-3071142060{ <
+        const inputStyleStart = text.match(/input\.[^\{]+./)[0];
+        // Добавление новых стилей в инпут
+        text = text.replace( inputStyleStart, inputStyleStart + 'min-height: 42px; margin: 10px 0px 0px 0px;' );
+
+        // rule: [ >... ,<
+        const innerPalitraClass = text.match(/\.colors\.[^\{]+>[^\{]+/)[0];
+        text = text.replace(/(?="\.colors\.)/g, `"${innerPalitraClass}::-webkit-scrollbar-track { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%); }","${innerPalitraClass}::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 10px; }","${innerPalitraClass}::-webkit-scrollbar { width: 0.4em; }",`);
+    }
+
 
     // Удаление ватермарка
     text = text.replaceAll ( '/images/bgcanvas.svg', '' );
@@ -2371,28 +2454,6 @@ function edit( text ) {
     for (let c of text.match(/\.colors\.[^\}\>]+(?=\})/g)){
         text = text.replace( c, c + "height:500px;" );
     }
-
-    for (let c of text.match(/\.colors\.[^\}]+>[^\}]+/g)){
-        text = text.replace( c, c + "overflow: auto; width: 130px;" );
-    }
-
-    // Изменение палитры
-    // Отывок цветового инпута
-    var colorInput = text.match(/.Object\(\w\..{1,4}\)\("input",.+type:"color"[^\]]+/)[0];
-    // Удаление инпута из текущего места
-    text = text.replace(colorInput, '');
-    // Перемещения запятых
-    colorInput = colorInput.replace(/^,/, '') + ',';
-    // Вставка инпута в новое место
-    text = text.replace(/(?<=}\)\)}\)]}\))(?=,Object\(\w\.jsx\)\(\w\.\w,{)/, ","+colorInput);
-    //Изменение стиля инпута > input.jsx-3071142060{ <
-    const inputStyleStart = text.match(/input\.[^\{]+./)[0];
-    // Добавление новых стилей в инпут
-    text = text.replace( inputStyleStart, inputStyleStart + 'min-height: 42px; margin: 10px 0px 0px 0px;' );
-
-    // rule: [ >... ,<
-    const innerPalitraClass = text.match(/\.colors\.[^\{]+>[^\{]+/)[0];
-    text = text.replace(/(?="\.colors\.)/g, `"${innerPalitraClass}::-webkit-scrollbar-track { border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgb(0 0 0 / 30%); }","${innerPalitraClass}::-webkit-scrollbar-thumb { background-color: #fff; border-radius: 10px; }","${innerPalitraClass}::-webkit-scrollbar { width: 0.4em; }",`);
 
     // Добавление дропера
     text = text.replace('"dropper",2', '"dropper",0');
@@ -2905,13 +2966,54 @@ const dynamElem = (tag, options, parent) => {
 const dynamStyle = (elem, styles) => Object.assign(elem.style, styles);
 
 const dict = {
-    title: "TITLE",
-    info: [{type: "image", id:"", src:"", style: ""}, {type:"link", id:"", text:"", link:"", style:""}, {type: "text", id: "", text: "", style: ""}],
-    buttons: [{text: "YES", f: function(){}, close: false, style: ""}, {text: "NO", f: function(){}, close: false, style: ""}],
-    closeButton: false,
+    title: "NEW PALETTE SETTINGS!",
+    info: [
+        {
+            type: "image",
+            id:"",
+            src:"https://media.discordapp.net/attachments/867153297407868938/893789956135350302/unknown.png?width=970&height=660",
+            style: "background-size:100%;width:970px;height:660px;background-repeart:no-repeart;border-radius:10px;"
+        },
+        {
+            type:"link",
+            id:"",
+            text:"",
+            link:"",
+            style:""
+        },
+        {
+            type: "text",
+            id: "",
+            text: "",
+            style: ""
+        }
+    ],
+    buttons: [
+        //         {
+        //             text: "YES",
+        //             f: function(){},
+        //             close: false,
+        //             style: ""
+        //         },
+        //         {
+        //             text: "NO",
+        //             f: function(){},
+        //             close: false,
+        //             style: ""
+        //         }
+        {
+            text: "OK",
+            f: function(){
+                //localStorage.version = "4";
+            },
+            close: true,
+            style: ""
+        }
+    ],
+    closeButton: true,
 }
 
-window.f = function askAll(dict){
+function askAll(dict){
     if (document.querySelector("#ask-box-bg")) return false;
     let background = dynamElem("div", {
         id: "ask-box-bg",
@@ -2928,15 +3030,14 @@ window.f = function askAll(dict){
 
     for (let i=0; i<dict.info.length; i++){
         switch(dict.info[i].type){
-            case "image":
-                var image = new Image();
-                image.crossOrigin="*";
-                image.src = dict.info[i].src;
-                image.onload=()=>{
-                    console.log(image.width);
-                }
-                miniWindow.appendChild(image);
+            case "image": {
+                let t = dynamElem("div", {
+                    id: dict.info[i].id ? dict.info[i].id : dict.info[i].type+i,
+                    style: dict.info[i].style
+                }, miniWindow);
+                t.style.backgroundImage = `url(${dict.info[i].src})`;
                 break;
+            }
             case "link":{
                 let t = dynamElem("a", {
                     id: dict.info[i].id ? dict.info[i].id : dict.info[i].type+i,
@@ -2955,7 +3056,41 @@ window.f = function askAll(dict){
                 }, miniWindow);
         }
     }
+    if (dict.buttons && dict?.buttons?.length > 0){
+        let buttomPlane = dynamElem("div", {
+            style:"display:flex;flex-direction:row;width:100%",
+        }, miniWindow);
+        dict.buttons.forEach(function(button){
+            var curButton = dynamElem("button", {
+                className: "title-button",
+                style: "background-color:rgb(86,53,220);color:rgb(255,255,255);border:none;font-family:Black;text-transform:uppercase;font-size:16px;border-radius:5px;cursor:pointer;padding:10px;width:100%;margin:15px 3px auto;",
+                innerText: button.text,
+                onclick: button.f,
+            }, buttomPlane);
+            if (button.close){
+                curButton.addEventListener("click", ()=>{background.delete();});
+            }
+        });
+    }
+
+    if (dict.closeButton){
+        dynamElem("div", {
+            innerText:"",
+            style: "font-family:ico;color:rgb(172,167,198);font-size:25px;border:none;background:none;position:absolute;top:15px;right:15px;width:30px;height:30px;display:flex;-webkit-box-align:center;align-items:center;-webkit-box-pack:center;justify-content:center;cursor:pointer;",
+            onclick: function(){
+                background.delete();
+            }
+        }, miniWindow);
+    }
 }
+window.f = askAll;
+
+function initSettings(){
+
+}
+
+
+
 
 
 
