@@ -1,4 +1,14 @@
-
+// ==UserScript==
+// @name         Gartic Phone Main File
+// @namespace    http://tampermonkey.net/
+// @version      alpha
+// @description  This is multi-modification for garticphone.com
+// @author       Doctor Death D. Dracula
+// @match        https://garticphone.com/*
+// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
@@ -2325,12 +2335,12 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 
 
 const testForFile = setTimeout(()=>{
-    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]")) window.location.replace("https://garticphone.com/");
-}, 3000);
+    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features")) window.location.replace("https://garticphone.com/");
+}, 4000);
 
 const testForInject = setTimeout(()=>{
-    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]")) window.location.replace("https://garticphone.com/");
-}, 3000);
+    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features")) window.location.replace("https://garticphone.com/");
+}, 4000);
 
 // Getting draw file path
 window.addEventListener("load", ()=>{
