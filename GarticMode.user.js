@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -321,7 +322,7 @@ function firstTimeLoaded () {
     addMainMenuKeys ();
     initSettings();
 
-    if (localStorage.version != "4") window.f(dict);
+    if (localStorage.version != "4") askAll(dict);
 }
 
 
@@ -338,9 +339,9 @@ function onWindowChange ( _case ) {
             break;
             /* lobby */
         case 'lobby':
-            setTimeout(()=>{
-                if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.replace("https://garticphone.com/")}}
-            }, 2000);
+//             setTimeout(()=>{
+//                 if (!window.gg.xhr || !window.gg.WS) { if (confirm("Websocket or XHR is not initialized. RELOAD? (YES)")){window.location.replace("https://garticphone.com/")}}
+//             }, 2000);
             break;
             /* first write */
         case 'first':
@@ -451,10 +452,12 @@ function addTopMenuInterval () {
 function resizeEvent () {
     let scale = `scale(${getScale()})`,
         topMenu = document.getElementsByClassName("top-menu")[0],
-        settings = document.getElementsByClassName("settings-menu")[0]
+        settings = document.getElementsByClassName("settings-menu")[0],
+        askMenu = document.querySelector("#ask-box-bg");
     //document.;
     topMenu ? topMenu.style.transform = scale : 0;
     settings ? settings.style.transform = scale : 0;
+    askMenu ? askMenu.firstChild.style.transform =`scale(${getScale()/1.2})` : 0;
 }
 
 
@@ -3028,6 +3031,7 @@ function askAll(dict){
             innerText: dict.title ? dict.title : "",
             style: "font-family:'Black';font-size:24px;color:rgb(48,26,107);text-align:center;line-height:29px;text-transform:uppercase;"
         }, miniWindow);
+    miniWindow.style.transform=`scale(${getScale()/1.2})`;
 
     for (let i=0; i<dict.info.length; i++){
         switch(dict.info[i].type){
@@ -3084,7 +3088,7 @@ function askAll(dict){
         }, miniWindow);
     }
 }
-//window.f = askAll;
+window.f = askAll;
 
 function initSettings(){
 
