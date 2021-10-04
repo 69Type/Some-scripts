@@ -1,14 +1,4 @@
-// ==UserScript==
-// @name         Gartic Phone Main File
-// @namespace    http://tampermonkey.net/
-// @version      alpha
-// @description  This is multi-modification for garticphone.com
-// @author       Doctor Death D. Dracula
-// @match        https://garticphone.com/*
-// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
-// @grant        none
-// @run-at       document-start
-// ==/UserScript==
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
