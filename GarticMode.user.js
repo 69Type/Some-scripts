@@ -152,7 +152,7 @@ function initXhr(xhr){
     xhr.addEventListener('load', (e)=>{
         if (xhr.response.indexOf("users") != -1){
             var dict = JSON.parse(xhr.response.match(/\[.+/)[0])[1];
-            console.log(dict);
+            //console.log(dict);
             window.gg.users={};
             window.gg.users.left = {};
             window.gg.users.ready = {};
@@ -175,9 +175,9 @@ window.editSending = function(a) {
 function initWebSocket(ws){
     window.gg.WS = ws;
     window.gg.WS.addEventListener('message', (e)=>{
-        console.log(e.data);
+        //console.log(e.data);
         if (e.data.indexOf("42") == -1) return;
-        console.log("message:",e.data);
+        //console.log("message:",e.data);
         var command = JSON.parse(e.data.slice(2))[1];
         //console.log("command:",command);
         switch (command){
@@ -2322,7 +2322,14 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 
 
 // Getting draw file path
-window.addEventListener("load", ()=>{
+const idd = setInterval(function(){
+    if (document.readyState == "complete") {
+        clearInterval(idd);
+        ping();
+    }
+}, 0);
+
+function ping(){
     console.log("1. window load");
     try {
         for (let i in window.__BUILD_MANIFEST["/draw"]){
@@ -2336,7 +2343,7 @@ window.addEventListener("load", ()=>{
     } catch (e) {
         if (confirm(`SOMETHING GOES WRONG: \n${e}\nYOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features`)) window.location.replace("https://garticphone.com/");
     }
-});
+};
 
 
 async function getScriptText(path, i){
