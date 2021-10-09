@@ -85,7 +85,7 @@ XMLHttpRequest = MyXMLHttpRequest;
 
 
 
-const VERSION = "4.1 BETA";
+const VERSION = "4.2 BETA";
 
 
 /*
