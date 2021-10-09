@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -85,7 +84,7 @@ XMLHttpRequest = MyXMLHttpRequest;
 
 
 
-const VERSION = "4.2 BETA";
+const VERSION = "4.2.1 BETA";
 
 
 /*
@@ -2330,7 +2329,7 @@ window.addEventListener("load", ()=>{
         for (let i in window.__BUILD_MANIFEST["/draw"]){
             if (window.__BUILD_MANIFEST["/draw"][i].indexOf("/draw") != -1){
                 console.log(window.__BUILD_MANIFEST["/draw"][i]);
-                getScriptText( window.__BUILD_MANIFEST["/draw"][i], i );
+                getScriptText( window.__BUILD_MANIFEST["/draw"][i], i);
                 break;
             }
         }
@@ -2353,6 +2352,10 @@ async function getScriptText(path, i){
 
 function inject( text ) {
     eval (text);
+    window.__BUILD_MANIFEST["/draw"].forEach(function(item, i){
+        if (item.indexOf("draw") != -1){window.__BUILD_MANIFEST["/draw"][i] = "";};
+    })
+    console.log(window.__BUILD_MANIFEST["/draw"]);
     //     let s = document.createElement("script");
     //     s.type="text/javascript";
     //     s.innerText = text;
