@@ -2324,23 +2324,18 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 }
 
 
-const testForFile = setTimeout(()=>{
-    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE EDIT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features")) window.location.replace("https://garticphone.com/");
-}, 4000);
-
-const testForInject = setTimeout(()=>{
-    if (confirm("SOMETHING GOES WRONG, YOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features")) window.location.replace("https://garticphone.com/");
-}, 4000);
-
 // Getting draw file path
 window.addEventListener("load", ()=>{
-    for (let i in window.__BUILD_MANIFEST["/draw"]){
-        if (window.__BUILD_MANIFEST["/draw"][i].indexOf("/draw") != -1){
-            console.log(window.__BUILD_MANIFEST["/draw"][i]);
-            getScriptText( window.__BUILD_MANIFEST["/draw"][i], i );
-            clearTimeout(testForFile);
-            break;
+    try {
+        for (let i in window.__BUILD_MANIFEST["/draw"]){
+            if (window.__BUILD_MANIFEST["/draw"][i].indexOf("/draw") != -1){
+                console.log(window.__BUILD_MANIFEST["/draw"][i]);
+                getScriptText( window.__BUILD_MANIFEST["/draw"][i], i );
+                break;
+            }
         }
+    } catch (e) {
+        if (confirm(`SOMETHING GOES WRONG: \n${e}\nYOU NEED TO RELOAD THE PAGE!\n[FILE INJECT TIMEOUT]\nIf you will not reload the page you will lost cool drawing features`)) window.location.replace("https://garticphone.com/");
     }
 });
 
@@ -2352,13 +2347,12 @@ async function getScriptText(path, i){
         inject(edit( await response.text()));
         window.__BUILD_MANIFEST["/draw"][i] = "";
     } else {
-        alert(`Something goes wrong: ${response.status}\nPLEASE RELOAD THE PAGE.\n`);
+        if (confirm(`Something goes wrong: ${response.status}\nPLEASE RELOAD THE PAGE.\n`)) window.location.replace("https://garticphone.com/");
     }
 }
 
 function inject( text ) {
     eval (text);
-    clearTimeout(testForInject);
     //     let s = document.createElement("script");
     //     s.type="text/javascript";
     //     s.innerText = text;
@@ -3021,7 +3015,7 @@ function askAll(dict){
     if (document.querySelector("#ask-box-bg")) return false;
     let background = dynamElem("div", {
         id: "ask-box-bg",
-        style: "position:absolute;display:flex;inset:0;background-color:rgba(0,0,0,0.8);-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;"
+        style: "position:absolute;display:flex;inset:0;background-color:rgba(0,0,0,0.8);-webkit-box-pack:center;justify-content:center;-webkit-box-align:center;align-items:center;z-index:100;"
     }, document.body),
         miniWindow = dynamElem("div", {
             id: "mini-w",
