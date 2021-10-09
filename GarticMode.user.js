@@ -1,4 +1,14 @@
-
+// ==UserScript==
+// @name         Gartic Phone Main File
+// @namespace    http://tampermonkey.net/
+// @version      alpha
+// @description  This is multi-modification for garticphone.com
+// @author       Doctor Death D. Dracula
+// @match        https://garticphone.com/*
+// @icon         https://media.discordapp.net/attachments/827569141782282272/875344427391021116/secret.png
+// @grant        none
+// @run-at       document-start
+// ==/UserScript==
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
@@ -7,6 +17,10 @@
 // ! So if someone comes here who understands something about this, then do not be surprised by such a terrible code :)         ! //
 // !                                                                                                                            ! //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const VERSION = "4.2.4 BETA";
+
 
 window.gg = {};
 window.gg.cst = {
@@ -80,13 +94,6 @@ XMLHttpRequest = MyXMLHttpRequest;
 //     document.head.appendChild(s);
 //     console.log("+injected+");
 // }
-
-
-
-
-
-const VERSION = "4.2.2 BETA";
-
 
 /*
 format: 42[2,{command},{id}/{JSON}]
@@ -2326,10 +2333,12 @@ for (let j=0; j<RANDOMCOLORS; j++) {
 
 // Getting draw file path
 window.addEventListener("load", ()=>{
+    console.log("1. window load");
     try {
         for (let i in window.__BUILD_MANIFEST["/draw"]){
             if (window.__BUILD_MANIFEST["/draw"][i].indexOf("/draw") != -1){
-                console.log(window.__BUILD_MANIFEST["/draw"][i]);
+                console.log("2. finded")
+                console.log("https://garticphone.com/_next/" + window.__BUILD_MANIFEST["/draw"][i]);
                 getScriptText( window.__BUILD_MANIFEST["/draw"][i], i);
                 break;
             }
@@ -2341,23 +2350,24 @@ window.addEventListener("load", ()=>{
 
 
 async function getScriptText(path, i){
+    console.log("3. getscript executed");
     const url = "https://garticphone.com/_next/" + path,
           response = await fetch( url );
     if ( response.ok ) {
+        console.log("4. responce is OK");
         inject(edit( await response.text()));
         window.__BUILD_MANIFEST["/draw"][i] = "";
+        console.log("7. done!");
     } else {
+        alert("!!!!");
         if (confirm(`Something goes wrong: ${response.status}\nPLEASE RELOAD THE PAGE.\n`)) window.location.replace("https://garticphone.com/");
     }
 }
 
 function inject( text ) {
-    alert("OK");
+    console.log("5. script injected")
     eval (text);
-    window.__BUILD_MANIFEST["/draw"].forEach(function(item, i){
-        if (item.indexOf("draw") != -1){window.__BUILD_MANIFEST["/draw"][i] = "";};
-    })
-    console.log(window.__BUILD_MANIFEST["/draw"]);
+    console.log("6. script is evaled")
     //     let s = document.createElement("script");
     //     s.type="text/javascript";
     //     s.innerText = text;
