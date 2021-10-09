@@ -1,4 +1,5 @@
 
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -2351,6 +2352,7 @@ async function getScriptText(path, i){
 }
 
 function inject( text ) {
+    alert("OK");
     eval (text);
     window.__BUILD_MANIFEST["/draw"].forEach(function(item, i){
         if (item.indexOf("draw") != -1){window.__BUILD_MANIFEST["/draw"][i] = "";};
