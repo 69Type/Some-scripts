@@ -1,5 +1,4 @@
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // !                                                                                                                            ! //
 // ! Note                                                                                                                       ! //
@@ -2453,9 +2452,9 @@ function edit( text ) {
     text = text.replace ( /(?<=function .\(.,.\)\{var .=.+density;)/, pointerDrawFunction );
 
     // Фикс заливки, поедающий тонкие линии, но а так вроде не плохо
-    const fillReturningVariable = text.match ( /(?<=.\[.\]\[.\]=!0;return )./ );
-    const newFillCode = `${fillReturningVariable}[0]-=2;${fillReturningVariable}[1]-=2;${fillReturningVariable}[2]+=4;${fillReturningVariable}[3]+=4;`
-    text = text.replace ( /(?<=.\[.\]\[.\]=!0;).{0}(?=return .)/, newFillCode );
+//     const fillReturningVariable = text.match ( /(?<=.\[.\]\[.\]=!0;return )./ );
+//     const newFillCode = `${fillReturningVariable}[0]-=2;${fillReturningVariable}[1]-=2;${fillReturningVariable}[2]+=4;${fillReturningVariable}[3]+=4;`
+//     text = text.replace ( /(?<=.\[.\]\[.\]=!0;).{0}(?=return .)/, newFillCode );
 
     // Получим переменную палитры 'e'
     const colorVariable = text.match ( /(?<=var\s..=function\().(?=\)\{var)/ );
@@ -2469,6 +2468,7 @@ function edit( text ) {
     text = text.replace('"dropper",2', '"dropper",0');
     // Переменная o.jsx
     const ou = text.match(/(?<=e\}\)\|\|""\)}\),Object\()\w{1,2}/)[0];
+
     // Место вкливания нового инструмента сглаживания
     text = text.replace(/(?<=e\}\)\|\|""\)}\),)(?=Object\()/, `window.SMOOTHING_FUNC(${ou}.jsx),`);
 
@@ -2480,7 +2480,7 @@ function edit( text ) {
 
     // Переменная текущего штриха
     const r = text.match(/\w+(?=\),document\.removeEventListener\("mousemove",\w,!1\))/)[0];
-    text = text.replace(/(?<=function\s\w\(\){)(?=\w&&clearInterval\(\w\),)/, `${r}=window._MOUSEUP(${r});`);
+    text = text.replace(/(?<=function\s\w\(\){)(?=\w\.length&&\(\w&&clearInterval\(\w\),)/, `${r}=window._MOUSEUP(${r});`);
 
 
     // Инпут толщины
@@ -2569,6 +2569,15 @@ window.SMOOTHING_FUNC = function (e){
 
 
 
+window.gg.keys = [];
+window.addEventListener("keydown", (e)=>{
+    if (window.gg.keys.indexOf(e.keyCode) == -1) window.gg.keys.push(e.keyCode);
+});
+window.addEventListener("keyup", (e)=>{
+    window.gg.keys.splice(window.gg.keys.indexOf(e.keyCode), 1);
+});
+
+
 window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
     tool && event && r && D && g ? "complete" : console.error("SOME OF MOSUEDOWN ARGS IS MISSING");
     var status = true,
@@ -2599,7 +2608,8 @@ window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
     var drawingContainer = document.getElementsByClassName( 'drawingContainer' )[0];
     switch (event.which) {
         case 1: {
-            if (event.ctrlKey){
+            if (window.gg.keys.indexOf(32) != -1){
+                console.log("MOVE");
                 status = false;
                 drawingContainer.lastChild.style.cursor='move';
                 drawingContainer.lastChild.style.opacity='0';
@@ -2631,6 +2641,7 @@ window._MOUSEDOWN_EVENT_FUNCTION = function(tool, event, r, D, g){
                 }
                 document.addEventListener('pointermove', pMove);
                 document.addEventListener('pointerup', pUp);
+
             }
             break;
         }
