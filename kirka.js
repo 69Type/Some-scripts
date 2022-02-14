@@ -1,5 +1,5 @@
 alert('File was executed.\nThis file from my github.\nYou can change that file anytime you want.');
-alert('For example here is the script of mine packet replacer');
+alert('For example here is the script of mine packet replacer.');
 
 console.log(`%cMade by Doctor Death D. Dracula`, 'background-color:yellow;border:2px solid #000;font-weight:bold;font-size:14px;font-family:monospace;padding:0px 20px;');
 
