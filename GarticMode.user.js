@@ -79,7 +79,7 @@ delete generate;
 
 me("div", {
 	innerText: "garticphone mod was closed",
-	style: "position: absolute;color:#fff;left:0px;top:0px;text-transform:uppercase;font-size:14px;font-family:'Black';margin:5px;text-transform:uppercase;",
+	style: "position: absolute;color:#fff;left:0px;top:0px;text-transform:uppercase;font-size:14px;font-family:'Black';margin:5px;text-transform:uppercase;z-index:100;",
 	id: "mod",
 }, document.body);
 
@@ -167,22 +167,7 @@ me.f.mergeCanvases = function(canvases){
     return mainCanvas;
 }
 
-
-me.f.addEventListeners = function(){
-    document.addEventListener('DOMContentLoaded', me.f.onDOMContentLoaded);
-}
-
-me.f.onDOMContentLoaded = function(){
-    me.f.onhead();
-}
-
-me.f.onhead = function(head){
-    me.f.addConstantStyles();
-}
-
-
-me.f.addConstantStyles = function(){
-    me.css(`
+me.css(`
 html {
     overflow: hidden;
     !important
@@ -342,7 +327,7 @@ html {
 
 
 `, 'myConstantStyles');
-}
+
 
 
 me.init();
