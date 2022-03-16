@@ -87,6 +87,262 @@ me("style", {
 	textContent: '.side{display:none !important;}'
 }, document.head);
 
+me.f.globalObserver = function(){
+    let observer = new MutationObserver(mutation => {
+        mutation.forEach(record => {
+            record.addedNodes.forEach(me.f.onAddedNode);
+        });
+    });
+    observer.observe(document, {childList: true, subtree: true});
+}
+
+me.f.onAddedNode = function(node){
+    switch (node?.tagName) {
+        case 'DIV': me.f.ondiv(node); break;
+    }
+}
+
+me.f.ondiv = function(div){
+    Array.from(div.querySelectorAll(`.${me.g.item}`)).concat(div.classList.contains(me.g.item) ? [div] : []).forEach(me.f.onBookItem);
+}
+
+me.f.onBookItem = function(item){
+    if (item.querySelector(`.${me.g.drawing}`)){
+        me.f.addDrawingItemsButtons(item);
+    }
+}
+
+me.f.addDrawingItemsButtons = function(item){
+    item.style = 'display:flex;flex-direction:row;';
+    me('div', {
+        id: 'drawing-item-buttons-area',
+        style: `display:flex;flex-direction:column;margin-top:30px;height:fit-content;`,
+        children: [
+            me('button', {
+                className: 'download-button-on-drawing-item',
+                onclick: me.f.itemDownloadButton
+            }),
+            me('button', {
+                className: 'copy-button-on-drawing-item',
+                onclick: me.f.itemCopyButton
+            }),
+        ]
+    }, item);
+}
+
+me.f.itemCopyButton = async function(){
+    const solidCanvas = me.f.mergeCanvases(Array.from(this.closest(`.${me.g.item}`).getElementsByTagName('canvas')));
+
+    solidCanvas.toBlob(blob => {
+        navigator.clipboard.write([
+            new window.ClipboardItem({
+                [blob.type]: blob
+            })
+        ]).then(() => {
+            me.log('Copied', 'succes');
+        })
+    })
+}
+
+me.f.itemDownloadButton = function(){
+    const solidCanvas = me.f.mergeCanvases(Array.from(this.closest(`.${me.g.item}`).getElementsByTagName('canvas'))),
+          link = me('a');
+
+    link.download = this.closest(`.${me.g.item}`).querySelector(`.${me.g.balloon}`).previousElementSibling.textContent + '.png';
+    link.href = solidCanvas.toDataURL();
+    link.click();
+}
+
+me.f.mergeCanvases = function(canvases){
+    const mainCanvas = me('canvas', {
+        width: canvases[0].width,
+        height: canvases[0].height
+    }),
+          mainCtx = mainCanvas.getContext('2d');
+
+    canvases.forEach(canvas => {
+        mainCtx.drawImage(canvas, 0, 0, canvases[0].width, canvases[0].height);
+    });
+
+    return mainCanvas;
+}
+
+
+me.f.addEventListeners = function(){
+    document.addEventListener('DOMContentLoaded', me.f.onDOMContentLoaded);
+}
+
+me.f.onDOMContentLoaded = function(){
+    me.f.onhead();
+}
+
+me.f.onhead = function(head){
+    me.f.addConstantStyles();
+}
+
+
+me.f.addConstantStyles = function(){
+    me.css(`
+html {
+    overflow: hidden;
+    !important
+}
+
+.setting-tab-selected {
+    color: #fff;
+    background-color: #000;
+}
+
+.my-settings-checkbox-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.my-settings-radiobutton-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.my-settings-text {
+    color: #fff;
+    font-family: "Black";
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.my-settings-checkbox {
+    margin: 0px 7px 2px 0px;
+}
+
+.my-settings-radiobutton{
+    margin: 0px 7px 2px 0px;
+}
+
+.my-settings-label {
+    color: #fff;
+    margin: 0px auto 0px auto;
+    padding: 10px;
+    max-height: 15px;
+    font-family: "Black";
+    text-transform: uppercase;
+    flex: 1;
+}
+
+.my-settings-range-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-settings-range-text {
+    color: #fff;
+    padding: 0px 0px 6px 10px;
+    max-height: 15px;
+    font-family: "Black";
+    text-transform: uppercase;
+    font-size: 15px;
+    flex: 1;
+}
+
+.my-settings-range {
+    margin: 5px 10px 6px 10px;
+    height: 5px;
+}
+
+.my-background {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    inset: 0px;
+    background-color: rgba(0, 0, 0, 0.8);
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.load-file-button {
+    font-family: 'Black';
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 0px 10px 0px 10px;
+    height: 35px;
+    outline: none;
+    appearance: none;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.load-file-button:hover{
+    border: 2px solid;
+    color: #fff;
+    background-color: #000;
+}
+
+.load-file-plate {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px 0px 0px;
+}
+
+.load-file-label {
+    color: #fff;
+    flex: 1;
+    font-family: 'Black';
+    text-transform: uppercase;
+    margin: 0px 0px 5px 0px;
+    text-align: center;
+}
+
+.copy-button-on-drawing-item {
+    display: none;
+    background-image: url("${me.icons.copyButton}");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border: none;
+    appearance: none;
+    outline: none;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+.download-button-on-drawing-item {
+    display: none;
+    background-image: url("${me.icons.downloadButton}");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border: none;
+    appearance: none;
+    outline: none;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    margin: 2px;
+}
+
+
+.yt-like-button {
+      background-image: url("data:image/svg+xml,${encodeURI(me.icons.ytPlayButtonInactiveSVG)}");
+      background-repeat: no-repeat;
+}
+
+.yt-like-button:hover {
+      background-image: url("data:image/svg+xml,${me.icons.ytPlayButtonActiveSVG}");
+      background-repeat: no-repeat;
+}
+
+
+`, 'myConstantStyles');
+}
 
 
 me.init();
