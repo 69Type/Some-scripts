@@ -285,7 +285,6 @@ html {
 }
 
 .copy-button-on-drawing-item {
-    display: none;
     background-image: url("${me.icons.copyButton}");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -300,7 +299,6 @@ html {
 }
 
 .download-button-on-drawing-item {
-    display: none;
     background-image: url("${me.icons.downloadButton}");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -314,16 +312,6 @@ html {
     margin: 2px;
 }
 
-
-.yt-like-button {
-      background-image: url("data:image/svg+xml,${encodeURI(me.icons.ytPlayButtonInactiveSVG)}");
-      background-repeat: no-repeat;
-}
-
-.yt-like-button:hover {
-      background-image: url("data:image/svg+xml,${me.icons.ytPlayButtonActiveSVG}");
-      background-repeat: no-repeat;
-}
 
 
 `, 'myConstantStyles');
