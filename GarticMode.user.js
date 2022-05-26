@@ -77,8 +77,9 @@ const me = Object.assign(generate, {
 
 delete generate;
 
-me("div", {
-	innerText: "garticphone mod was closed",
+me("a", {
+	href: "https://discord.gg/hynZCVZyzN",
+	innerText: "new version is avaliable here: https://discord.gg/hynZCVZyzN",
 	style: "position: absolute;color:#fff;left:0px;top:0px;text-transform:uppercase;font-size:14px;font-family:'Black';margin:5px;text-transform:uppercase;z-index:100;",
 	id: "mod",
 }, document.body);
